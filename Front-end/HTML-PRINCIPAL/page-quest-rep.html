@@ -258,8 +258,7 @@
             font-weight:600;
         }
 
-        .post-stats-left,
-        .post-stats-right{
+        .post-stats-left{
             display:flex;
             align-items:center;
             gap:18px;
@@ -267,28 +266,51 @@
         }
 
         /* actions du post */
-        .post-actions{
-            display:grid;
-            grid-template-columns:repeat(3,1fr);
-            gap:8px;
+       .post-actions{
+            display:flex;
+            align-items:center;
+            gap:12px;
             padding:12px 16px 16px;
-        }
+            }
 
-        .post-btn{
-            min-height:48px;
-            border:none;
-            border-radius:14px;
-            background:#f5f8fc;
-            color:#2a3b56;
-            font-weight:700;
-            cursor:pointer;
-        }
+.post-btn{
+    min-height:48px;
+    padding:0 18px;
+    border:none;
+    border-radius:14px;
+    background:#f5f8fc;
+    color:#2a3b56;
+    font-weight:700;
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    transition:0.2s ease;
+}
 
-        .post-btn.primary{
-            background:linear-gradient(90deg,#1b6fd3,#5b99e8);
-            color:white;
-        }
+.post-btn:hover{
+    background:#ebf2fa;
+}
 
+.post-btn.like-btn{
+    background:#eef4ff;
+    color:#1f6fd1;
+}
+
+.post-btn.like-btn:hover{
+    background:#e3eeff;
+}
+
+.post-btn.primary{
+    background:linear-gradient(90deg,#1b6fd3,#5b99e8);
+    color:white;
+    margin-left:auto;
+    box-shadow:0 10px 20px rgba(27,111,211,0.18);
+}
+
+.post-btn.primary:hover{
+    opacity:0.96;
+}
         /* =========================
            REPONSES
         ========================= */
@@ -625,7 +647,7 @@
 
                             <p class="post-text">
                                 Je travaille sur un projet où je dois trier des millions d'éléments.
-                                J’aimerais savoir quels sont les algorithmes les plus efficaces dans ce cas,
+                                J'aimerais savoir quels sont les algorithmes les plus efficaces dans ce cas,
                                 et surtout comment choisir entre Quick Sort, Merge Sort ou d'autres solutions
                                 plus adaptées à un très grand volume de données.
                             </p>
@@ -645,15 +667,13 @@
                                 <span>💬 15 réponses</span>
                             </div>
 
-                            <div class="post-stats-right">
-                                <span>⭐ 7 sauvegardes</span>
-                            </div>
+                            
                         </div>
 
                         <!-- actions -->
                         <div class="post-actions">
-                            <button class="post-btn">👍 J’aime</button>
-                            <button class="post-btn">💬 Répondre</button>
+                            <button class="post-btn">👍 J'aime</button>
+                            
                             <button class="post-btn primary">✍️ Écrire une réponse</button>
                         </div>
                     </article>
@@ -676,14 +696,14 @@
                                 </div>
 
                                 <p class="answer-text">
-                                    Pour un très grand nombre d’éléments, tu peux comparer Merge Sort et Quick Sort.
+                                    Pour un très grand nombre d'éléments, tu peux comparer Merge Sort et Quick Sort.
                                     Merge Sort est très stable et garde une complexité O(n log n), tandis que Quick Sort
                                     est souvent très rapide en pratique mais dépend du choix du pivot.
                                 </p>
 
                                 <div class="answer-actions">
                                     <a href="#" class="answer-link">Répondre</a>
-                                    <span class="answer-like">👍 12 j’aime</span>
+                                    <span class="answer-like">👍 12 j'aime</span>
                                 </div>
 
                                 <!-- réponse à la réponse -->
@@ -694,7 +714,7 @@
                                     </div>
 
                                     <p class="reply-text">
-                                        Merci, c’est plus clair. Je vais comparer les deux sur mon jeu de données.
+                                        Merci, c'est plus clair. Je vais comparer les deux sur mon jeu de données.
                                     </p>
                                 </div>
                             </div>
@@ -712,12 +732,12 @@
 
                                 <p class="answer-text">
                                     Regarde aussi TimSort si tu travailles avec des données déjà partiellement triées.
-                                    C’est souvent une très bonne option dans les bibliothèques modernes.
+                                    C'est souvent une très bonne option dans les bibliothèques modernes.
                                 </p>
 
                                 <div class="answer-actions">
                                     <a href="#" class="answer-link">Répondre</a>
-                                    <span class="answer-like">👍 8 j’aime</span>
+                                    <span class="answer-like">👍 8 j'aime</span>
                                 </div>
                             </div>
                         </div>
@@ -734,13 +754,13 @@
 
                                 <p class="answer-text">
                                     Si tes données ne tiennent pas entièrement en mémoire, il faut aussi penser
-                                    au tri externe. Dans ce cas, le choix de l’algorithme dépendra du stockage disque
+                                    au tri externe. Dans ce cas, le choix de l'algorithme dépendra du stockage disque
                                     et du volume réel des données.
                                 </p>
 
                                 <div class="answer-actions">
                                     <a href="#" class="answer-link">Répondre</a>
-                                    <span class="answer-like">👍 5 j’aime</span>
+                                    <span class="answer-like">👍 5 j'aime</span>
                                 </div>
                             </div>
                         </div>
