@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMU Connect - Plateforme Étudiante</title>
+
+    <!-- Police -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================
+           RESET
+        ========================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* =========================
+           VARIABLES
+        ========================= */
+        :root {
+            --blue: #1f6fd1;
+            --blue-light: #5d99e8;
+            --dark: #16233b;
+            --gray: #60738f;
+            --white: #ffffff;
+            --page-bg: #f5f9fd;
+            --soft-bg: #eef4f9;
+            --border: #d9e3ef;
+            --shadow: 0 18px 45px rgba(27, 67, 121, 0.08);
+            --card-shadow: 0 10px 30px rgba(27, 67, 121, 0.07);
+            --max-width: 1440px;
+        }
+
+        /* =========================
+           BASE
+        ========================= */
+        body {
+            font-family: "Inter", sans-serif;
+            background: var(--page-bg);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        img {
+            width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(var(--max-width), calc(100% - 64px));
+            margin: 0 auto;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid #e7eef7;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(8px);
+        }
+
+        .header-box {
+            min-height: 74px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #2f86eb, #1f6fd1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 22px;
+            box-shadow: 0 8px 18px rgba(31, 111, 209, 0.2);
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            line-height: 1.1;
+        }
+
+        .logo-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--blue);
+        }
+
+        .logo-subtitle {
+            font-size: 13px;
+            color: #6d809c;
+            margin-top: 3px
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .login {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--blue);
+        }
+
+        /* =========================
+           BOUTONS
+        ========================= */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border-radius: 14px;
+            font-weight: 700;
+            border: 1px solid transparent;
+            transition: 0.25s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            padding: 14px 24px;
+            color: white;
+            background: linear-gradient(90deg, var(--blue), var(--blue-light));
+            box-shadow: 0 10px 22px rgba(31, 111, 209, 0.23);
+        }
+
+        .btn-outline {
+            padding: 14px 26px;
+            background: white;
+            color: var(--blue);
+            border-color: var(--blue);
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+        .hero {
+            padding: 70px 0 120px;
+            background: linear-gradient(180deg, #f7fbff 0%, #f4f8fc 100%);
+        }
+
+        .hero-box {
+            display: grid;
+            grid-template-columns: 1.05fr 1fr;
+            align-items: center;
+            gap: 56px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 18px;
+            border-radius: 999px;
+            background: #e8f2ff;
+            color: var(--blue);
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 28px;
+        }
+
+        .hero-title {
+            font-size: clamp(48px, 6vw, 74px);
+            line-height: 1.06;
+            letter-spacing: -1.8px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            max-width: 600px;
+        }
+
+        .hero-title-blue {
+            color: #2677d8;
+            display: block;
+        }
+
+        .hero-title-dark {
+            color: var(--dark);
+            display: block;
+        }
+
+        .hero-text {
+            max-width: 720px;
+            font-size: 19px;
+            line-height: 1.75;
+            color: var(--gray);
+            margin-bottom: 34px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        .hero-buttons .btn-primary,
+        .hero-buttons .btn-outline {
+            min-height: 64px;
+            min-width: 240px;
+            font-size: 17px;
+            border-radius: 16px;
+        }
+
+        .hero-image-wrap {
+            border-radius: 34px;
+            background: white;
+            padding: 10px;
+            box-shadow: 0 22px 55px rgba(22, 53, 100, 0.12);
+        }
+
+        .hero-image {
+            height: 610px;
+            object-fit: cover;
+            border-radius: 28px;
+        }
+
+        /* =========================
+           STATS
+        ========================= */
+        .stats {
+            margin-top: -34px;
+            margin-bottom: 95px;
+        }
+
+        .stats-bar {
+            background: linear-gradient(90deg, #0f6bd3 0%, #5d9ce8 100%);
+            border-radius: 30px;
+            box-shadow: 0 20px 45px rgba(20, 88, 174, 0.18);
+            padding: 36px 26px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            color: white;
+            text-align: center;
+        }
+
+        .stat h2 {
+            font-size: clamp(36px, 4vw, 52px);
+            line-height: 1;
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+
+        .stat p {
+            font-size: 16px;
+            opacity: 0.96;
+            font-weight: 500;
+        }
+
+        /* =========================
+           TITRES DE SECTION
+        ========================= */
+        .section-head {
+            text-align: center;
+            margin-bottom: 52px;
+        }
+
+        .section-head h2 {
+            font-size: clamp(40px, 5vw, 62px);
+            line-height: 1.12;
+            color: #2677d8;
+            letter-spacing: -1.2px;
+            margin-bottom: 14px;
+            font-weight: 800;
+        }
+
+        .section-head p {
+            font-size: 18px;
+            color: var(--gray);
+        }
+
+        /* =========================
+           FEATURES
+        ========================= */
+        .features {
+            padding: 10px 0 92px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 28px;
+        }
+
+        .feature-card {
+            background: #fbfdff;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 30px 30px 34px;
+            min-height: 300px;
+            transition: 0.25s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--card-shadow);
+        }
+
+        .feature-icon {
+            width: 74px;
+            height: 74px;
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 34px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .blue-icon {
+            background: linear-gradient(135deg, #2c7cdf, #5f9ce8);
+        }
+
+        .green-icon {
+            background: linear-gradient(135deg, #19bf87, #39d59f);
+        }
+
+        .orange-icon {
+            background: linear-gradient(135deg, #ff7a21, #ffb11f);
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            line-height: 1.25;
+            color: var(--dark);
+            margin-bottom: 16px;
+            font-weight: 800;
+        }
+
+        .feature-card p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--gray);
+        }
+
+        /* =========================
+           ABOUT
+        ========================= */
+        .about {
+            background: var(--soft-bg);
+            padding: 86px 0 92px;
+        }
+
+        .about-box {
+            display: grid;
+            grid-template-columns: 1.05fr 1fr;
+            gap: 58px;
+            align-items: center;
+        }
+
+        .about-image {
+            height: 510px;
+            object-fit: cover;
+            border-radius: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .about-title {
+            font-size: clamp(38px, 5vw, 58px);
+            line-height: 1.08;
+            color: #2677d8;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+        }
+
+        .about-text p {
+            font-size: 18px;
+            line-height: 1.9;
+            color: var(--gray);
+            margin-bottom: 26px;
+        }
+
+        .about-text p:last-of-type {
+            margin-bottom: 34px;
+        }
+
+        .about-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .about-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 28px 30px;
+            box-shadow: var(--card-shadow);
+            min-height: 188px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .about-card-icon {
+            font-size: 34px;
+            margin-bottom: 18px;
+        }
+
+        .about-card-icon.blue {
+            color: #2677d8;
+        }
+
+        .about-card-icon.green {
+            color: #1dbb87;
+        }
+
+        .about-card h3 {
+            font-size: 34px;
+            line-height: 1;
+            color: var(--dark);
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+
+        .about-card p {
+            font-size: 17px;
+            color: var(--gray);
+        }
+
+        /* =========================
+           TABLETTE
+        ========================= */
+        @media (max-width: 1200px) {
+            .hero-box,
+            .about-box {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+                row-gap: 28px;
+            }
+
+            .hero-image,
+            .about-image {
+                height: auto;
+                max-height: 560px;
+            }
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+        @media (max-width: 768px) {
+            .container {
+                width: min(100% - 32px, var(--max-width));
+            }
+
+            .logo-subtitle,
+            .login-link {
+                display: none;
+            }
+
+            .hero {
+                padding: 44px 0 84px;
+            }
+
+            .hero-title {
+                font-size: 44px;
+                letter-spacing: -1px;
+            }
+
+            .hero-text {
+                font-size: 16px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-buttons .btn-primary,
+            .hero-buttons .btn-outline {
+                width: 100%;
+                min-width: auto;
+            }
+
+            .stats {
+                margin-top: -18px;
+                margin-bottom: 70px;
+            }
+
+            .stats-bar {
+                grid-template-columns: 1fr;
+                padding: 26px 18px;
+                border-radius: 24px;
+            }
+
+            .features-grid,
+            .about-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-card {
+                min-height: auto;
+            }
+
+            .about {
+                padding: 72px 0 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container header-box">
+
+            <!-- Logo -->
+            <div class="logo">
+                <div class="logo-icon">🎓</div>
+
+                <div class="logo-text">
+                    <div class="logo-title">AMU Connect</div>
+                    <div class="logo-subtitle">Aix-Marseille Université</div>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="header-actions">
+                <a class="login">Se connecter</a> 
+                <button class="btn btn-primary">S'inscrire</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero">
+            <div class="container hero-box">
+
+                <!-- Texte -->
+                <div>
+                    <div class="hero-badge">
+                        <span>✦</span>
+                        <span>Plateforme étudiante  AMU</span>
+                    </div>
+
+                    <h1 class="hero-title">
+                        <span class="hero-title-blue">Votre réussite</span>
+                        <span class="hero-title-dark">commence ici</span>
+                    </h1>
+
+                    <p class="hero-text">
+                        Rejoignez la plateforme collaborative de l'Aix-Marseille Université.
+                        Posez vos questions, partagez vos ressources et réussissez ensemble.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary">Commencer gratuitement →</button>
+                        <button class="btn btn-outline">Se connecter</button>
+                    </div>
+                </div>
+
+                <!-- Image -->
+                <div class="hero-image-wrap">
+                    <img
+                        class="hero-image"
+                        src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
+                        alt="Étudiants prenant un selfie"
+                    >
+                </div>
+            </div>
+        </section>
+
+        <!-- STATS -->
+        <section class="stats">
+            <div class="container">
+                <div class="stats-bar">
+                    <div class="stat">
+                        <h2>10K+</h2>
+                        <p>Étudiants actifs</p>
+                    </div>
+
+                    <div class="stat">
+                        <h2>5K+</h2>
+                        <p>Questions répondues</p>
+                    </div>
+
+                    <div class="stat">
+                        <h2>15K+</h2>
+                        <p>Ressources partagées</p>
+                    </div>
+
+                    <div class="stat">
+                        <h2>50+</h2>
+                        <p>Filières représentées</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURES -->
+        <section class="features">
+            <div class="container">
+
+                <!-- Titre -->
+                <div class="section-head">
+                    <h2>Tout ce dont vous avez besoin</h2>
+                    <p>Une plateforme complète pour faciliter vos études à l'AMU</p>
+                </div>
+
+                <!-- Cartes -->
+                <div class="features-grid">
+                    <article class="feature-card">
+                        <div class="feature-icon blue-icon">💬</div>
+                        <h3>Forum Q&amp;A</h3>
+                        <p>Posez vos questions académiques et obtenez de l'aide de la communauté étudiante</p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon blue-icon">📚</div>
+                        <h3>Bibliothèque de ressources</h3>
+                        <p>Accédez à des milliers de documents partagés : TD, TP, examens et notes de cours</p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon green-icon">👥</div>
+                        <h3>Communauté active</h3>
+                        <p>Rejoignez une communauté de milliers d'étudiants de l'AMU prêts à s'entraider</p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon orange-icon">🏅</div>
+                        <h3>Contenu vérifié</h3>
+                        <p>Toutes les ressources sont vérifiées et validées par la communauté</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section class="about">
+            <div class="container about-box">
+
+                <!-- Image -->
+                <div>
+                    <img
+                        class="about-image"
+                        src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1200&q=80"
+                        alt="Bibliothèque universitaire"
+                    >
+                </div>
+
+                <!-- Texte -->
+                <div class="about-text">
+                    <h2 class="about-title">Qui sommes-nous ?</h2>
+
+                    <p>
+                        AMU Connect est la plateforme collaborative officielle des étudiants de
+                        l'Aix-Marseille Université. Notre mission est de faciliter l'entraide et le
+                        partage de connaissances entre étudiants.
+                    </p>
+
+                    <p>
+                        Créée par des étudiants, pour des étudiants, notre plateforme rassemble une
+                        communauté dynamique qui croit en la force du collectif pour réussir ses études.
+                    </p>
+
+                    <div class="about-cards">
+                        <div class="about-card">
+                            <div class="about-card-icon blue">📖</div>
+                            <h3>100%</h3>
+                            <p>Gratuit</p>
+                        </div>
+
+                        <div class="about-card">
+                            <div class="about-card-icon green">🎓</div>
+                            <h3>24/7</h3>
+                            <p>Disponible</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

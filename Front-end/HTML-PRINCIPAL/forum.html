@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forum - AMU Connect</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:"Inter",sans-serif;
+background:#f4f8fc;
+color:#16233b;
+}
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+.container{
+width:min(1200px, calc(100% - 40px));
+margin:auto;
+}
+
+/* HEADER */
+
+.header{
+background:#ffffff;
+border-bottom:1px solid #e4edf7;
+}
+
+.header-box{
+min-height:84px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:20px;
+}
+
+/* LOGO */
+
+.logo{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.logo-icon{
+width:50px;
+height:50px;
+border-radius:16px;
+background:linear-gradient(135deg,#2e7de0,#458fe9);
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+font-size:24px;
+box-shadow:0 8px 18px rgba(46,125,224,0.22);
+}
+
+.logo-title{
+font-size:20px;
+font-weight:800;
+color:#2f78d4;
+}
+
+.logo-sub{
+font-size:14px;
+color:#70829a;
+}
+
+/* NAV */
+
+.nav{
+display:flex;
+gap:12px;
+}
+
+.nav-link{
+display:flex;
+align-items:center;
+gap:10px;
+padding:12px 16px;
+border-radius:14px;
+font-weight:600;
+}
+
+.nav-link.active{
+background:linear-gradient(90deg,#1b6fd3,#5b99e8);
+color:white;
+box-shadow:0 10px 20px rgba(27,111,211,0.18);
+}
+
+/* PAGE */
+
+.forum-page{
+padding:34px 0 60px;
+}
+
+.forum-title{
+font-size:58px;
+font-weight:800;
+color:#2f78d4;
+margin-bottom:12px;
+}
+
+.forum-sub{
+font-size:18px;
+color:#657893;
+margin-bottom:28px;
+}
+
+/* OUTILS */
+
+.forum-tools{
+display:grid;
+grid-template-columns:1fr auto auto auto;
+gap:16px;
+align-items:center;
+margin-bottom:34px;
+}
+
+/* SEARCH */
+
+.search-box{
+background:white;
+height:58px;
+border-radius:16px;
+display:flex;
+align-items:center;
+gap:12px;
+padding:0 20px;
+box-shadow:0 10px 24px rgba(18,55,100,0.05);
+}
+
+.search-icon{
+font-size:22px;
+color:#7385a0;
+}
+
+.search-box input{
+border:none;
+outline:none;
+width:100%;
+background:transparent;
+font-size:16px;
+}
+
+/* FILTRES */
+
+.filter{
+min-width:170px;
+height:58px;
+background:white;
+border-radius:16px;
+display:flex;
+align-items:center;
+padding:0 18px;
+box-shadow:0 10px 24px rgba(18,55,100,0.05);
+position:relative;
+}
+
+.filter::after{
+content:"⌄";
+position:absolute;
+right:18px;
+top:50%;
+transform:translateY(-50%);
+color:#7a8ca6;
+pointer-events:none;
+}
+
+.filter select{
+width:100%;
+height:100%;
+border:none;
+outline:none;
+background:transparent;
+font-size:15px;
+font-weight:600;
+appearance:none;
+cursor:pointer;
+}
+
+/* BOUTON */
+
+.ask-btn{
+height:58px;
+padding:0 22px;
+border-radius:16px;
+background:linear-gradient(90deg,#1b6fd3,#5b99e8);
+color:white;
+display:flex;
+align-items:center;
+font-weight:700;
+box-shadow:0 10px 20px rgba(27,111,211,0.18);
+}
+
+/* QUESTIONS */
+
+.questions{
+display:flex;
+flex-direction:column;
+gap:20px;
+}
+
+.question-card{
+background:white;
+border:1px solid #dbe5f0;
+border-radius:24px;
+padding:26px 28px;
+display:grid;
+grid-template-columns:90px 1fr 40px;
+gap:24px;
+}
+
+.question-side{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:10px;
+}
+
+.vote-number{
+font-weight:800;
+color:#0d63d6;
+}
+
+.reply-number{
+font-weight:800;
+color:#19b96f;
+}
+
+.question-title{
+font-size:24px;
+font-weight:800;
+margin-bottom:10px;
+}
+
+.question-text{
+font-size:16px;
+color:#60738f;
+margin-bottom:14px;
+}
+
+.tags{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:12px;
+}
+
+.tag{
+padding:6px 10px;
+border-radius:999px;
+font-size:13px;
+font-weight:600;
+}
+
+.tag-blue{
+background:#eaf3ff;
+color:#1f6fd1;
+}
+
+.tag-gray{
+background:#f3f6fa;
+color:#6d7f97;
+border:1px solid #dde6ef;
+}
+
+.meta-left{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+color:#61748f;
+}
+
+.author{
+font-weight:700;
+color:#16233b;
+}
+
+.time{
+color:#61748f;
+}
+
+.question-save{
+font-size:22px;
+color:#f0b300;
+}
+
+.question-save.off{
+color:#7a8ca6;
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="header">
+<div class="container header-box">
+
+<a class="logo">
+<div class="logo-icon">🎓</div>
+
+<div>
+<div class="logo-title">AMU Connect</div>
+<div class="logo-sub">Aix-Marseille Université</div>
+</div>
+
+</a>
+
+<nav class="nav">
+<a class="nav-link">🏠 Tableau de bord</a>
+<a class="nav-link active">💬 Forum</a>
+<a class="nav-link">📚 Ressources</a>
+<a class="nav-link">👤 Profil</a>
+</nav>
+
+</div>
+</header>
+
+<main class="forum-page">
+<div class="container">
+
+<h1 class="forum-title">Forum Q&A</h1>
+<p class="forum-sub">Posez vos questions et aidez vos camarades</p>
+
+<section class="forum-tools">
+
+<div class="search-box">
+<span class="search-icon">🔎</span>
+<input type="text" placeholder="Rechercher des questions...">
+</div>
+
+<!-- filtre niveau -->
+<div class="filter">
+<select>
+<option>Toutes</option>
+<option>L1</option>
+<option>L2</option>
+<option>L3</option>
+<option>M1</option>
+<option>M2</option>
+</select>
+</div>
+
+<!-- filtre matière -->
+<div class="filter">
+<select>
+<option>Toutes</option>
+<option>Mathématiques</option>
+<option>Informatique</option>
+<option>Physique</option>
+</select>
+</div>
+
+<a class="ask-btn">＋ Poser une question</a>
+
+</section>
+
+<section class="questions">
+
+<article class="question-card">
+
+<div class="question-side">
+<div>👍</div>
+<div class="vote-number">28</div>
+<div>votes</div>
+
+<div>💬</div>
+<div class="reply-number">15</div>
+<div>réponses</div>
+</div>
+
+<div>
+
+<h2 class="question-title">Comment optimiser un algorithme de tri en O(n log n) ?</h2>
+
+<p class="question-text">
+Je travaille sur un projet où je dois trier des millions d'éléments.
+Quels sont les meilleurs algorithmes ?
+</p>
+
+<div class="tags">
+<span class="tag tag-blue">Algorithmes</span>
+<span class="tag tag-blue">Complexité</span>
+<span class="tag tag-blue">Tri</span>
+</div>
+
+<div class="meta-left">
+<span>Par <span class="author">Thomas B.</span></span>
+<span class="tag tag-gray">L3</span>
+<span class="tag tag-blue">Informatique</span>
+<span class="time">Il y a 1h</span>
+</div>
+
+</div>
+
+<div class="question-save">★</div>
+
+</article>
+
+</section>
+
+</div>
+</main>
+
+</body>
+</html>
