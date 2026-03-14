@@ -211,3 +211,16 @@ font-weight:700;
 .tab.active{
 background:#f7faff;
 }
+.edit-btn{
+    margin-top:40px;
+    background-color: #007bff; /* couleur du bouton */
+    color: white;              /* couleur du texte */
+    padding: 10px 18px;        /* espace interne */
+    border: none;              /* enlève la bordure */
+    border-radius: 6px;        /* coins arrondis */
+    cursor: pointer;           /* curseur main */
+    font-weight: bold;
+
+    margin-left: auto;         /* pousse le bouton vers la droite */
+    display: block;
+    }
