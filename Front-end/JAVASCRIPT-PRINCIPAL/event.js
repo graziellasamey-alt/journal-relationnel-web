@@ -41,3 +41,18 @@ addBtn.addEventListener("click", function () {
     fichierInput.value = "";
     formBox.classList.add("hidden");
 });
+
+
+document.getElementById("logoutBtn").addEventListener("click", async () => {
+  try {
+    await fetch("/logout", {
+      method: "POST",
+      credentials: "include"
+    });
+
+    // Redirection vers accueil
+    window.location.href = "accueil.html";
+  } catch (error) {
+    console.error("Erreur lors de la déconnexion :", error);
+  }
+});
