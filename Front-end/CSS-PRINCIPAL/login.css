@@ -83,6 +83,15 @@ border-radius:10px;
 border-color:blue ;
 }
 
+
+.back-home{
+    display:inline-block;
+    margin-bottom:20px;
+    color:#1f6fd1;
+    font-weight:600;
+    margin-top: 50px;
+    margin-left: 10px;
+}
 /* ======================
 SECTION LOGIN
 ====================== */

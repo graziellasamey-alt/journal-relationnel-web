@@ -32,7 +32,14 @@ align-items:center;
 justify-content:space-between;
 padding:20px 0;
 }
-
+.back-home{
+    display:inline-block;
+    margin-bottom:20px;
+    color:#1f6fd1;
+    font-weight:600;
+    margin-top: 50px;
+    margin-left: 10px;
+}
 /* logo */
 
 .logo{
