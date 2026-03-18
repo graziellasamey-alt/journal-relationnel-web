@@ -8,208 +8,8 @@
 <title>Connexion - AMU Connect</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/login.css">
 
-<style>
-
-/* ======================
-RESET
-====================== */
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-body{
-font-family:"Inter",sans-serif;
-background:#f5f8fc;
-color:#1e2a3a;
-}
-
-/* ======================
-HEADER
-====================== */
-
-.header{
-background:white;
-border-bottom:1px solid #e6edf6;
-}
-
-.header-box{
-max-width:1200px;
-margin:auto;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:20px;
-}
-
-.logo{
-display:flex;
-align-items:center;
-gap:10px;
-}
-
-.logo-icon{
-width:42px;
-height:42px;
-background:#2f78d4;
-border-radius:12px;
-display:flex;
-align-items:center;
-justify-content:center;
-color:white;
-font-size:20px;
-}
-
-.logo-text{
-line-height:1.1;
-}
-
-.logo-title{
-font-weight:700;
-color:#2f78d4;
-}
-
-.logo-sub{
-font-size:13px;
-color:#7b8ca3;
-}
-
-.header-actions{
-display:flex;
-gap:20px;
-align-items:center;
-}
-
-.login-link{
-color:#2f78d4;
-font-weight:500;
-
-}
-
-.btn{
-background:#2f78d4;
-color:white;
-padding:10px 18px;
-border-radius:10px;
-border-color:blue ;
-}
-
-/* ======================
-SECTION LOGIN
-====================== */
-
-.login-section{
-max-width:1200px;
-margin:60px auto;
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:40px;
-}
-
-/* ======================
-BLOC IMAGE
-====================== */
-
-.login-image{
-border-radius:20px;
-overflow:hidden;
-}
-
-.login-image img{
-width:100%;
-height:100%;
-object-fit:cover;
-}
-
-/* ======================
-BLOC FORM
-====================== */
-
-.login-card{
-background:white;
-padding:40px;
-border-radius:20px;
-box-shadow:0 10px 25px rgba(0,0,0,0.08);
-}
-
-/* petit logo dans la card */
-
-.card-logo{
-display:flex;
-align-items:center;
-gap:10px;
-margin-bottom:20px;
-}
-
-.card-logo-icon{
-width:40px;
-height:40px;
-background:#2f78d4;
-border-radius:10px;
-display:flex;
-align-items:center;
-justify-content:center;
-color:white;
-}
-
-/* titre */
-
-.login-title{
-font-size:32px;
-margin-bottom:10px;
-}
-
-.login-desc{
-color:#6c7c93;
-margin-bottom:30px;
-}
-
-/* champs */
-
-.form-group{
-margin-bottom:20px;
-}
-
-.form-group label{
-display:block;
-margin-bottom:8px;
-font-weight:500;
-}
-
-.form-group input{
-width:100%;
-padding:12px;
-border:1px solid #d8e2ef;
-border-radius:8px;
-}
-
-/* ligne options */
-
-.form-options{
-display:flex;
-justify-content:space-between;
-align-items:center;
-font-size:14px;
-margin-bottom:25px;
-}
-
-/* bouton connexion */
-
-.login-btn{
-width:100%;
-padding:14px;
-border:none;
-background:#2f78d4;
-color:white;
-font-weight:600;
-border-radius:10px;
-font-size:16px;
-}
-
-</style>
 </head>
 
 <body>
@@ -237,7 +37,7 @@ HEADER
 <!-- boutons -->
 <div class="header-actions">
 
-<a class="login-link">Se connecter</a>
+<button class="login-link">Se connecter</button>
 
 <button class="btn">S'inscrire</button>
 
@@ -257,7 +57,7 @@ SECTION LOGIN
 
 <div class="login-image">
 
-<img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80">
+<img src="/Front-end/image1.jpeg">
 
 </div>
 

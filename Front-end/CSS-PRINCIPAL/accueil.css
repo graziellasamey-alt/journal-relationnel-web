@@ -36,9 +36,6 @@
             display: block;
         }
 
-        a {
-            text-decoration: none;
-        }
 
         .container {
             width: min(var(--max-width), calc(100% - 64px));
@@ -111,6 +108,8 @@
             font-size: 15px;
             font-weight: 600;
             color: var(--blue);
+            border: none;
+            background: white;
         }
 
         /* =========================
