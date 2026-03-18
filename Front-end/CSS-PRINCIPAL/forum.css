@@ -24,18 +24,17 @@ margin:auto;
 /* HEADER */
 
 .header{
-background:#ffffff;
-border-bottom:1px solid #e4edf7;
-}
+            background:#ffffff;
+            border-bottom:1px solid #e4edf7;
+        }
 
-.header-box{
-min-height:84px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:20px;
-}
-
+        .header-box{
+            min-height:84px;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:20px;
+        }
 /* LOGO */
 
 .logo{
