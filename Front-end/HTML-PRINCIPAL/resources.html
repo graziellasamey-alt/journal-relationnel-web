@@ -84,10 +84,19 @@
 
             <!-- boutons actions -->
             <div class="action-row">
-                <button class="btn btn-blue">+ Ajouter une ressource</button>
-                <button class="btn btn-green">⇩ Télécharger la sélection</button>
+                <button id="openForm" class="btn btn-outline" type="button">+ Ajouter une ressource</button>
+                
+            </div>
+            <!-- formulaire ajout ressource -->
+            <div id="formBox" class="form-box hidden">
+                <input type="text" id="titre" placeholder="Titre de la ressource">
+                <input type="text" id="matiere" placeholder="Matière">
+                <input type="file" id="fichier">
+                <button id="addBtn" type="button" class="btn btn-primary">Ajouter</button>
             </div>
 
+            <!-- liste des ressources ajoutées -->
+            <div id="resourcesList" class="resources-list"></div>
             <!-- cartes ressources -->
             <section class="cards">
 
@@ -216,5 +225,6 @@
             </section>
         </div>
     </main>
+    <script src="/Front-end/JAVASCRIPT-PRINCIPAL/event.js" defer></script>
 </body>
 </html>

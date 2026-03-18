@@ -47,7 +47,12 @@ a{
     justify-content:space-between;
     gap:20px;
 }
-
+.back-home{
+    margin-top: 20px ;
+    margin-left: 40px;
+    color: #2e7de0;
+    width: 50px;
+}
 /* logo */
 .logo{
     display:flex;

@@ -220,17 +220,29 @@ select{
     white-space:nowrap;
 }
 
-.btn-blue{
+.btn-outline{
     background:linear-gradient(90deg,#1b6fd3,#5b99e8);
     color:white;
     box-shadow:0 10px 20px rgba(27,111,211,0.18);
 }
 
-.btn-green{
-    background:linear-gradient(90deg,#16b97a,#2fd39a);
-    color:white;
-    box-shadow:0 10px 20px rgba(22,185,122,0.18);
+.form-box{
+    background:#ffffff;
+    border:1px solid #dce6f1;
+    border-radius:20px;
+    padding:20px;
+    display:flex;
+    gap:12px;
+    align-items:center;
+    margin-bottom:24px;
+    box-shadow:0 12px 25px rgba(20,52,95,0.06);
+    flex-wrap:wrap;
 }
+
+.form-box.hidden{
+    display:none;
+}
+
 
 /* cartes */
 .cards{

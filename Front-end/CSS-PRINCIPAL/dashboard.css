@@ -157,6 +157,22 @@ img{
     padding-top:26px;
 }
 
+.form-box{
+    background:#ffffff;
+    border:1px solid #dce6f1;
+    border-radius:20px;
+    padding:20px;
+    display:flex;
+    gap:12px;
+    align-items:center;
+    margin-bottom:24px;
+    box-shadow:0 12px 25px rgba(20,52,95,0.06);
+    flex-wrap:wrap;
+}
+
+.form-box.hidden{
+    display:none;
+}
 .btn{
     display:inline-flex;
     align-items:center;
