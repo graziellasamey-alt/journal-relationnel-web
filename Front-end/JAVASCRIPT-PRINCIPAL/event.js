@@ -56,3 +56,40 @@ document.getElementById("logoutBtn").addEventListener("click", async () => {
     console.error("Erreur lors de la déconnexion :", error);
   }
 });
+
+
+
+
+// evenement pour ecire les reponses
+
+
+
+function toggleReply() {
+    const section = document.getElementById("replySection");
+
+    if (section.style.display === "none" || section.style.display === "") {
+        section.style.display = "block";
+    } else {
+        section.style.display = "none";
+    }
+
+    // focus automatique
+    const textarea = section.querySelector("textarea");
+    if (textarea) {
+        textarea.focus();
+    }
+}
+
+function goToReply() {
+    const replySection = document.getElementById("replySection");
+
+    // Afficher la zone si elle est cachée
+    replySection.style.display = "block";
+
+    // Scroll vers la zone
+    replySection.scrollIntoView({ behavior: "smooth" });
+
+    // Focus automatique sur le textarea
+    const textarea = replySection.querySelector("textarea");
+    textarea.focus();
+}

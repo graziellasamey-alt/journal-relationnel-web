@@ -96,9 +96,9 @@
                         <!-- actions -->
                         <div class="post-actions">
                             <button class="post-btn">👍 J'aime</button>
-                            
-                            <button class="post-btn primary">✍️ Écrire une réponse</button>
-                        </div>
+                            <button type="button" class="post-btn primary" onclick="goToReply()">
+                                ✍️ Écrire une réponse
+                            </button>
                     </article>
 
                     <!-- réponses -->
@@ -127,6 +127,7 @@
                                 <div class="answer-actions">
                                     <a href="#" class="answer-link">Répondre</a>
                                     <span class="answer-like">👍 12 j'aime</span>
+                                    <button type="button" class="post-btn primary goToReply">✍️ Écrire une réponse</button>
                                 </div>
 
                                 <!-- réponse à la réponse -->
@@ -143,50 +144,9 @@
                             </div>
                         </div>
 
-                        <!-- réponse 2 -->
-                        <div class="answer">
-                            <div class="avatar">A</div>
+                       
 
-                            <div class="answer-content">
-                                <div class="answer-head">
-                                    <div class="answer-name">Ahmed K.</div>
-                                    <div class="answer-time">Il y a 20 min</div>
-                                </div>
-
-                                <p class="answer-text">
-                                    Regarde aussi TimSort si tu travailles avec des données déjà partiellement triées.
-                                    C'est souvent une très bonne option dans les bibliothèques modernes.
-                                </p>
-
-                                <div class="answer-actions">
-                                    <a href="#" class="answer-link">Répondre</a>
-                                    <span class="answer-like">👍 8 j'aime</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- réponse 3 -->
-                        <div class="answer">
-                            <div class="avatar">S</div>
-
-                            <div class="answer-content">
-                                <div class="answer-head">
-                                    <div class="answer-name">Sarah L.</div>
-                                    <div class="answer-time">Il y a 12 min</div>
-                                </div>
-
-                                <p class="answer-text">
-                                    Si tes données ne tiennent pas entièrement en mémoire, il faut aussi penser
-                                    au tri externe. Dans ce cas, le choix de l'algorithme dépendra du stockage disque
-                                    et du volume réel des données.
-                                </p>
-
-                                <div class="answer-actions">
-                                    <a href="#" class="answer-link">Répondre</a>
-                                    <span class="answer-like">👍 5 j'aime</span>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </section>
                 </div>
 
@@ -194,7 +154,7 @@
                 <aside class="side-column">
 
                     <!-- écrire une réponse -->
-                    <div class="reply-card">
+                    <div class="reply-card" id="replySection">
                         <h3>Écrire une réponse</h3>
                         <p>Partage une explication claire et utile pour aider l’auteur de la question.</p>
 
@@ -218,5 +178,7 @@
             </div>
         </div>
     </main>
+    
+<script src="/Front-end/JAVASCRIPT-PRINCIPAL/event.js"></script>
 </body>
 </html>

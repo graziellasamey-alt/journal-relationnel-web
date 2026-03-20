@@ -218,7 +218,9 @@
             font-weight:600;
             line-height:1;
         }
-
+        #replySection {
+        display: none;
+        }
         .tag-blue{
             background:#eaf3ff;
             color:#1f6fd1;
