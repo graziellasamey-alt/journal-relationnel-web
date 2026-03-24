@@ -1,43 +1,80 @@
-from flask import Flask
-from flask_cors import CORS
-from database import db
-from models.user_model import User
-from routes.auth_routes import auth_routes
-from routes.question_routes import question_routes
+from flask import Flask, jsonify, session, request, Response, redirect, url_for,render_template, abort 
+from models.user_model import create_users_table
+from routes.auth_routes import auth_bp
+import secrets
+from functools import wraps
+from models.db import init_db
+
 
 app = Flask(__name__)
+app.secret_key = secrets.token_hex(16)
 
-app.register_blueprint(question_routes)
+#Decorateur de connexion 
+def login_required(f):
+    @wraps(f)
+    def wrapper(*args,**kwrags):
+        if 'user_id' not in session:
+            abort(401)
+        return f(*args, **kwrags)
+    return wrapper
 
-app.register_blueprint(auth_routes)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-db.init_app(app)
-
-CORS(app)
-
+init_db()
 @app.route("/")
 def home():
-    return {"message": "Backend running"}
+    return jsonify({"message": "Backend AMU Help démarré"})
 
-@app.route("/users")
-def get_users():
-    users = User.query.all()
+@app.get('/login')
+def login_form():
+    #TODO
+    pass
 
-    return {
-        "users": [
-            {
-                "id": u.id,
-                "username": u.username,
-                "email": u.email
-            }
-            for u in users
-        ]
-    }
+@app.get('/register')
+def register_form():
+    #TODO
+    pass
+
+@app.post('/login')
+def login_user():
+    #TODO
+    pass 
+
+@app.post('/register')
+def register_user():
+    #TODO
+    pass
+
+app.get('/dashboard')
+def dashboard():
+    #TODO
+    pass
+
+app.get('/forum')
+def forum():
+    #TODO
+    pass
+
+@app.get('/questions/new')
+def question_form():
+    #TODO
+    pass
+
+@app.post('/questions')
+def question():
+    #TODO
+    pass
+
+@app.post('/questions/:id/favorite')
+def add_favorite_question():
+    #TODO
+    pass
+
+@app.get('/ressources')
+def ressource_form():
+    #TODO
+    pass
+
+
 
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
-
     app.run(debug=True)

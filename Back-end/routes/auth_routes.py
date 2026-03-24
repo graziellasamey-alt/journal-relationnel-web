@@ -1,70 +1,78 @@
-from flask import Blueprint, request, jsonify
-from models.user_model import User
-from database import db
+from flask import Blueprint, request, jsonify, session
+from werkzeug.security import generate_password_hash, check_password_hash
+from models.user_model import create_user, get_user_by_email
 
-auth_routes = Blueprint("auth_routes", __name__)
+auth_bp = Blueprint("auth", __name__)
 
-@auth_routes.route("/register", methods=["POST"])
+
+@auth_bp.route("/register", methods=["POST"])
 def register():
+    data = request.get_json()
 
-    data = request.json
-
-    username = data.get("username")
+    nom = data.get("nom")
+    prenom = data.get("prenom")
     email = data.get("email")
     password = data.get("password")
+    field_of_study = data.get("field_of_study")
+    study_year = data.get("study_year")
 
-    if not username or not email or not password:
-        return jsonify({"error": "Missing fields"}), 400
+    if not all([nom, prenom, email, password, field_of_study, study_year]):
+        return jsonify({"error": "Tous les champs sont obligatoires"}), 400
 
-    existing_user = User.query.filter_by(email=email).first()
-
+    existing_user = get_user_by_email(email)
     if existing_user:
-        return jsonify({"error": "Email already used"}), 400
+        return jsonify({"error": "Email déjà utilisé"}), 409
 
-    new_user = User(
-        username=username,
-        email=email,
-        password=password
+    password_hash = generate_password_hash(password)
+
+    user_id = create_user(
+        nom,
+        prenom,
+        email,
+        password_hash,
+        field_of_study,
+        study_year
     )
 
-    db.session.add(new_user)
-    db.session.commit()
+    return jsonify({
+        "message": "Utilisateur créé avec succès",
+        "user_id": user_id
+    }), 201
 
-    return jsonify({"message": "User created"})
 
-@auth_routes.route("/verify-email", methods=["POST"])
-def verify_email():
-
-    data = request.json
-    email = data.get("email")
-
-    user = User.query.filter_by(email=email).first()
-
-    if not user:
-        return {"error": "User not found"}, 404
-
-    user.verified = True
-    db.session.commit()
-
-    return {"message": "Email verified"}
-
-@auth_routes.route("/login", methods=["POST"])
+@auth_bp.route("/login", methods=["POST"])
 def login():
-
-    data = request.json
+    data = request.get_json()
 
     email = data.get("email")
     password = data.get("password")
 
-    user = User.query.filter_by(email=email).first()
+    if not email or not password:
+        return jsonify({"error": "Email et mot de passe requis"}), 400
 
-    if not user or user.password != password:
-        return {"error": "Invalid credentials"}, 401
+    user = get_user_by_email(email)
+    if not user:
+        return jsonify({"error": "Utilisateur introuvable"}), 404
 
-    if not user.verified:
-        return {"error": "Email not verified"}, 403
+    if not check_password_hash(user["password_hash"], password):
+        return jsonify({"error": "Mot de passe incorrect"}), 401
 
-    return {
-        "message": "Login successful",
-        "user_id": user.id
-    }
+    session["user_id"] = user["id"]
+
+    return jsonify({
+        "message": "Connexion réussie",
+        "user": {
+            "id": user["id"],
+            "nom": user["nom"],
+            "prenom": user["prenom"],
+            "email": user["email"],
+            "field_of_study": user["field_of_study"],
+            "study_year": user["study_year"]
+        }
+    }), 200
+
+
+@auth_bp.route("/logout", methods=["POST"])
+def logout():
+    session.pop("user_id", None)
+    return jsonify({"message": "Déconnexion réussie"}), 200
