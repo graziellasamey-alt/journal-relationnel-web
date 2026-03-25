@@ -35,7 +35,7 @@ img{
    HEADER COMMUN
 ========================================= */
 .header{
-    background:rgba(255,255,255,0.96);
+    background:WIT;
     border-bottom:1px solid #e4edf7;
     backdrop-filter:blur(8px);
     position:sticky;
@@ -124,7 +124,7 @@ img{
 }
 
 .nav-link.active{
-    background:linear-gradient(90deg,#1b6fd3,#5b99e8);
+    background:#ede248;
     color:white;
     box-shadow:0 10px 20px rgba(27,111,211,0.18);
 }
