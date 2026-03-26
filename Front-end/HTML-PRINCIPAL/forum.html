@@ -3,37 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Forum - AMU Connect</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/forum.css">
+<link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/header.css">
+<link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/footer.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<script src="/Front-end/JAVASCRIPT-PRINCIPAL/header.js" defer></script>
+<script src="/Front-end/JAVASCRIPT-PRINCIPAL/footer.js" defer></script>
+<script src="/Front-end/JAVASCRIPT-PRINCIPAL/event.js" defer></script>
 
 </head>
 
 <body>
 
-<header class="header">
-<div class="container header-box">
-
-<a class="logo">
-<div class="logo-icon">🎓</div>
-
-<div>
-<div class="logo-title">AMU Connect</div>
-<div class="logo-sub">Aix-Marseille Université</div>
-</div>
-
-</a>
-
-<a href="dashboard.html" class="nav-link"> Tableau de bord</a>
-<a href="forum.html" class="nav-link active"> Forum</a>
-<a href="resources.html" class="nav-link"> Ressources</a>
-<a href="profil.html" class="nav-link"> Profil</a>
-<button id="logoutBtn" class="nav-link logout-btn">
-<img src="/Front-end/deconnexion.webp" alt="Déconnexion" class="icon">
-</button>
-</div>
-</header>
+<div id="header"></div>
 
 <main class="forum-page">
 <div class="container">
@@ -44,11 +32,12 @@
 <section class="forum-tools">
 
 <div class="search-box">
-<span class="search-icon">🔎</span>
+<span class="search-icon">
+<i class="fa-solid fa-magnifying-glass"></i>
+</span>
 <input type="text" placeholder="Rechercher des questions...">
 </div>
 
-<!-- filtre niveau -->
 <div class="filter">
 <select>
 <option>Toutes</option>
@@ -60,7 +49,6 @@
 </select>
 </div>
 
-<!-- filtre matière -->
 <div class="filter">
 <select>
 <option>Toutes</option>
@@ -70,8 +58,11 @@
 </select>
 </div>
 
-<a href="ask.html" class="ask-btn">+ Poser une question</a>
-<a href="page-quest-rep.html">
+<a href="/Front-end/HTML-PRINCIPAL/ask.html" class="ask-btn">
+<i class="fa-solid fa-circle-plus"></i>
+Poser une question
+</a>
+
 </section>
 
 <section class="questions">
@@ -79,47 +70,48 @@
 <article class="question-card">
 
 <div class="question-side">
-<div>👍</div>
-<div class="vote-number">28</div>
-<div>votes</div>
 
-<div>💬</div>
+<div class="side-icon">
+<i class="fa-solid fa-comment"></i>
+</div>
 <div class="reply-number">15</div>
 <div>réponses</div>
+
 </div>
 
-<div>
+<div class="question-main">
 
-<h2 class="question-title">Comment optimiser un algorithme de tri en O(n log n) ?</h2>
+<h2 class="question-title">
+<a href="page-quest-rep.html">
+Comment optimiser un algorithme de tri en O(n log n) ?
+
+</h2>
 
 <p class="question-text">
 Je travaille sur un projet où je dois trier des millions d'éléments.
 Quels sont les meilleurs algorithmes ?
 </p>
 
-<div class="tags">
-<span class="tag tag-blue">Algorithmes</span>
-<span class="tag tag-blue">Complexité</span>
-<span class="tag tag-blue">Tri</span>
-</div>
-
 <div class="meta-left">
 <span>Par <span class="author">Thomas B.</span></span>
 <span class="tag tag-gray">L3</span>
 <span class="tag tag-blue">Informatique</span>
-<span class="time">Il y a 1h</span>
+</div>
+</a>
 </div>
 
+<div class="question-save" role="button">
+<i class="fa-regular fa-star"></i>
 </div>
-
-<div class="question-save">★</div>
 
 </article>
 
 </section>
-</a>
+
 </div>
 </main>
+
+<div id="footer"></div>
 
 </body>
 </html>

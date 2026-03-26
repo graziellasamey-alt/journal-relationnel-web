@@ -1,63 +1,93 @@
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-font-family:"Inter",sans-serif;
-background:#f5f8fc;
-color:#1e2a3a;
+body {
+    font-family: 'Inter', sans-serif;
+    background:#f4f8fc;
+    color:#16233b;
 }
+a{
+    text-decoration:none;
+    color:inherit;
+}
+/* conteneur commun */
+.container {
+    width: min(1200px, calc(100% - 40px));
+    margin: 0 auto;
+}
+
 
 /* ======================
 HEADER
 ====================== */
 
 .header{
-background:white;
-border-bottom:1px solid #e6edf6;
+    background:#f4f8fc;
+    border-bottom:1px solid #e4edf7;
+    backdrop-filter:blur(8px);
+    position:sticky;
+    top:0;
+    z-index:50;
 }
 
 .header-box{
-max-width:1200px;
-margin:auto;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:20px;
+    min-height:84px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
+.icon {
+  width: 40px;
+  height: 40px;
+}
+/* logo */
 .logo{
-display:flex;
-align-items:center;
-gap:10px;
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
-.logo-icon{
-width:42px;
-height:42px;
-background:#2f78d4;
-border-radius:12px;
-display:flex;
-align-items:center;
-justify-content:center;
-color:white;
-font-size:20px;
+.logo img{
+    width:70px;
+    height:70px;
+    border-radius:16px;
+    background:linear-gradient(135deg,#2e7de0,#5b9af0);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:24px;
+   
+    flex-shrink:0;
 }
 
 .logo-text{
-line-height:1.1;
+    line-height:1.1;
 }
 
 .logo-title{
-font-weight:700;
-color:#2f78d4;
+    font-size:20px;
+    font-weight:800;
+    color:#2f78d4;
 }
 
 .logo-sub{
-font-size:13px;
-color:#7b8ca3;
+    font-size:14px;
+    color:#70829a;
+    margin-top:4px;
 }
 
 .header-actions{
@@ -66,14 +96,7 @@ gap:20px;
 align-items:center;
 }
 
-.login-link{
-color:#2f78d4;
-font-weight:600;
-border: none;
-background: white;
-font-size: 15px;
 
-}
 
 .btn{
 background:#2f78d4;
@@ -83,6 +106,14 @@ border-radius:10px;
 border-color:blue ;
 }
 
+.login{
+color:#2f78d4;
+font-weight:600;
+border: none;
+background: white;
+font-size: 15px;
+
+}
 
 .back-home{
     display:inline-block;

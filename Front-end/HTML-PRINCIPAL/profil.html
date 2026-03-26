@@ -1,159 +1,132 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil - AMU Connect</title>
 
-<title>Profil - AMU Connect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<!-- police -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/profil.css">
+    <link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/header.css">
+    <link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/footer.css">
 
-<!-- lien vers le css -->
-<link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/profil.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+    <script src="/Front-end/JAVASCRIPT-PRINCIPAL/header.js" defer></script>
+    <script src="/Front-end/JAVASCRIPT-PRINCIPAL/footer.js" defer></script>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<header class="header">
+    <div id="header"></div>
 
-<div class="container header-box">
+    <main class="profile-page">
+        <div class="container">
 
-<a class="logo">
+            <section class="profile-card">
 
-<div class="logo-icon">🎓</div>
+                <div class="profile-cover"></div>
 
-<div>
-<div class="logo-title">AMU Connect</div>
-<div class="logo-sub">Aix-Marseille Université</div>
+                <div class="profile-content">
 
+                    <div class="profile-head">
 
+                        <div class="profile-user">
 
-</div>
+                            <div class="avatar">
+                                JD
+                                <div class="avatar-badge">
+                                    <i class="fa-solid fa-trophy"></i>
+                                </div>
+                            </div>
 
-</a>
+                            <div class="profile-text">
+                                <h1 class="profile-name">Jean Dupont</h1>
 
-<a href="dashboard.html" class="nav-link">🏠 Tableau de bord</a>
-<a href="forum.html" class="nav-link">💬 Forum</a>
-<a href="resources.html" class="nav-link">📚 Ressources</a>
-<a href="profil.html" class="nav-link active">👤 Profil</a>
+                                <div class="profile-meta">
+                                    <span class="meta-tag blue">L3</span>
+                                    <span class="meta-tag gray">Informatique</span>
+                                    <span>
+                                        <i class="fa-regular fa-calendar"></i>
+                                        Membre depuis Septembre 2023
+                                    </span>
+                                </div>
+                            </div>
 
-<button id="logoutBtn" class="nav-link logout-btn">
-<img src="/Front-end/deconnexion.webp" alt="Déconnexion" class="icon">
-</button>
-</div>
+                        </div>
 
-</header>
+                        <a href="edit-profil.html" class="edit-btn">
+                            <i class="fa-solid fa-pen"></i>
+                            Modifier le profil
+                        </a>
 
+                    </div>
 
+                    <p class="profile-bio">
+                        Passionné par le développement web et l'algorithmique.
+                        Toujours prêt à aider mes camarades !
+                    </p>
 
-<!-- PAGE PROFIL -->
-<main class="profile-page">
+                    <div class="profile-info">
 
-<div class="container">
+                        <div class="info-item">
+                            <i class="fa-regular fa-envelope"></i>
+                            jean.dupont@etu.univ-amu.fr
+                        </div>
 
-<!-- CARTE PROFIL -->
-<section class="profile-card">
+                        <div class="info-item">
+                            <i class="fa-solid fa-book-open"></i>
+                            Informatique
+                        </div>
 
-<div class="profile-cover"></div>
+                    </div>
 
-<div class="profile-content">
+                    <div class="stats">
 
-<div class="profile-head">
+                        <div class="stat-card">
+                            <div class="stat-icon icon-blue">
+                                <i class="fa-solid fa-comments"></i>
+                            </div>
 
-<div class="profile-user">
+                            <div>
+                                <div class="stat-number">24</div>
+                                <div class="stat-text">Questions posées</div>
+                            </div>
+                        </div>
 
-<div class="avatar">
-JD
-<div class="avatar-badge">🏆</div>
-</div>
+                        <div class="stat-card">
+                            <div class="stat-icon icon-orange">
+                                <i class="fa-solid fa-star"></i>
+                            </div>
 
-<div class="profile-text">
+                            <div>
+                                <div class="stat-number">320</div>
+                                <div class="stat-text">Points d'aide</div>
+                            </div>
+                        </div>
 
-<h1 class="profile-name">Jean Dupont</h1>
+                    </div>
 
-<div class="profile-meta">
-<span class="meta-tag blue">L3</span>
-<span class="meta-tag gray">Informatique</span>
-<span>📅 Membre depuis Septembre 2023</span>
-</div>
+                </div>
+            </section>
 
-</div>
+            <section class="tabs">
+                <a href="mes_questions.html" class="tab active">
+                    <i class="fa-solid fa-comments"></i>
+                    Mes questions
+                </a>
 
-</div>
+                <a href="resources.html" class="tab">
+                    <i class="fa-solid fa-book"></i>
+                    Mes ressources
+                </a>
+            </section>
 
-<a href="edit-profil.html"  class="edit-btn">Modifier le profil</a>
+        </div>
+    </main>
 
-</div>
-
-
-<p class="profile-bio">
-Passionné par le développement web et l'algorithmique.
-Toujours prêt à aider mes camarades !
-</p>
-
-
-<div class="profile-info">
-
-<div class="info-item">
-✉️ jean.dupont@etu.univ-amu.fr
-</div>
-
-<div class="info-item">
-📖 Informatique
-</div>
-
-</div>
-
-
-<!-- STATISTIQUES -->
-<div class="stats">
-
-<div class="stat-card">
-
-<div class="stat-icon icon-blue">💬</div>
-
-<div>
-<div class="stat-number">24</div>
-<div class="stat-text">Questions posées</div>
-</div>
-
-</div>
-
-
-<div class="stat-card">
-
-<div class="stat-icon icon-orange">⭐</div>
-
-<div>
-<div class="stat-number">320</div>
-<div class="stat-text">Points d'aide</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- ONGLETS -->
-<section class="tabs">
-
-<a href="mes_questions.html" class="tab active">💬 Mes questions</a>
-
-<a href="resources.html" class="tab">📚 Mes ressources</a>
-
-</section>
-
-</div>
-
-</main>
+    <div id="footer"></div>
 
 </body>
 </html>

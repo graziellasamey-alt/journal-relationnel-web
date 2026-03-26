@@ -93,3 +93,21 @@ function goToReply() {
     const textarea = replySection.querySelector("textarea");
     textarea.focus();
 }
+
+
+// favoris 
+document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("click", (e) => {
+        const star = e.target.closest(".question-save i");
+
+        if (!star) return;
+
+        if (star.classList.contains("fa-regular")) {
+            star.classList.remove("fa-regular");
+            star.classList.add("fa-solid");
+        } else {
+            star.classList.remove("fa-solid");
+            star.classList.add("fa-regular");
+        }
+    });
+});

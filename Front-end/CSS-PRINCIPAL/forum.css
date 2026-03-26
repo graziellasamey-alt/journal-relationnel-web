@@ -309,15 +309,23 @@ a{
     color:#61748f;
 }
 
-.question-save{
-    font-size:22px;
-    color:#f0b300;
+.question-save {
+    cursor: pointer;
 }
 
-.question-save.off{
-    color:#7a8ca6;
+.question-save i {
+    font-size: 22px;
+    color: #b8c0cc;
+    transition: 0.2s ease;
 }
 
+.question-save i.fa-solid {
+    color: #f3b300;
+}
+
+.question-save:hover i {
+    transform: scale(1.2);
+}
 /* responsive */
 @media (max-width:760px){
     .header-box{

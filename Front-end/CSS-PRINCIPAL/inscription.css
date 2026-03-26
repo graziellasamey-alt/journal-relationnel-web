@@ -1,20 +1,22 @@
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-font-family:"Inter",sans-serif;
-background:#f4f8fc;
-color:#1e2a3a;
+body {
+    font-family: 'Inter', sans-serif;
+    background:#f4f8fc;
+    color:#16233b;
 }
-
-/* conteneur centré */
-
-.container{
-width:min(900px,90%);
-margin:auto;
+a{
+    text-decoration:none;
+    color:inherit;
+}
+/* conteneur commun */
+.container {
+    width: min(1200px, calc(100% - 40px));
+    margin: 0 auto;
 }
 
 /* ======================
@@ -22,16 +24,71 @@ HEADER
 ====================== */
 
 .header{
-background:white;
-border-bottom:1px solid #e6edf6;
+    background:#f4f8fc;
+    border-bottom:1px solid #e4edf7;
+    backdrop-filter:blur(8px);
+    position:sticky;
+    top:0;
+    z-index:50;
 }
 
 .header-box{
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:20px 0;
+    min-height:84px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
 }
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+}
+/* logo */
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo img{
+    width:70px;
+    height:70px;
+    border-radius:16px;
+    background:linear-gradient(135deg,#2e7de0,#5b9af0);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:24px;
+   
+    flex-shrink:0;
+}
+
+.logo-text{
+    line-height:1.1;
+}
+
+.logo-title{
+    font-size:20px;
+    font-weight:800;
+    color:#2f78d4;
+}
+
+.logo-sub{
+    font-size:14px;
+    color:#70829a;
+    margin-top:4px;
+}
+
 .back-home{
     display:inline-block;
     margin-bottom:20px;
@@ -40,36 +97,6 @@ padding:20px 0;
     margin-top: 50px;
     margin-left: 10px;
 }
-/* logo */
-
-.logo{
-display:flex;
-align-items:center;
-gap:10px;
-}
-
-.logo-icon{
-width:45px;
-height:45px;
-background:#2f78d4;
-border-radius:12px;
-display:flex;
-align-items:center;
-justify-content:center;
-color:white;
-font-size:20px;
-}
-
-.logo-title{
-font-weight:700;
-color:#2f78d4;
-}
-
-.logo-sub{
-font-size:13px;
-color:#7b8ca3;
-}
-
 /* boutons header */
 
 .header-actions{
