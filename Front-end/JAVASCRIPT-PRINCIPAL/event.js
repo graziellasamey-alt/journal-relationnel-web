@@ -64,50 +64,31 @@ document.getElementById("logoutBtn").addEventListener("click", async () => {
 
 
 
-function toggleReply() {
-    const section = document.getElementById("replySection");
 
-    if (section.style.display === "none" || section.style.display === "") {
-        section.style.display = "block";
-    } else {
-        section.style.display = "none";
-    }
-
-    // focus automatique
-    const textarea = section.querySelector("textarea");
-    if (textarea) {
-        textarea.focus();
-    }
-}
 
 function goToReply() {
-    const replySection = document.getElementById("replySection");
+    const section = document.getElementById("replySection");
+    if (!section) return;
 
-    // Afficher la zone si elle est cachée
-    replySection.style.display = "block";
+    // SI caché → afficher
+    if (section.style.display === "none" || section.style.display === "") {
 
-    // Scroll vers la zone
-    replySection.scrollIntoView({ behavior: "smooth" });
+        section.style.display = "block";
 
-    // Focus automatique sur le textarea
-    const textarea = replySection.querySelector("textarea");
-    textarea.focus();
-}
+        // scroll
+        section.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
 
-
-// favoris 
-document.addEventListener("DOMContentLoaded", () => {
-    document.addEventListener("click", (e) => {
-        const star = e.target.closest(".question-save i");
-
-        if (!star) return;
-
-        if (star.classList.contains("fa-regular")) {
-            star.classList.remove("fa-regular");
-            star.classList.add("fa-solid");
-        } else {
-            star.classList.remove("fa-solid");
-            star.classList.add("fa-regular");
+        // focus
+        const textarea = section.querySelector("textarea");
+        if (textarea) {
+            textarea.focus();
         }
-    });
-});
+
+    } else {
+        // SINON → cacher
+        section.style.display = "none";
+    }
+}
