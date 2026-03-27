@@ -1,101 +1,102 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes questions - AMU Connect</title>
 
-<title>Mes questions - AMU Connect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/mes_questions.css">
+    <link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/header.css">
+    <link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/mes_questions.css">
-
+    <script src="/Front-end/JAVASCRIPT-PRINCIPAL/header.js" defer></script>
+    <script src="/Front-end/JAVASCRIPT-PRINCIPAL/footer.js" defer></script>
 </head>
-
 <body>
 
-<!-- HEADER -->
-    <header class="header">
-        <div class="container header-box">
+    <div id="header"></div>
 
-            <!-- logo -->
-            <a href="#" class="logo">
-                <div class="logo-icon">🎓</div>
+    <main class="page">
+        <div class="container">
 
-                <div class="logo-text">
-                    <div class="logo-title">AMU Connect</div>
-                    <div class="logo-sub">Aix-Marseille Université</div>
-                </div>
-            </a>
+            <a href="forum.html" class="back-home">← Retour</a>
 
-            <!-- menu -->
-            <nav class="nav">
-                <a href="dashboard.html" class="nav-link active">🏠 <span>Tableau de bord</span></a>
-                <a href="forum.html" class="nav-link">💬 <span>Forum</span></a>
-                <a href="resources.html" class="nav-link">📚 <span>Ressources</span></a>
-                <a href="profil.html" class="nav-link">👤 <span>Profil</span></a>
-            </nav>
-        </div>
-    </header>
-    <a href="dashboard.html" class="back-home">← Retour </a>
+            <h1 class="title">Mes questions favorites</h1>
 
-<!-- PAGE -->
-<main class="page">
-   
-    <div class="container">
+            <section class="questions">
 
-        <!-- titre -->
-        <h1 class="title">Mes questions</h1>
+                <a href="page-quest-rep.html" class="question-card">
 
-        <!-- liste -->
-        <div class="questions">
-
-            <!-- question -->
-            <a href="page-quest-rep.html" class="question-card">
-
-                <div class="question-content">
-                    <h2>Comment optimiser un algorithme de tri ?</h2>
-                    <p>Je travaille sur un projet avec beaucoup de données...</p>
-
-                    <div class="meta">
-                        <span class="tag">Informatique</span>
-                        <span class="tag gray">L3</span>
-                        <span class="time">Il y a 2h</span>
+                    <div class="question-side">
+                        <div class="side-icon">
+                            <i class="fa-solid fa-comment"></i>
+                        </div>
+                        <div class="reply-number">5</div>
+                        <div class="side-label">réponses</div>
                     </div>
-                </div>
 
-                <div class="stats">
-                    <span>👍 12</span>
-                    <span>💬 5</span>
-                </div>
+                    <div class="question-main">
+                        <h2 class="question-title">Comment optimiser un algorithme de tri ?</h2>
 
-            </a>
+                        <p class="question-text">
+                            Je travaille sur un projet avec beaucoup de données et je voudrais savoir
+                            quelle méthode de tri utiliser pour améliorer les performances.
+                        </p>
 
-            <!-- question -->
-            <a href="page-quest-rep.html" class="question-card">
-
-                <div class="question-content">
-                    <h2>Comprendre les intégrales doubles</h2>
-                    <p>Je n'arrive pas à visualiser les domaines...</p>
-
-                    <div class="meta">
-                        <span class="tag">Maths</span>
-                        <span class="tag gray">L2</span>
-                        <span class="time">Il y a 1 jour</span>
+                        <div class="meta-left">
+                            <span>Par <span class="author">Thomas B.</span></span>
+                            <span class="tag tag-gray">L3</span>
+                            <span class="tag tag-blue">Informatique</span>
+                            <span class="time">Il y a 2h</span>
+                        </div>
                     </div>
-                </div>
 
-                <div class="stats">
-                    <span>👍 8</span>
-                    <span>💬 3</span>
-                </div>
+                    <div class="question-fav">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
 
-            </a>
+                </a>
+
+                <a href="page-quest-rep.html" class="question-card">
+
+                    <div class="question-side">
+                        <div class="side-icon">
+                            <i class="fa-solid fa-comment"></i>
+                        </div>
+                        <div class="reply-number">3</div>
+                        <div class="side-label">réponses</div>
+                    </div>
+
+                    <div class="question-main">
+                        <h2 class="question-title">Comprendre les intégrales doubles</h2>
+
+                        <p class="question-text">
+                            Je n'arrive pas à bien visualiser les domaines d’intégration et à savoir
+                            comment choisir l’ordre des intégrales.
+                        </p>
+
+                        <div class="meta-left">
+                            <span>Par <span class="author">Marie D.</span></span>
+                            <span class="tag tag-gray">L2</span>
+                            <span class="tag tag-blue">Mathématiques</span>
+                            <span class="time">Il y a 1 jour</span>
+                        </div>
+                    </div>
+
+                    <div class="question-fav">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+
+                </a>
+
+            </section>
 
         </div>
+    </main>
 
-    </div>
-
-</main>
+    <div id="footer"></div>
 
 </body>
 </html>

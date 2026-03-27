@@ -309,23 +309,40 @@ a{
     color:#61748f;
 }
 
-.question-save {
-    cursor: pointer;
-}
 
-.question-save i {
-    font-size: 22px;
-    color: #b8c0cc;
+/* même style que ask-btn */
+.add-fav,
+.remove-fav {
+    padding: 10px 16px;
+    border-radius: 16px;
+    border: none;
+    background: linear-gradient(90deg,#1b6fd3,#5b99e8);
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(27,111,211,0.18);
     transition: 0.2s ease;
 }
 
-.question-save i.fa-solid {
-    color: #f3b300;
+/* bouton supprimer en rouge */
+.remove-fav {
+    background: #bacbdf;
+    
 }
 
-.question-save:hover i {
-    transform: scale(1.2);
+/* hover */
+.add-fav:hover,
+.remove-fav:hover {
+    transform: translateY(-2px);
 }
+
+/* click */
+.add-fav:active,
+.remove-fav:active {
+    transform: scale(0.96);
+}
+
+
 /* responsive */
 @media (max-width:760px){
     .header-box{
