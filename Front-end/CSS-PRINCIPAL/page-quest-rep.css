@@ -32,7 +32,6 @@ textarea{
     margin:auto;
 }
 
-<<<<<<< HEAD
         /* =========================
            HEADER
         ========================= */
@@ -40,14 +39,6 @@ textarea{
             background:white;
             border-bottom:1px solid #e4edf7;
         }
-=======
-/* =========================================
-   PAGE QUESTION-REPONSES
-========================================= */
-.question-page{
-    padding:34px 0 60px;
-}
->>>>>>> Front-end-Marie
 
 .back-link{
     display:inline-flex;

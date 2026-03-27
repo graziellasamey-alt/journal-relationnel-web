@@ -92,3 +92,6 @@ function goToReply() {
         section.style.display = "none";
     }
 }
+
+
+// mettre en favoris 
