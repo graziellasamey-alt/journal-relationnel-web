@@ -94,4 +94,3 @@ function goToReply() {
 }
 
 
-// mettre en favoris 
