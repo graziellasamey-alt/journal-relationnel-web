@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription - AMU Connect</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/sign-up.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/footer.css') }}">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container header-box">
+
+            <div class="logo">
+                <img src="{{ url_for('static', filename='Éducation et technologie numérique en harmonie.png') }}" alt="Logo AMU Connect">
+                <div class="logo-text">
+                    <div class="logo-title">AMU Connect</div>
+                    <div class="logo-sub">Aix-Marseille Université</div>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <a href="{{ url_for('auth.login') }}" class="login-link">Se connecter</a>
+                <a href="{{ url_for('auth.register') }}" class="btn">S'inscrire</a>
+            </div>
+
+        </div>
+    </header>
+
+    <a href="{{ url_for('acceuil') }}" class="back-home">← Retour à l'accueil</a>
+
+    <section class="register-section">
+        <div class="container">
+            <div class="register-card">
+
+                <div class="card-logo">
+                    <div class="card-logo-icon">🎓</div>
+                    <div>
+                        <strong>AMU Connect</strong><br>
+                        <span style="font-size:13px;color:#7b8ca3">Rejoignez la communauté</span>
+                    </div>
+                </div>
+
+                <h2 class="register-title">Créer un compte</h2>
+
+                <p class="register-desc">
+                    Rejoignez des milliers d'étudiants de l'AMU sur la plateforme
+                </p>
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        <div class="flash-messages">
+                            {% for category, message in messages %}
+                                <p class="flash-message {{ category }}">{{ message }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+
+                <form method="POST" action="{{ url_for('auth.register') }}">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="prenom">Prénom</label>
+                            <input type="text" id="prenom" name="prenom" placeholder="Jean" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nom">Nom</label>
+                            <input type="text" id="nom" name="nom" placeholder="Dupont" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email universitaire</label>
+                        <input type="email" id="email" name="email" placeholder="prenom.nom@etu.univ-amu.fr" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="study_year">Année d'études</label>
+                            <select id="study_year" name="study_year" required>
+                                <option value="">Sélectionner</option>
+                                <option value="L1">Licence 1</option>
+                                <option value="L2">Licence 2</option>
+                                <option value="L3">Licence 3</option>
+                                <option value="M1">Master 1</option>
+                                <option value="M2">Master 2</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="field_of_study">Filière</label>
+                            <select id="field_of_study" name="field_of_study" required>
+                                <option value="">Sélectionner</option>
+                                <option value="Informatique">Informatique</option>
+                                <option value="Mathématiques">Mathématiques</option>
+                                <option value="Physique">Physique</option>
+                                <option value="Chimie">Chimie</option>
+                                <option value="Médecine">Médecine</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Mot de passe</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm_password">Confirmer le mot de passe</label>
+                        <input type="password" id="confirm_password" name="confirm_password" required>
+                    </div>
+
+                    <div class="checkbox">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <span>J'accepte les conditions d'utilisation et la politique de confidentialité</span>
+                    </div>
+
+                    <button type="submit" class="register-btn">
+                        Créer mon compte →
+                    </button>
+
+                </form>
+
+                <div class="divider">OU</div>
+
+                <p class="login-text">
+                    Vous avez déjà un compte ? <a href="{{ url_for('auth.login') }}">Se connecter</a>
+                </p>
+
+            </div>
+
+            <div class="security">
+                🔒 Vos données sont sécurisées et ne seront jamais partagées avec des tiers
+            </div>
+
+        </div>
+    </section>
+
+    <div id="footer"></div>
+
+    <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/footer.js') }}"></script>
+</body>
+</html>

@@ -1,31 +1,48 @@
-from flask import Blueprint, request, jsonify, session
+from flask import Blueprint, request, render_template, redirect, url_for, session, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from models.user_model import create_user, get_user_by_email
 
 auth_bp = Blueprint("auth", __name__)
 
 
-@auth_bp.route("/register", methods=["POST"])
+@auth_bp.route("/register", methods=["GET", "POST"])
 def register():
-    data = request.get_json()
+    if request.method == "GET":
+        return render_template("sign-up.html")
 
-    nom = data.get("nom")
-    prenom = data.get("prenom")
-    email = data.get("email")
-    password = data.get("password")
-    field_of_study = data.get("field_of_study")
-    study_year = data.get("study_year")
+    nom = request.form.get("nom")
+    prenom = request.form.get("prenom")
+    email = request.form.get("email")
+    password = request.form.get("password")
+    confirm_password = request.form.get("confirm_password")
+    field_of_study = request.form.get("field_of_study")
+    study_year = request.form.get("study_year")
+    terms = request.form.get("terms")
 
-    if not all([nom, prenom, email, password, field_of_study, study_year]):
-        return jsonify({"error": "Tous les champs sont obligatoires"}), 400
+    if not all([nom, prenom, email, password, confirm_password, field_of_study, study_year]):
+        flash("Tous les champs sont obligatoires.", "error")
+        return redirect(url_for("auth.register"))
+
+    if password != confirm_password:
+        flash("Les mots de passe ne correspondent pas.", "error")
+        return redirect(url_for("auth.register"))
+
+    if not terms:
+        flash("Vous devez accepter les conditions d'utilisation.", "error")
+        return redirect(url_for("auth.register"))
+
+    if not email.endswith("@etu.univ-amu.fr"):
+        flash("Veuillez utiliser une adresse email universitaire AMU.", "error")
+        return redirect(url_for("auth.register"))
 
     existing_user = get_user_by_email(email)
     if existing_user:
-        return jsonify({"error": "Email déjà utilisé"}), 409
+        flash("Email déjà utilisé.", "error")
+        return redirect(url_for("auth.register"))
 
     password_hash = generate_password_hash(password)
 
-    user_id = create_user(
+    create_user(
         nom,
         prenom,
         email,
@@ -34,45 +51,37 @@ def register():
         study_year
     )
 
-    return jsonify({
-        "message": "Utilisateur créé avec succès",
-        "user_id": user_id
-    }), 201
+    flash("Inscription réussie. Vous pouvez maintenant vous connecter.", "success")
+    return redirect(url_for("auth.login"))
 
-
-@auth_bp.route("/login", methods=["POST"])
+@auth_bp.route("/login", methods=["GET", "POST"])
 def login():
-    data = request.get_json()
+    if request.method == "GET":
+        return render_template("login.html")
 
-    email = data.get("email")
-    password = data.get("password")
+    email = request.form.get("email")
+    password = request.form.get("password")
 
     if not email or not password:
-        return jsonify({"error": "Email et mot de passe requis"}), 400
+        flash("Email et mot de passe requis", "error")
+        return redirect(url_for("auth.login"))
 
     user = get_user_by_email(email)
     if not user:
-        return jsonify({"error": "Utilisateur introuvable"}), 404
+        flash("Utilisateur introuvable", "error")
+        return redirect(url_for("auth.login"))
 
     if not check_password_hash(user["password_hash"], password):
-        return jsonify({"error": "Mot de passe incorrect"}), 401
+        flash("Mot de passe incorrect", "error")
+        return redirect(url_for("auth.login"))
 
     session["user_id"] = user["id"]
-
-    return jsonify({
-        "message": "Connexion réussie",
-        "user": {
-            "id": user["id"],
-            "nom": user["nom"],
-            "prenom": user["prenom"],
-            "email": user["email"],
-            "field_of_study": user["field_of_study"],
-            "study_year": user["study_year"]
-        }
-    }), 200
+    flash("Connexion réussie", "success")
+    return redirect(url_for("dashboard"))
 
 
-@auth_bp.route("/logout", methods=["POST"])
+@auth_bp.route("/logout", methods=["POST", "GET"])
 def logout():
     session.pop("user_id", None)
-    return jsonify({"message": "Déconnexion réussie"}), 200
+    flash("Déconnexion réussie", "success")
+    return redirect(url_for("acceuil"))

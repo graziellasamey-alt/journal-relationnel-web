@@ -1,38 +1,50 @@
-from flask import Flask, jsonify, session, request, Response, redirect, url_for,render_template, abort 
-from models.user_model import create_users_table
+from flask import Flask, render_template, session, abort
 from routes.auth_routes import auth_bp
 from routes.question_routes import question_bp
 from routes.ressource_routes import resource_bp
-import secrets
 from functools import wraps
 from models.db import init_db
+import secrets
 
+app = Flask(
+    __name__,
+    template_folder="../Front-end/HTML-PRINCIPAL",
+    static_folder="../Front-end"
+)
 
-app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)
 
-#Decorateur de connexion 
+
 def login_required(f):
     @wraps(f)
-    def wrapper(*args,**kwrags):
-        if 'user_id' not in session:
+    def wrapper(*args, **kwargs):
+        if "user_id" not in session:
             abort(401)
-        return f(*args, **kwrags)
+        return f(*args, **kwargs)
     return wrapper
+
+
+init_db()
 
 app.register_blueprint(auth_bp, url_prefix="/auth")
 app.register_blueprint(question_bp, url_prefix="/questions")
 app.register_blueprint(resource_bp, url_prefix="/resources")
 
 
-init_db()
 @app.route("/")
-def home():
-    return jsonify({"message": "Backend AMU Help démarré"})
+def acceuil():
+    return render_template("accueil.html")
 
+
+if __name__ == "__main__":
+    print(app.url_map)
+    app.run(debug=True)
+
+"""
 @app.get('/login')
 def login_form():
     #TODO
+
     pass
 
 @app.get('/register')
@@ -80,7 +92,8 @@ def ressource_form():
     #TODO
     pass
 
-
+"""
 
 if __name__ == "__main__":
     app.run(debug=True)
+    

@@ -37,7 +37,7 @@
 
             </div>
     </header>
-    <a href="accueil.html" class="back-home">← Retour à l'accueil</a>
+    <a href="{{ url_for('acceuil') }}" class="back-home">← Retour à l'accueil</a>
 <!-- ======================
 SECTION LOGIN
 ====================== -->
@@ -111,7 +111,7 @@ Accédez à votre compte pour continuer vos études
 
 <!-- bouton -->
 
-<button class="login-btn">
+<button type = "submit" class="login-btn">
 Se connecter →
 </button>
 
