@@ -36,7 +36,7 @@ select{
    HEADER COMMUN
 ========================================= */
 .header{
-    background:white;
+    background:rgba(255,255,255,0.96);
     border-bottom:1px solid #e4edf7;
     backdrop-filter:blur(8px);
     position:sticky;
@@ -232,7 +232,8 @@ select{
     white-space:nowrap;
 }
 
-.btn-outline{
+.btn-outline,
+.btn-primary{
     background:linear-gradient(90deg,#1b6fd3,#5b99e8);
     color:white;
     box-shadow:0 10px 20px rgba(27,111,211,0.18);
@@ -255,6 +256,16 @@ select{
     display:none;
 }
 
+.form-box input,
+.form-box select{
+    min-height:48px;
+    padding:0 14px;
+    border:1px solid #dbe5f0;
+    border-radius:14px;
+    background:#fff;
+    color:#16233b;
+    font-size:15px;
+}
 
 /* cartes */
 .cards{
@@ -269,6 +280,8 @@ select{
     border-radius:24px;
     padding:30px;
     box-shadow:0 12px 28px rgba(20,52,95,0.05);
+    display:flex;
+    flex-direction:column;
 }
 
 .card-top{
@@ -314,6 +327,7 @@ select{
     display:inline-flex;
     align-items:center;
     justify-content:center;
+    gap:6px;
     padding:8px 12px;
     border-radius:999px;
     font-size:14px;
@@ -357,13 +371,6 @@ select{
     margin-bottom:18px;
 }
 
-.tags{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    margin-bottom:16px;
-}
-
 .tag{
     display:inline-flex;
     align-items:center;
@@ -396,35 +403,8 @@ select{
     margin-bottom:20px;
 }
 
-.stats-box{
-    background:#fafcff;
-    border-radius:18px;
-    padding:18px 20px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
-    margin-bottom:20px;
-}
-
-.stat-item{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    color:#16233b;
-    font-size:16px;
-    font-weight:700;
-}
-
-.stat-item.green{
-    color:#16b97a;
-}
-
-.stat-item.gold{
-    color:#e9a900;
-}
-
 .card-bottom{
+    margin-top:auto;
     padding-top:20px;
     border-top:1px solid #e8eef6;
     display:flex;
@@ -437,10 +417,6 @@ select{
 .author{
     font-size:16px;
     color:#60738f;
-}
-
-.author strong{
-    color:#16233b;
 }
 
 .download-btn{
@@ -472,27 +448,6 @@ select{
 }
 
 @media (max-width:760px){
-    .header-box{
-        flex-direction:column;
-        align-items:flex-start;
-        justify-content:center;
-        padding:16px 0;
-    }
-
-    .nav{
-        width:100%;
-        gap:8px;
-    }
-
-    .nav-link{
-        padding:10px 12px;
-        font-size:14px;
-    }
-
-    .logo-sub{
-        font-size:13px;
-    }
-
     .tools-row{
         grid-template-columns:1fr;
     }
@@ -515,5 +470,16 @@ select{
 
     .card-title{
         font-size:22px;
+    }
+
+    .form-box{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .form-box input,
+    .form-box select,
+    .form-box .btn{
+        width:100%;
     }
 }

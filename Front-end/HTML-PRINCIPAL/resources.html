@@ -9,247 +9,183 @@
     <link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/resources.css">
     <link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/header.css">
     <link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/footer.css">
-
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <script src="/Front-end/JAVASCRIPT-PRINCIPAL/header.js" defer></script>
     <script src="/Front-end/JAVASCRIPT-PRINCIPAL/event.js" defer></script>
     <script src="/Front-end/JAVASCRIPT-PRINCIPAL/footer.js" defer></script>
 </head>
-
 <body>
 
-<div id="header"></div>
+    <div id="header"></div>
 
-<main class="resources-page">
-<div class="container">
+    <main class="resources-page">
+        <div class="container">
 
-<!-- TOOLS -->
-<section class="tools-row">
+            <section class="tools-row">
+                <div class="search-box">
+                    <div class="search-icon">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <input type="text" placeholder="Rechercher des ressources...">
+                </div>
 
-<div class="search-box">
-    <div class="search-icon">
-        <i class="fa-solid fa-magnifying-glass"></i>
-    </div>
-    <input type="text" placeholder="Rechercher des ressources...">
-</div>
+                <div class="filter">
+                    <select>
+                        <option>Tous</option>
+                        <option>TD</option>
+                        <option>TP</option>
+                        <option>Examen</option>
+                        <option>Fiche</option>
+                    </select>
+                </div>
 
-<div class="filter">
-<select>
-<option>Tous</option>
-<option>TD</option>
-<option>TP</option>
-<option>Examen</option>
-<option>Fiche</option>
-</select>
-</div>
+                <div class="filter">
+                    <select>
+                        <option>Toutes</option>
+                        <option>L1</option>
+                        <option>L2</option>
+                        <option>L3</option>
+                        <option>M1</option>
+                        <option>M2</option>
+                    </select>
+                </div>
 
-<div class="filter">
-<select>
-<option>Toutes</option>
-<option>L1</option>
-<option>L2</option>
-<option>L3</option>
-<option>M1</option>
-<option>M2</option>
-</select>
-</div>
+                <div class="filter">
+                    <select>
+                        <option>Toutes</option>
+                        <option>Mathématiques</option>
+                        <option>Informatique</option>
+                        <option>Physique</option>
+                    </select>
+                </div>
+            </section>
 
-<div class="filter">
-<select>
-<option>Toutes</option>
-<option>Mathématiques</option>
-<option>Informatique</option>
-<option>Physique</option>
-</select>
-</div>
+            <div class="action-row">
+                <button id="openForm" class="btn btn-outline" type="button">
+                    <i class="fa-solid fa-upload"></i>
+                    Ajouter une ressource
+                </button>
+            </div>
 
-</section>
+            <div id="formBox" class="form-box hidden">
+                <select>
+                    <option>Type</option>
+                    <option>TD</option>
+                    <option>TP</option>
+                    <option>Examen</option>
+                    <option>Fiche</option>
+                </select>
 
-<!-- ACTION -->
-<div class="action-row">
-<button id="openForm" class="btn btn-outline">
-    <i class="fa-solid fa-upload"></i> Ajouter une ressource
-</button>
-</div>
+                <input type="text" placeholder="Titre">
+                <input type="text" placeholder="Matière">
+                <input type="file">
 
-<!-- FORM -->
-<div id="formBox" class="form-box hidden">
-<select>
-<option>Type</option>
-<option>TD</option>
-<option>TP</option>
-<option>Examen</option>
-<option>Fiche</option>
-</select>
+                <button class="btn btn-primary" type="button">Ajouter</button>
+            </div>
 
-<input type="text" placeholder="Titre">
-<input type="text" placeholder="Matière">
-<input type="file">
+            <div id="resourcesList"></div>
 
-<button class="btn btn-primary">Ajouter</button>
-</div>
+            <section class="cards">
 
-<div id="resourcesList"></div>
+                <article class="card">
+                    <div class="card-top">
+                        <div class="card-icon icon-blue">
+                            <i class="fa-solid fa-file-lines"></i>
+                        </div>
 
-<!-- CARDS -->
-<section class="cards">
+                        <div class="top-right">
+                            <span class="mini-tag blue">TD</span>
+                        </div>
+                    </div>
 
-<!-- CARD 1 -->
-<article class="card">
-<div class="card-top">
-    <div class="card-icon icon-blue">
-        <i class="fa-solid fa-file-lines"></i>
-    </div>
+                    <h2 class="card-title">TD Algèbre Linéaire</h2>
 
-    <div class="top-right">
-        <span class="mini-tag blue">TD</span>
-        <span class="mini-tag light">
-            <i class="fa-solid fa-arrow-trend-up"></i> Populaire
-        </span>
-    </div>
-</div>
+                    <p class="card-text">
+                        Tous les exercices avec corrections détaillées.
+                    </p>
 
-<h2 class="card-title">TD Algèbre Linéaire</h2>
+                    <div class="meta-line">
+                        <span class="tag tag-gray">L2</span>
+                        <span class="tag tag-blue">Mathématiques</span>
+                    </div>
 
-<p class="card-text">
-Tous les exercices avec corrections détaillées.
-</p>
+                    <div class="card-bottom">
+                        <button class="download-btn" type="button">
+                            <i class="fa-solid fa-download"></i>
+                            Télécharger
+                        </button>
+                    </div>
+                </article>
 
-<div class="meta-line">
-<span class="tag tag-gray">L2</span>
-<span class="tag tag-blue">Mathématiques</span>
-<span>PDF • 2.4 MB</span>
-</div>
+                <article class="card">
+                    <div class="card-top">
+                        <div class="card-icon icon-green">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
 
-<div class="stats-box">
-<div class="stat-item green">
-    <i class="fa-solid fa-download"></i> 342
-</div>
+                        <div class="top-right">
+                            <span class="mini-tag green">TP</span>
+                            
+                        </div>
+                    </div>
 
-<div class="stat-item">
-    <i class="fa-solid fa-eye"></i> 1250
-</div>
+                    <h2 class="card-title">TP Java POO</h2>
 
-<div class="stat-item gold">
-    <i class="fa-solid fa-star"></i> 4.9
-</div>
-</div>
+                    <p class="card-text">
+                        TP avancé avec code source.
+                    </p>
 
-<div class="card-bottom">
-<div class="author">Prof. Martin</div>
-<button class="download-btn">
-    <i class="fa-solid fa-download"></i> Télécharger
-</button>
-</div>
-</article>
+                    <div class="meta-line">
+                        <span class="tag tag-gray">L3</span>
+                        <span class="tag tag-blue">Informatique</span>
+                    </div>
 
-<!-- CARD 2 -->
-<article class="card">
-<div class="card-top">
-    <div class="card-icon icon-green">
-        <i class="fa-solid fa-code"></i>
-    </div>
+                    <div class="card-bottom">
+                        
+                        <button class="download-btn" type="button">
+                            <i class="fa-solid fa-download"></i>
+                            Télécharger
+                        </button>
+                    </div>
+                </article>
 
-    <div class="top-right">
-        <span class="mini-tag green">TP</span>
-        <span class="mini-tag light">
-            <i class="fa-solid fa-arrow-trend-up"></i> Populaire
-        </span>
-    </div>
-</div>
+                <article class="card">
+                    <div class="card-top">
+                        <div class="card-icon icon-orange">
+                            <i class="fa-solid fa-file"></i>
+                        </div>
 
-<h2 class="card-title">TP Java POO</h2>
+                        <div class="top-right">
+                            <span class="mini-tag orange">Examen</span>
+                            
+                        </div>
+                    </div>
 
-<p class="card-text">
-TP avancé avec code source.
-</p>
+                    <h2 class="card-title">Annales Mécanique Quantique</h2>
 
-<div class="meta-line">
-<span class="tag tag-gray">L3</span>
-<span class="tag tag-blue">Informatique</span>
-<span>ZIP • 5.1 MB</span>
-</div>
+                    <p class="card-text">
+                        Sujets + corrigés.
+                    </p>
 
-<div class="stats-box">
-<div class="stat-item green">
-    <i class="fa-solid fa-download"></i> 256
-</div>
+                    <div class="meta-line">
+                        <span class="tag tag-gray">M1</span>
+                        <span class="tag tag-blue">Physique</span>
+                    </div>
 
-<div class="stat-item">
-    <i class="fa-solid fa-eye"></i> 890
-</div>
+                    <div class="card-bottom">
+                        <button class="download-btn" type="button">
+                            <i class="fa-solid fa-download"></i>
+                            Télécharger
+                        </button>
+                    </div>
+                </article>
 
-<div class="stat-item gold">
-    <i class="fa-solid fa-star"></i> 4.7
-</div>
-</div>
+            </section>
+        </div>
+    </main>
 
-<div class="card-bottom">
-<div class="author">Dr. Dubois</div>
-<button class="download-btn">
-    <i class="fa-solid fa-download"></i> Télécharger
-</button>
-</div>
-</article>
-
-<!-- CARD 3 -->
-<article class="card">
-<div class="card-top">
-    <div class="card-icon icon-orange">
-        <i class="fa-solid fa-file"></i>
-    </div>
-
-    <div class="top-right">
-        <span class="mini-tag orange">Examen</span>
-        <span class="mini-tag light">
-            <i class="fa-solid fa-arrow-trend-up"></i> Populaire
-        </span>
-    </div>
-</div>
-
-<h2 class="card-title">Annales Mécanique Quantique</h2>
-
-<p class="card-text">
-Sujets + corrigés.
-</p>
-
-<div class="meta-line">
-<span class="tag tag-gray">M1</span>
-<span class="tag tag-blue">Physique</span>
-<span>PDF • 8.3 MB</span>
-</div>
-
-<div class="stats-box">
-<div class="stat-item green">
-    <i class="fa-solid fa-download"></i> 478
-</div>
-
-<div class="stat-item">
-    <i class="fa-solid fa-eye"></i> 1650
-</div>
-
-<div class="stat-item gold">
-    <i class="fa-solid fa-star"></i> 4.9
-</div>
-</div>
-
-<div class="card-bottom">
-<div class="author">Collectif M1</div>
-<button class="download-btn">
-    <i class="fa-solid fa-download"></i> Télécharger
-</button>
-</div>
-</article>
-
-</section>
-
-</div>
-</main>
-
-<div id="footer"></div>
-<div id="header"></div>
+    <div id="footer"></div>
 
 </body>
 </html>
