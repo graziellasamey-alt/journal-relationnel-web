@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détail question - AMU Connect</title>
+
+    <!-- police -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/page-quest-rep.css">
+
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container header-box">
+
+            <!-- logo -->
+            <a href="#" class="logo">
+                <div class="logo-icon">🎓</div>
+
+                <div>
+                    <div class="logo-title">AMU Connect</div>
+                    <div class="logo-sub">Aix-Marseille Université</div>
+                </div>
+            </a>
+
+            <!-- menu -->
+            <a href="dashboard.html" class="nav-link">🏠 Tableau de bord</a>
+            <a href="forum.html" class="nav-link active">💬 Forum</a>
+            <a href="resources.html" class="nav-link">📚 Ressources</a>
+            <a href="profil.html" class="nav-link">👤 Profil</a>
+        </div>
+    </header>
+
+    <!-- PAGE QUESTION -->
+    <main class="question-page">
+        <div class="container">
+
+            <!-- retour -->
+            <a href="forum.html" class="back-link">← Retour au forum</a>
+
+            <!-- layout -->
+            <div class="question-layout">
+
+                <!-- colonne gauche -->
+                <div>
+
+                    <!-- question -->
+                    <article class="question-post">
+
+                        <!-- haut -->
+                        <div class="post-top">
+                            <div class="post-user">
+                                <div class="avatar">T</div>
+
+                                <div>
+                                    <div class="user-name">Thomas B.</div>
+                                    <div class="user-meta">L3 • Informatique • Il y a 1h</div>
+                                </div>
+                            </div>
+
+                            <div class="post-more">⋯</div>
+                        </div>
+
+                        <!-- contenu -->
+                        <div class="post-body">
+                            <h1 class="post-title">Comment optimiser un algorithme de tri en O(n log n) ?</h1>
+
+                            <p class="post-text">
+                                Je travaille sur un projet où je dois trier des millions d'éléments.
+                                J'aimerais savoir quels sont les algorithmes les plus efficaces dans ce cas,
+                                et surtout comment choisir entre Quick Sort, Merge Sort ou d'autres solutions
+                                plus adaptées à un très grand volume de données.
+                            </p>
+
+                            <div class="tags">
+                                <span class="tag tag-blue">Algorithmes</span>
+                                <span class="tag tag-blue">Complexité</span>
+                                <span class="tag tag-blue">Tri</span>
+                                <span class="tag tag-gray">L3</span>
+                            </div>
+                        </div>
+
+                        <!-- stats -->
+                        <div class="post-stats">
+                            <div class="post-stats-left">
+                                <span>👍 28 votes utiles</span>
+                                <span>💬 15 réponses</span>
+                            </div>
+
+                            
+                        </div>
+
+                        <!-- actions -->
+                        <div class="post-actions">
+                            <button class="post-btn">👍 J'aime</button>
+                            <button type="button" class="post-btn primary" onclick="goToReply()">
+                                ✍️ Écrire une réponse
+                            </button>
+                    </article>
+
+                    <!-- réponses -->
+                    <section class="answers-box">
+                        <div class="section-title">
+                            <h2>Réponses</h2>
+                            <span>15 commentaires</span>
+                        </div>
+
+                        <!-- réponse 1 -->
+                        <div class="answer">
+                            <div class="avatar">M</div>
+
+                            <div class="answer-content">
+                                <div class="answer-head">
+                                    <div class="answer-name">Marie D.</div>
+                                    <div class="answer-time">Il y a 45 min</div>
+                                </div>
+
+                                <p class="answer-text">
+                                    Pour un très grand nombre d'éléments, tu peux comparer Merge Sort et Quick Sort.
+                                    Merge Sort est très stable et garde une complexité O(n log n), tandis que Quick Sort
+                                    est souvent très rapide en pratique mais dépend du choix du pivot.
+                                </p>
+
+                                <div class="answer-actions">
+                                    <a href="#" class="answer-link">Répondre</a>
+                                    <span class="answer-like">👍 12 j'aime</span>
+                                    <button type="button" class="post-btn primary goToReply">✍️ Écrire une réponse</button>
+                                </div>
+
+                                <!-- réponse à la réponse -->
+                                <div class="reply">
+                                    <div class="reply-head">
+                                        <div class="reply-name">Thomas B.</div>
+                                        <div class="reply-time">Il y a 30 min</div>
+                                    </div>
+
+                                    <p class="reply-text">
+                                        Merci, c'est plus clair. Je vais comparer les deux sur mon jeu de données.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                       
+
+                        
+                    </section>
+                </div>
+
+                <!-- colonne droite -->
+                <aside class="side-column">
+
+                    <!-- écrire une réponse -->
+                    <div class="reply-card" id="replySection">
+                        <h3>Écrire une réponse</h3>
+                        <p>Partage une explication claire et utile pour aider l’auteur de la question.</p>
+
+                        <textarea placeholder="Écris ta réponse ici..."></textarea>
+
+                        <button class="reply-btn">Publier la réponse</button>
+                    </div>
+
+                    <!-- infos -->
+                    <div class="info-card">
+                        <h4>Conseils</h4>
+
+                        <div class="info-list">
+                            <div>• Explique ta réponse avec des mots simples</div>
+                            <div>• Donne un exemple si possible</div>
+                            <div>• Reste poli et utile</div>
+                            <div>• Tu peux aussi répondre aux autres commentaires</div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+    
+<script src="/Front-end/JAVASCRIPT-PRINCIPAL/event.js"></script>
+</body>
+</html>

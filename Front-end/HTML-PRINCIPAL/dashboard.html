@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord - AMU Connect</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/dashboard.css">
+    <link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/header.css">
+    <link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/footer.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <script src="/Front-end/JAVASCRIPT-PRINCIPAL/header.js" defer></script>
+    <script src="/Front-end/JAVASCRIPT-PRINCIPAL/event.js" defer></script>
+    <script src="/Front-end/JAVASCRIPT-PRINCIPAL/footer.js" defer></script>
+</head>
+
+<body>
+
+<div id="header"></div>
+
+<main class="dashboard">
+    <div class="container">
+
+        <!-- TOP -->
+        <div class="top-row">
+
+            <div class="welcome">
+                <h1>Bienvenue, <span class="name">Jean</span></h1>
+                <p>Licence 3 - Informatique</p>
+            </div>
+
+            <div class="top-actions">
+                <a href="ask.html" class="btn btn-primary">
+                    <i class="fa-solid fa-circle-plus"></i> Poser une question
+                </a>
+
+                <button id="openForm" class="btn btn-outline">
+                    <i class="fa-solid fa-upload"></i> Ajouter une ressource
+                </button>
+            </div>
+        </div>
+
+        <!-- FORM -->
+        <div id="formBox" class="form-box hidden">
+            <input type="text" id="titre" placeholder="Titre de la ressource">
+            <input type="text" id="matiere" placeholder="Matière">
+            <input type="file" id="fichier">
+            <button id="addBtn" class="btn btn-primary">Ajouter</button>
+        </div>
+
+        <div id="resourcesList"></div>
+
+        <!-- SEARCH -->
+        <div class="search-box">
+            <div class="search-icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <input type="text" placeholder="Rechercher...">
+        </div>
+
+        <!-- STATS -->
+        <section class="stats-grid">
+
+            <div class="stat-card">
+                <div class="stat-top">
+                    <div class="stat-icon icon-blue">
+                        <i class="fa-solid fa-comments"></i>
+                    </div>
+                    <div class="trend">
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="stat-number">128</div>
+                    <div class="stat-text">Questions répondues</div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-top">
+                    <div class="stat-icon icon-green">
+                        <i class="fa-solid fa-book"></i>
+                    </div>
+                    <div class="trend">
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="stat-number">45</div>
+                    <div class="stat-text">Ressources téléchargées</div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- CONTENT -->
+        <section class="content-grid">
+
+            <!-- QUESTIONS -->
+            <div class="panel">
+                <div class="panel-head">
+                    <div>
+                        <div class="panel-title">
+                            <i class="fa-solid fa-comments"></i>
+                            <span>Questions récentes</span>
+                        </div>
+                        <div class="panel-sub">Les dernières questions</div>
+                    </div>
+
+                    <a href="/Front-end/HTML-PRINCIPAL/mes_questions.html" class="see-all">Voir tout →</a>
+                </div>
+
+                <div class="mini-card">
+                    <div class="mini-title-row">
+                        <div class="mini-title">Aide intégrales doubles</div>
+                        <div class="star">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RESSOURCES -->
+            <div class="panel">
+                <div class="panel-head">
+                    <div>
+                        <div class="panel-title">
+                            <i class="fa-solid fa-book-open"></i>
+                            <span>Ressources récentes</span>
+                        </div>
+                        <div class="panel-sub">Nouveaux documents</div>
+                    </div>
+
+                    <a href="/Front-end/HTML-PRINCIPAL/resources.html" class="see-all green">Voir tout →</a>
+                </div>
+
+                <div class="mini-card">
+                    <div class="mini-title">TD Algèbre Linéaire</div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+</main>
+
+<div id="footer"></div>
+
+</body>
+</html>

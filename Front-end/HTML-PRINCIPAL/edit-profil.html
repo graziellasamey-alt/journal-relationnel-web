@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Modifier le profil - AMU Connect</title>
+
+<!-- police -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- fichier CSS -->
+<link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/edit-profil.css">
+
+</head>
+
+<body>
+
+<!-- =========================================
+HEADER
+barre du haut
+========================================= -->
+
+<header class="header">
+
+<div class="container header-box">
+
+<a class="logo">
+
+<div class="logo-icon">🎓</div>
+
+<div>
+<div class="logo-title">AMU Connect</div>
+<div class="logo-sub">Aix-Marseille Université</div>
+</div>
+
+</a>
+
+<nav class="nav">
+                <a href="/Front-end/HTML-PRINCIPAL/dashboard.html" class="nav-link active">🏠 <span>Tableau de bord</span></a>
+                <a href="/Front-end/HTML-PRINCIPAL/forum.html" class="nav-link">💬 <span>Forum</span></a>
+                <a href="/Front-end/HTML-PRINCIPAL/resources.html" class="nav-link">📚 <span>Ressources</span></a>
+                
+</nav>
+
+</div>
+
+</header>
+
+
+
+<!-- 
+PAGE MODIFICATION PROFIL
+========================================= -->
+
+<main class="edit-page">
+
+<div class="container">
+
+
+<!-- lien retour -->
+<a href="profil.html" class="back-link">← Retour au profil</a>
+
+
+<!-- 
+CARTE PRINCIPALE
+ -->
+
+<section class="edit-card">
+
+
+<!-- bandeau -->
+<div class="edit-cover"></div>
+
+
+<div class="edit-content">
+
+
+<!-- =========================================
+HAUT DU PROFIL
+avatar + titre
+========================================= -->
+
+<div class="edit-top">
+
+<div class="edit-user">
+
+<div class="avatar-box">
+
+<div class="avatar">JD</div>
+
+
+
+</div>
+
+
+<div class="edit-title">
+
+<h1>Modifier mon profil</h1>
+
+<p>Tu dois mettre tes informations personnelles  </p>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+<!-- =========================================
+FORMULAIRE
+========================================= -->
+
+<form class="form-grid">
+
+
+<div class="field">
+<label>Prénom</label>
+<input type="text" value="Jean">
+</div>
+
+
+<div class="field">
+<label>Nom</label>
+<input type="text" value="Dupont">
+</div>
+
+
+<div class="field full">
+<label>Email universitaire</label>
+<input type="email" value="jean.dupont@etu.univ-amu.fr">
+</div>
+
+
+<div class="field">
+<label>Niveau</label>
+<select>
+<option>L1</option>
+<option>L2</option>
+<option selected>L3</option>
+<option>M1</option>
+<option>M2</option>
+</select>
+</div>
+
+
+<div class="field">
+<label>Filière</label>
+<select>
+<option>Mathématiques</option>
+<option selected>Informatique</option>
+<option>Physique</option>
+</select>
+</div>
+
+
+<div class="field full">
+<label>Bio</label>
+<textarea>
+Passionné par le développement web et l'algorithmique.
+</textarea>
+</div>
+
+
+<!-- boutons -->
+<div class="field full">
+
+<div class="form-actions">
+
+<button class="btn btn-outline">Annuler</button>
+
+<button class="btn btn-blue">Enregistrer</button>
+
+</div>
+
+</div>
+
+
+</form>
+
+</div>
+
+</section>
+
+</div>
+
+</main>
+
+</body>
+</html>

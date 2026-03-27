@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Poser une question</title>
+
+<link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/ask.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- PAGE -->
+<main class="page">
+     <!-- retour -->
+            
+    <form class="question-form">
+         <a href="dashboard.html" class="back-link">← Retour </a>
+    <!-- FORMULAIRE -->
+        <h1 class="title">Poser une question</h1>
+
+        <div class="field">
+            <label for="titre">Titre de la question</label>
+            <input type="text" id="titre" placeholder="Ex : Je ne comprends pas les intégrales doubles">
+        </div>
+
+        <div class="field">
+            <label for="matiere">Matière</label>
+            <select id="matiere">
+                <option value="">Choisir une matière</option>
+                <option>Mathématiques</option>
+                <option>Informatique</option>
+                <option>Physique</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label for="niveau">Année</label>
+            <select id="niveau">
+                <option value="">Choisir une année</option>
+                <option>L1</option>
+                <option>L2</option>
+                <option>L3</option>
+                <option>M1</option>
+                <option>M2</option>
+            </select>
+        </div>
+        <div class="field">
+            <label for="niveau">Audience</label>
+            <select id="niveau">
+                <option value="">Choisissez votre audience</option>
+                <option>L1</option>
+                <option>L2</option>
+                <option>L3</option>
+                <option>M1</option>
+                <option>M2</option>
+                <option >Toutes</option>
+            </select>
+        </div>
+        <div class="field">
+            <label for="description">Décris ton problème</label>
+            <textarea id="description" placeholder="Explique clairement ta question..."></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">
+            Publier la question
+        </button>
+
+    </form>
+
+</main>
+
+</body>
+</html>

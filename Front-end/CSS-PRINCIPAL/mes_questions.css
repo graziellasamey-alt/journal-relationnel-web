@@ -1,0 +1,206 @@
+/* =========================================
+   RESET
+========================================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* =========================================
+   BASE
+========================================= */
+body{
+    font-family:"Inter",sans-serif;
+    background:#f4f8fc;
+    color:#16233b;
+}
+
+/* 🔥 IMPORTANT : enlève les soulignements */
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+/* container */
+.container{
+    width:min(1100px, calc(100% - 40px));
+    margin:auto;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+.header{
+    background:rgba(255,255,255,0.96);
+    border-bottom:1px solid #e4edf7;
+    backdrop-filter:blur(8px);
+    position:sticky;
+    top:0;
+    z-index:50;
+}
+
+.header-box{
+    min-height:84px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+.back-home{
+    margin-top: 20px ;
+    margin-left: 40px;
+    color: #2e7de0;
+    width: 50px;
+}
+/* logo */
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo-icon{
+    width:50px;
+    height:50px;
+    border-radius:16px;
+    background:linear-gradient(135deg,#2e7de0,#5b9af0);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:24px;
+    box-shadow:0 10px 22px rgba(46,125,224,0.22);
+}
+
+.logo-text{
+    line-height:1.1;
+}
+
+.logo-title{
+    font-size:20px;
+    font-weight:800;
+    color:#2f78d4;
+}
+
+.logo-sub{
+    font-size:14px;
+    color:#70829a;
+    margin-top:4px;
+}
+
+/* nav */
+.nav{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.nav-link{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:12px 16px;
+    border-radius:14px;
+    color:#24344d;
+    font-weight:600;
+    transition:0.2s ease;
+}
+
+/* hover */
+.nav-link:hover{
+    background:#f2f7fd;
+}
+
+/* lien actif */
+.nav-link.active{
+    background:linear-gradient(90deg,#1b6fd3,#5b99e8);
+    color:white;
+    box-shadow:0 10px 20px rgba(27,111,211,0.18);
+}
+
+/* =========================================
+   PAGE
+========================================= */
+.page{
+    padding:40px 0;
+}
+
+/* titre */
+.title{
+    font-size:40px;
+    margin-bottom:30px;
+}
+
+/* =========================================
+   LISTE QUESTIONS
+========================================= */
+.questions{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+/* carte question */
+.question-card{
+    background:white;
+    border-radius:20px;
+    padding:20px;
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    border:1px solid #e3ecf5;
+    transition:0.2s;
+}
+
+/* hover carte */
+.question-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.05);
+}
+
+/* contenu */
+.question-content h2{
+    font-size:20px;
+    margin-bottom:6px;
+}
+
+.question-content p{
+    color:#60738f;
+    margin-bottom:10px;
+}
+
+/* meta */
+.meta{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+/* tags */
+.tag{
+    background:#eaf3ff;
+    color:#1f6fd1;
+    padding:4px 10px;
+    border-radius:999px;
+    font-size:13px;
+}
+
+.tag.gray{
+    background:#f3f6fa;
+    color:#6d7f97;
+}
+
+/* temps */
+.time{
+    color:#7a8ca6;
+}
+
+/* stats */
+.stats{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    font-weight:600;
+}

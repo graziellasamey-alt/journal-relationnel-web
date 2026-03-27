@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Forum - AMU Connect</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/forum.css">
+<link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/header.css">
+<link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/footer.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<script src="/Front-end/JAVASCRIPT-PRINCIPAL/header.js" defer></script>
+<script src="/Front-end/JAVASCRIPT-PRINCIPAL/footer.js" defer></script>
+<script src="/Front-end/JAVASCRIPT-PRINCIPAL/event.js" defer></script>
+
+</head>
+
+<body>
+
+<div id="header"></div>
+
+<main class="forum-page">
+<div class="container">
+
+<h1 class="forum-title">Forum Q&A</h1>
+<p class="forum-sub">Posez vos questions et aidez vos camarades</p>
+
+<section class="forum-tools">
+
+<div class="search-box">
+<span class="search-icon">
+<i class="fa-solid fa-magnifying-glass"></i>
+</span>
+<input type="text" placeholder="Rechercher des questions...">
+</div>
+
+<div class="filter">
+<select>
+<option>Toutes</option>
+<option>L1</option>
+<option>L2</option>
+<option>L3</option>
+<option>M1</option>
+<option>M2</option>
+</select>
+</div>
+
+<div class="filter">
+<select>
+<option>Toutes</option>
+<option>Mathématiques</option>
+<option>Informatique</option>
+<option>Physique</option>
+</select>
+</div>
+
+<a href="/Front-end/HTML-PRINCIPAL/ask.html" class="ask-btn">
+<i class="fa-solid fa-circle-plus"></i>
+Poser une question
+</a>
+
+</section>
+
+<section class="questions">
+
+<article class="question-card">
+
+<div class="question-side">
+
+<div class="side-icon">
+<i class="fa-solid fa-comment"></i>
+</div>
+<div class="reply-number">15</div>
+<div>réponses</div>
+
+</div>
+
+<div class="question-main">
+
+<h2 class="question-title">
+<a href="page-quest-rep.html">
+Comment optimiser un algorithme de tri en O(n log n) ?
+
+</h2>
+
+<p class="question-text">
+Je travaille sur un projet où je dois trier des millions d'éléments.
+Quels sont les meilleurs algorithmes ?
+</p>
+
+<div class="meta-left">
+<span>Par <span class="author">Thomas B.</span></span>
+<span class="tag tag-gray">L3</span>
+<span class="tag tag-blue">Informatique</span>
+</div>
+</a>
+</div>
+
+<div class="question-save" role="button">
+<i class="fa-regular fa-star"></i>
+</div>
+
+</article>
+
+</section>
+
+</div>
+</main>
+
+<div id="footer"></div>
+
+</body>
+</html>
