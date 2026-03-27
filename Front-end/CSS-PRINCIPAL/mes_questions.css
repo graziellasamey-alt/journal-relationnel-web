@@ -16,7 +16,7 @@ body{
     color:#16233b;
 }
 
-/* 🔥 IMPORTANT : enlève les soulignements */
+
 a{
     text-decoration:none;
     color:inherit;
@@ -32,7 +32,7 @@ a{
    HEADER
 ========================================= */
 .header{
-    background:rgba(255,255,255,0.96);
+    background:white;
     border-bottom:1px solid #e4edf7;
     backdrop-filter:blur(8px);
     position:sticky;
