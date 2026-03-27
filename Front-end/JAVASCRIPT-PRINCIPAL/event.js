@@ -68,29 +68,20 @@ document.getElementById("logoutBtn").addEventListener("click", async () => {
 
 function goToReply() {
     const section = document.getElementById("replySection");
-    if (!section) return;
 
-    // SI caché → afficher
-    if (section.style.display === "none" || section.style.display === "") {
-
+    if (section.style.display === "block") {
+        section.style.display = "none";
+    } else {
         section.style.display = "block";
 
-        // scroll
         section.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
+            behavior: "smooth"
         });
 
-        // focus
         const textarea = section.querySelector("textarea");
         if (textarea) {
             textarea.focus();
         }
-
-    } else {
-        // SINON → cacher
-        section.style.display = "none";
     }
 }
-
 

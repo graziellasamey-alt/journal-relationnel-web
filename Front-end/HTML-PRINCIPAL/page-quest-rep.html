@@ -24,11 +24,13 @@
 
             <a href="forum.html" class="back-link">← Retour au forum</a>
 
+            <h1 class="page-title">Détail de la question</h1>
+            <p class="page-subtitle">Consulte la question et rédige une réponse utile</p>
+
             <div class="question-layout">
 
                 <div class="main-column">
 
-                    <!-- QUESTION REPRISE DU FORUM -->
                     <section class="questions question-detail-block">
                         <article class="question-card question-card-detail">
 
@@ -37,18 +39,17 @@
                                     <i class="fa-solid fa-comment"></i>
                                 </div>
                                 <div class="reply-number">15</div>
-                                <div>réponses</div>
+                                <div class="side-label">réponses</div>
 
-                                <div class="question-save action-buttons">
-                                    <button class="add-fav" type="button">Ajouter</button>
-                                    <button class="remove-fav" type="button">Supprimer</button>
+                                <div class="question-save">
+                                    <button class="add-fav active" type="button">En favori</button>
                                 </div>
                             </div>
 
                             <div class="question-main">
-                                <h1 class="question-title">
+                                <h2 class="question-title">
                                     Comment optimiser un algorithme de tri en O(n log n) ?
-                                </h1>
+                                </h2>
 
                                 <p class="question-text">
                                     Je travaille sur un projet où je dois trier des millions d'éléments.
@@ -64,7 +65,7 @@
                                 </div>
 
                                 <div class="question-extra-actions">
-                                    <button type="button" class="post-btn primary" onclick="goToReply()">
+                                    <button onclick="goToReply()" class="post-btn primary">
                                         <i class="fa-solid fa-pen"></i>
                                         Écrire une réponse
                                     </button>
@@ -74,55 +75,7 @@
                         </article>
                     </section>
 
-                    <!-- RÉPONSES -->
-                    <section class="answers-box">
-                        <div class="section-title">
-                            <h2>Réponses</h2>
-                            <span>15 commentaires</span>
-                        </div>
-
-                        <div class="answer">
-                            <div class="avatar">M</div>
-
-                            <div class="answer-content">
-                                <div class="answer-head">
-                                    <div class="answer-name">Marie D.</div>
-                                   
-                                </div>
-
-                                <p class="answer-text">
-                                    Pour un très grand nombre d'éléments, tu peux comparer Merge Sort et Quick Sort.
-                                    Merge Sort est très stable et garde une complexité O(n log n), tandis que Quick Sort
-                                    est souvent très rapide en pratique mais dépend du choix du pivot.
-                                </p>
-
-                                <div class="answer-actions">
-                                    <a href="#" class="answer-link">Répondre</a>
-                                    <button type="button" class="post-btn primary goToReply">
-                                        <i class="fa-solid fa-pen"></i>
-                                        Écrire une réponse
-                                    </button>
-                                </div>
-
-                                <div class="reply">
-                                    <div class="reply-head">
-                                        <div class="reply-name">Thomas B.</div>
-                                        
-                                    </div>
-
-                                    <p class="reply-text">
-                                        Merci, c'est plus clair. Je vais comparer les deux sur mon jeu de données.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-
-                <!-- COLONNE DROITE -->
-                <aside class="side-column">
-
-                    <div class="reply-card" id="replySection">
+                    <section class="reply-card" id="replySection">
                         <h3>Écrire une réponse</h3>
                         <p>Partage une explication claire et utile pour aider l’auteur de la question.</p>
 
@@ -130,10 +83,12 @@
 
                         <div class="reply-card-actions">
                             <button class="reply-btn">Publier la réponse</button>
-                            <button class="remove-fav" type="button">Supprimer</button>
                         </div>
-                    </div>
+                    </section>
 
+                </div>
+
+                <aside class="side-column">
                     <div class="info-card">
                         <h4>Conseils</h4>
 
@@ -141,16 +96,16 @@
                             <div>• Explique ta réponse avec des mots simples</div>
                             <div>• Donne un exemple si possible</div>
                             <div>• Reste poli et utile</div>
-                            <div>• Tu peux aussi répondre aux autres commentaires</div>
+                            <div>• Va droit au but</div>
                         </div>
                     </div>
-
                 </aside>
+
             </div>
         </div>
     </main>
 
     <div id="footer"></div>
-<script src="/Front-end/JAVASCRIPT-PRINCIPAL/event.js"></script>
+
 </body>
 </html>
