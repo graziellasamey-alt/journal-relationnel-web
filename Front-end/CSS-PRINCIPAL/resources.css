@@ -267,6 +267,12 @@ select{
     font-size:15px;
 }
 
+.form-box input[type="file"]{
+    height: 48px;              /* même hauteur que les autres */
+    display: flex;
+    align-items: center;       /* centre le contenu */
+    padding-top: 10px;         /* ajuste verticalement */
+}
 /* cartes */
 .cards{
     display:grid;

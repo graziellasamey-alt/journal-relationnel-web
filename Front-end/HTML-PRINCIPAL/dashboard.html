@@ -46,11 +46,20 @@
 
         <!-- FORM -->
         <div id="formBox" class="form-box hidden">
-            <input type="text" id="titre" placeholder="Titre de la ressource">
-            <input type="text" id="matiere" placeholder="Matière">
-            <input type="file" id="fichier">
-            <button id="addBtn" class="btn btn-primary">Ajouter</button>
-        </div>
+                <select>
+                    <option>Type</option>
+                    <option>TD</option>
+                    <option>TP</option>
+                    <option>Examen</option>
+                    <option>Fiche</option>
+                </select>
+
+                <input type="text" placeholder="Titre">
+                <input type="text" placeholder="Matière">
+                <input type="file">
+
+                <button class="btn btn-primary" type="button">Ajouter</button>
+            </div>
 
         <div id="resourcesList"></div>
 
