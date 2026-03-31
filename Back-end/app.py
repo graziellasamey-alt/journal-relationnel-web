@@ -5,7 +5,9 @@ from routes.ressource_routes import resource_bp
 from functools import wraps
 from models.db import init_db
 import secrets
-
+from models.user_model import get_user_by_id
+from models.favorite_model import get_user_favorite_questions
+from models.resource_model import get_user_resources
 app = Flask(
     __name__,
     template_folder="../Front-end/HTML-PRINCIPAL",
@@ -35,7 +37,21 @@ app.register_blueprint(resource_bp, url_prefix="/resources")
 def acceuil():
     return render_template("accueil.html")
 
+@app.route("/dashboard")
+@login_required
+def dashboard():
+    user = get_user_by_id(session["user_id"])
+    favorite_questions = get_user_favorite_questions(session["user_id"])
+    recent_resources = get_user_resources(session["user_id"])
 
+    return render_template(
+        "dashboard.html",
+        user=user,
+        favorite_questions=favorite_questions,
+        recent_resources=recent_resources,
+        favorite_questions_count=len(favorite_questions),
+        recent_resources_count=len(recent_resources)
+    )
 if __name__ == "__main__":
     print(app.url_map)
     app.run(debug=True)
