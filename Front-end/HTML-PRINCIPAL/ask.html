@@ -1,76 +1,77 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Poser une question</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poser une question - AMU Connect</title>
 
-<link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/ask.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/footer.css') }}">
 </head>
-
 <body>
 
-<!-- PAGE -->
-<main class="page">
-     <!-- retour -->
-            
-    <form class="question-form">
-         <a href="dashboard.html" class="back-link">← Retour </a>
-    <!-- FORMULAIRE -->
-        <h1 class="title">Poser une question</h1>
+    <div id="header"></div>
 
-        <div class="field">
-            <label for="titre">Titre de la question</label>
-            <input type="text" id="titre" placeholder="Ex : Je ne comprends pas les intégrales doubles">
-        </div>
+    <main class="container" style="max-width: 800px; margin: 40px auto;">
+        <a href="{{ url_for('questions.list_questions') }}">← Retour au forum</a>
 
-        <div class="field">
-            <label for="matiere">Matière</label>
-            <select id="matiere">
-                <option value="">Choisir une matière</option>
-                <option>Mathématiques</option>
-                <option>Informatique</option>
-                <option>Physique</option>
-            </select>
-        </div>
+        <h1>Poser une question</h1>
+        <p>Décrivez clairement votre problème pour obtenir de meilleures réponses.</p>
 
-        <div class="field">
-            <label for="niveau">Année</label>
-            <select id="niveau">
-                <option value="">Choisir une année</option>
-                <option>L1</option>
-                <option>L2</option>
-                <option>L3</option>
-                <option>M1</option>
-                <option>M2</option>
-            </select>
-        </div>
-        <div class="field">
-            <label for="niveau">Audience</label>
-            <select id="niveau">
-                <option value="">Choisissez votre audience</option>
-                <option>L1</option>
-                <option>L2</option>
-                <option>L3</option>
-                <option>M1</option>
-                <option>M2</option>
-                <option >Toutes</option>
-            </select>
-        </div>
-        <div class="field">
-            <label for="description">Décris ton problème</label>
-            <textarea id="description" placeholder="Explique clairement ta question..."></textarea>
-        </div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <p class="flash-message {{ category }}">{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
 
-        <button type="submit" class="submit-btn">
-            Publier la question
-        </button>
+        <form method="POST" action="{{ url_for('questions.add_question') }}">
+            <div style="margin-bottom: 15px;">
+                <label for="title">Titre</label><br>
+                <input type="text" id="title" name="title" required style="width:100%; padding:10px;">
+            </div>
 
-    </form>
+            <div style="margin-bottom: 15px;">
+                <label for="subject">Matière</label><br>
+                <input type="text" id="subject" name="subject" required style="width:100%; padding:10px;">
+            </div>
 
-</main>
+            <div style="margin-bottom: 15px;">
+                <label for="target_year">Année ciblée</label><br>
+                <select id="target_year" name="target_year" required style="width:100%; padding:10px;">
+                    <option value="">Choisir une année</option>
+                    <option value="L1">L1</option>
+                    <option value="L2">L2</option>
+                    <option value="L3">L3</option>
+                    <option value="M1">M1</option>
+                    <option value="M2">M2</option>
+                    <option value="all">Toutes</option>
+                </select>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label for="target_scope">Portée</label><br>
+                <select id="target_scope" name="target_scope" required style="width:100%; padding:10px;">
+                    <option value="">Choisir la portée</option>
+                    <option value="field">Ma filière</option>
+                    <option value="all">Tout le monde</option>
+                </select>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label for="description">Description</label><br>
+                <textarea id="description" name="description" rows="8" required style="width:100%; padding:10px;"></textarea>
+            </div>
+
+            <button type="submit">Publier la question</button>
+        </form>
+    </main>
+
+    <div id="footer"></div>
 
 </body>
 </html>

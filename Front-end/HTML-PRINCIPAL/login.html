@@ -2,125 +2,98 @@
 <html lang="fr">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - AMU Connect</title>
 
-<title>Connexion - AMU Connect</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/login.css">
-<link rel="stylesheet" href="/Front-end/JAVASCRIPT-PRINCIPAL/footer.js">
-<link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/footer.css">
-
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/footer.css') }}">
 </head>
 
 <body>
 
-<header class="header">
+    <header class="header">
         <div class="container header-box">
 
-            <!-- logo -->
             <div class="logo">
-                <img src="/Front-end/Éducation et technologie numérique en harmonie.png"  >
+                <img src="{{ url_for('static', filename='Éducation et technologie numérique en harmonie.png') }}" alt="Logo AMU Connect">
                 <div class="logo-text">
                     <div class="logo-title">AMU Connect</div>
                     <div class="logo-sub">Aix-Marseille Université</div>
                 </div>
-               
             </div>
 
-            <!-- Actions -->
             <div class="header-actions">
-                <a href="login.html" class="btn btn-primary">Se connecter</a>
-                <a href="inscription.html" class="login">S'inscrire</a>
-
+                <a href="{{ url_for('auth.login') }}" class="btn btn-primary">Se connecter</a>
+                <a href="{{ url_for('auth.register') }}" class="login">S'inscrire</a>
             </div>
+        </div>
     </header>
+
     <a href="{{ url_for('acceuil') }}" class="back-home">← Retour à l'accueil</a>
-<!-- ======================
-SECTION LOGIN
-====================== -->
 
-<section class="login-section">
+    <section class="login-section">
 
-<!-- bloc gauche : image -->
+        <div class="login-image">
+            <img src="{{ url_for('static', filename='image1.jpeg') }}" alt="Illustration connexion">
+        </div>
 
-<div class="login-image">
+        <div class="login-card">
 
-<img src="/Front-end/image1.jpeg">
+            <div class="card-logo">
+                <div class="card-logo-icon">🎓</div>
+                <div>
+                    <strong>AMU Connect</strong><br>
+                    <span style="font-size:13px;color:#7b8ca3">Espace étudiant</span>
+                </div>
+            </div>
 
-</div>
+            <h2 class="login-title">Connexion</h2>
 
-<!-- bloc droit : formulaire -->
+            <p class="login-desc">
+                Accédez à votre compte pour continuer vos études
+            </p>
 
-<div class="login-card">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-messages">
+                        {% for category, message in messages %}
+                            <p class="flash-message {{ category }}">{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
 
-<!-- petit logo -->
+            <form method="POST" action="{{ url_for('auth.login') }}">
 
-<div class="card-logo">
+                <div class="form-group">
+                    <label for="email">Email universitaire</label>
+                    <input type="email" id="email" name="email" placeholder="prenom.nom@etu.univ-amu.fr" required>
+                </div>
 
-<div class="card-logo-icon">🎓</div>
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••" required>
+                </div>
 
-<div>
-<strong>AMU Connect</strong><br>
-<span style="font-size:13px;color:#7b8ca3">Espace étudiant</span>
-</div>
+                <div class="form-options">
+                    <label>
+                        <input type="checkbox" name="remember_me"> Se souvenir de moi
+                    </label>
+                </div>
 
-</div>
+                <button type="submit" class="login-btn">
+                    Se connecter →
+                </button>
 
-<!-- titre -->
+            </form>
 
-<h2 class="login-title">Connexion</h2>
-
-<p class="login-desc">
-Accédez à votre compte pour continuer vos études
-</p>
-
-<!-- champ email -->
-
-<div class="form-group">
-
-<label>Email universitaire</label>
-
-<input type="email" placeholder="prenom.nom@etu.univ-amu.fr">
-
-</div>
-
-<!-- champ mot de passe -->
-
-<div class="form-group">
-
-<label>Mot de passe</label>
-
-<input type="password" placeholder="••••••••">
-
-</div>
-
-<!-- options -->
-
-<div class="form-options">
-
-<label>
-<input type="checkbox"> Se souvenir de moi
-</label>
-
-
-
-</div>
-
-<!-- bouton -->
-
-<button type = "submit" class="login-btn">
-Se connecter →
-</button>
-
-   </div>
+        </div>
     </section>
 
-    <!-- Footer injecté ici -->
     <div id="footer"></div>
 
-    <script src="/Front-end/JAVASCRIPT-PRINCIPAL/footer.js"></script>
+    <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/footer.js') }}"></script>
 </body>
 </html>

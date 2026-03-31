@@ -6,14 +6,14 @@
     <title>Détail question - AMU Connect</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/page-quest-rep.css">
-    <link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/header.css">
-    <link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/footer.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/page-quest-rep.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/footer.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <script src="/Front-end/JAVASCRIPT-PRINCIPAL/header.js" defer></script>
-    <script src="/Front-end/JAVASCRIPT-PRINCIPAL/footer.js" defer></script>
-    <script src="/Front-end/JAVASCRIPT-PRINCIPAL/event.js" defer></script>
+    <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/header.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/footer.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/event.js') }}" defer></script>
 </head>
 <body>
 
@@ -22,10 +22,20 @@
     <main class="question-page">
         <div class="container">
 
-            <a href="forum.html" class="back-link">← Retour au forum</a>
+            <a href="{{ url_for('questions.list_questions') }}" class="back-link">← Retour au forum</a>
 
             <h1 class="page-title">Détail de la question</h1>
             <p class="page-subtitle">Consulte la question et rédige une réponse utile</p>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-messages">
+                        {% for category, message in messages %}
+                            <p class="flash-message {{ category }}">{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
 
             <div class="question-layout">
 
@@ -38,7 +48,7 @@
                                 <div class="side-icon">
                                     <i class="fa-solid fa-comment"></i>
                                 </div>
-                                <div class="reply-number">15</div>
+                                <div class="reply-number">{{ answers_count }}</div>
                                 <div class="side-label">réponses</div>
 
                                 <div class="question-save">
@@ -48,24 +58,21 @@
 
                             <div class="question-main">
                                 <h2 class="question-title">
-                                    Comment optimiser un algorithme de tri en O(n log n) ?
+                                    {{ question["title"] }}
                                 </h2>
 
                                 <p class="question-text">
-                                    Je travaille sur un projet où je dois trier des millions d'éléments.
-                                    J'aimerais savoir quels sont les algorithmes les plus efficaces dans ce cas,
-                                    et surtout comment choisir entre Quick Sort, Merge Sort ou d'autres solutions
-                                    plus adaptées à un très grand volume de données.
+                                    {{ question["description"] }}
                                 </p>
 
                                 <div class="meta-left">
-                                    <span>Par <span class="author">Thomas B.</span></span>
-                                    <span class="tag tag-gray">L3</span>
-                                    <span class="tag tag-blue">Informatique</span>
+                                    <span>Par <span class="author">{{ question["prenom"] }} {{ question["nom"] }}</span></span>
+                                    <span class="tag tag-gray">{{ question["target_year"] }}</span>
+                                    <span class="tag tag-blue">{{ question["subject"] }}</span>
                                 </div>
 
                                 <div class="question-extra-actions">
-                                    <button onclick="goToReply()" class="post-btn primary">
+                                    <button type="button" class="post-btn primary" onclick="document.getElementById('replySection').scrollIntoView({ behavior: 'smooth' });">
                                         <i class="fa-solid fa-pen"></i>
                                         Écrire une réponse
                                     </button>
@@ -75,20 +82,54 @@
                         </article>
                     </section>
 
-                    <section class="reply-card" id="replySection">
-                        <h3>Écrire une réponse</h3>
-                        <p>Partage une explication claire et utile pour aider l’auteur de la question.</p>
-
-                        <textarea placeholder="Écris ta réponse ici..."></textarea>
-
-                        <div class="reply-card-actions">
-                            <button class="reply-btn">Publier la réponse</button>
+                    <section class="answers-box">
+                        <div class="section-title">
+                            <h2>Réponses</h2>
+                            <span>{{ answers_count }} réponse(s)</span>
                         </div>
+
+                        {% if answers %}
+                            {% for answer in answers %}
+                                <div class="answer">
+                                    <div class="avatar">{{ answer["prenom"][0] }}</div>
+
+                                    <div class="answer-content">
+                                        <div class="answer-head">
+                                            <div class="answer-name">{{ answer["prenom"] }} {{ answer["nom"] }}</div>
+                                        </div>
+
+                                        <p class="answer-text">
+                                            {{ answer["content"] }}
+                                        </p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="answer">
+                                <div class="answer-content">
+                                    <p class="answer-text">Aucune réponse pour le moment.</p>
+                                </div>
+                            </div>
+                        {% endif %}
                     </section>
 
                 </div>
 
                 <aside class="side-column">
+
+                    <div class="reply-card" id="replySection">
+                        <h3>Écrire une réponse</h3>
+                        <p>Partage une explication claire et utile pour aider l’auteur de la question.</p>
+
+                        <form method="POST" action="{{ url_for('questions.add_answer', question_id=question['id']) }}">
+                            <textarea name="content" placeholder="Écris ta réponse ici..." required></textarea>
+
+                            <div class="reply-card-actions">
+                                <button class="reply-btn" type="submit">Publier la réponse</button>
+                            </div>
+                        </form>
+                    </div>
+
                     <div class="info-card">
                         <h4>Conseils</h4>
 
@@ -99,13 +140,12 @@
                             <div>• Va droit au but</div>
                         </div>
                     </div>
-                </aside>
 
+                </aside>
             </div>
         </div>
     </main>
 
     <div id="footer"></div>
-
 </body>
 </html>
