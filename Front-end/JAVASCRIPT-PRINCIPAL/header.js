@@ -3,19 +3,21 @@ fetch("/Front-end/HTML-PRINCIPAL/header.html")
     .then(data => {
         document.getElementById("header").innerHTML = data;
 
-        const currentPage = window.location.pathname.split("/").pop();
-
+        const currentPath = window.location.pathname;
         const links = document.querySelectorAll(".nav-link");
 
         links.forEach(link => {
             const href = link.getAttribute("href");
 
-            if (!href) return;
+            if (!href || href === "#") return;
 
-            // nettoyage pour éviter les erreurs
             const cleanHref = href.trim();
 
-            if (cleanHref === currentPage) {
+            if (
+                currentPath === cleanHref ||
+                (cleanHref === "/questions/" && currentPath.startsWith("/questions")) ||
+                (cleanHref === "/resources/" && currentPath.startsWith("/resources"))
+            ) {
                 link.classList.add("active");
             } else {
                 link.classList.remove("active");

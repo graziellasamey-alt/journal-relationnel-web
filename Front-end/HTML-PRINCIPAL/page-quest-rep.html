@@ -24,8 +24,7 @@
 
             <a href="{{ url_for('questions.list_questions') }}" class="back-link">← Retour au forum</a>
 
-            <h1 class="page-title">Détail de la question</h1>
-            <p class="page-subtitle">Consulte la question et rédige une réponse utile</p>
+
 
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
@@ -72,10 +71,14 @@
                                 </div>
 
                                 <div class="question-extra-actions">
-                                    <button type="button" class="post-btn primary" onclick="document.getElementById('replySection').scrollIntoView({ behavior: 'smooth' });">
+                                   <!--<button type="button" class="post-btn primary" onclick="document.getElementById('replySection').scrollIntoView({ behavior: 'smooth' });">
                                         <i class="fa-solid fa-pen"></i>
                                         Écrire une réponse
-                                    </button>
+                                    </button>-->
+                                    <a href="#replySection" class="post-btn primary">
+                                         <i class="fa-solid fa-pen"></i>
+                                        Écrire une réponse
+                                    </a>
                                 </div>
                             </div>
 

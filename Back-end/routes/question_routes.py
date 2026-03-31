@@ -1,4 +1,5 @@
 from flask import Blueprint, request, render_template, redirect, url_for, session, flash
+from models.user_model import get_user_by_id
 from models.question_model import (
     create_question,
     get_question_by_id,
@@ -17,18 +18,21 @@ def get_current_user_id():
 
 @question_bp.route("/", methods=["GET"])
 def list_questions():
-    user_field_of_study = request.args.get("field_of_study")
-    user_study_year = request.args.get("study_year")
     search = request.args.get("search")
+    user_field_of_study = None
+
+    user_id = get_current_user_id()
+    if user_id:
+        user = get_user_by_id(user_id)
+        if user:
+            user_field_of_study = user["field_of_study"]
 
     questions = get_recent_questions(
         user_field_of_study=user_field_of_study,
-        user_study_year=user_study_year,
         search=search
     )
 
     return render_template("forum.html", questions=questions)
-
 
 @question_bp.route("/new", methods=["GET"])
 def question_form():
@@ -56,6 +60,9 @@ def add_question():
     if not all([title, subject, target_year, target_scope, description]):
         flash("Tous les champs sont obligatoires.", "error")
         return redirect(url_for("questions.question_form"))
+    
+    print("target_scope =", target_scope)
+    print("target_year =", target_year)
 
     question_id = create_question(
         user_id=user_id,
@@ -95,7 +102,7 @@ def add_answer(question_id):
         flash("Vous devez être connecté pour répondre.", "error")
         return redirect(url_for("auth.login"))
 
-    content = request.form.get("content")
+    content = request.form.get("content", "").strip()
 
     if not content:
         flash("La réponse ne peut pas être vide.", "error")

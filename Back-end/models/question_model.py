@@ -54,24 +54,32 @@ def get_question_by_id(question_id):
     return question
 
 
-def get_recent_questions(user_field_of_study=None, user_study_year=None, search=None):
+def get_recent_questions(user_field_of_study=None, search=None):
     conn = get_db()
     cursor = conn.cursor()
 
     query = """
-        SELECT q.*, u.nom, u.prenom, u.field_of_study, u.study_year
+        SELECT 
+            q.*, 
+            u.nom, 
+            u.prenom, 
+            u.field_of_study, 
+            u.study_year,
+            COUNT(a.id) AS answers_count
         FROM questions q
         JOIN users u ON q.user_id = u.id
+        LEFT JOIN answers a ON q.id = a.question_id
         WHERE 1=1
     """
     params = []
 
-    if user_study_year and user_study_year.lower() != "all":
-        query += " AND (q.target_year = ? OR q.target_year = 'all')"
-        params.append(user_study_year)
-
     if user_field_of_study:
-        query += " AND (q.target_scope = 'all' OR (q.target_scope = 'field' AND u.field_of_study = ?))"
+        query += """
+            AND (
+                q.target_scope = 'all'
+                OR (q.target_scope = 'field' AND u.field_of_study = ?)
+            )
+        """
         params.append(user_field_of_study)
 
     if search:
@@ -79,13 +87,17 @@ def get_recent_questions(user_field_of_study=None, user_study_year=None, search=
         search_term = f"%{search}%"
         params.extend([search_term, search_term, search_term])
 
-    query += " ORDER BY q.created_at DESC"
+    query += """
+        GROUP BY q.id
+        ORDER BY q.created_at DESC
+    """
+    print("QUERY =", query)
+    print("PARAMS =", params)
 
     cursor.execute(query, tuple(params))
     questions = cursor.fetchall()
     conn.close()
     return questions
-
 
 def get_user_questions(user_id):
     conn = get_db()
