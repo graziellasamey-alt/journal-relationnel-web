@@ -12,6 +12,7 @@ def create_resources_table():
             title TEXT NOT NULL,
             subject TEXT NOT NULL,
             resource_type TEXT NOT NULL,
+            description TEXT NOT NULL,
             file_path TEXT NOT NULL,
             target_year TEXT NOT NULL,
             target_scope TEXT NOT NULL CHECK(target_scope IN ('field', 'all')),
@@ -19,21 +20,20 @@ def create_resources_table():
             FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
         )
     """)
-
     conn.commit()
     conn.close()
 
 
-def create_resource(user_id, title, subject, resource_type, file_path, target_year, target_scope):
+def create_resource(user_id, title, subject, resource_type, description, file_path, target_year, target_scope):
     conn = get_db()
     cursor = conn.cursor()
 
     cursor.execute("""
         INSERT INTO resources (
-            user_id, title, subject, resource_type, file_path, target_year, target_scope
+            user_id, title, subject, resource_type, description, file_path, target_year, target_scope
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?)
-    """, (user_id, title, subject, resource_type, file_path, target_year, target_scope))
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    """, (user_id, title, subject, resource_type, description, file_path, target_year, target_scope))
 
     conn.commit()
     resource_id = cursor.lastrowid
@@ -57,7 +57,7 @@ def get_resource_by_id(resource_id):
     return resource
 
 
-def get_recent_resources(user_field_of_study=None, user_study_year=None, search=None, resource_type=None):
+def get_recent_resources(user_field_of_study=None, search=None, resource_type=None):
     conn = get_db()
     cursor = conn.cursor()
 
@@ -69,12 +69,13 @@ def get_recent_resources(user_field_of_study=None, user_study_year=None, search=
     """
     params = []
 
-    if user_study_year and user_study_year.lower() != "all":
-        query += " AND (r.target_year = ? OR r.target_year = 'all')"
-        params.append(user_study_year)
-
     if user_field_of_study:
-        query += " AND (r.target_scope = 'all' OR (r.target_scope = 'field' AND u.field_of_study = ?))"
+        query += """
+            AND (
+                r.target_scope = 'all'
+                OR (r.target_scope = 'field' AND u.field_of_study = ?)
+            )
+        """
         params.append(user_field_of_study)
 
     if resource_type:

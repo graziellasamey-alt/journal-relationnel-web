@@ -6,14 +6,15 @@
     <title>Ressources - AMU Connect</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/resources.css">
-    <link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/header.css">
-    <link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <script src="/Front-end/JAVASCRIPT-PRINCIPAL/header.js" defer></script>
-    <script src="/Front-end/JAVASCRIPT-PRINCIPAL/event.js" defer></script>
-    <script src="/Front-end/JAVASCRIPT-PRINCIPAL/footer.js" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/resources.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/footer.css') }}">
+
+    <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/header.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/event.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/footer.js') }}" defer></script>
 </head>
 <body>
 
@@ -21,6 +22,16 @@
 
     <main class="resources-page">
         <div class="container">
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-messages">
+                        {% for category, message in messages %}
+                            <p class="flash-message {{ category }}">{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
 
             <section class="tools-row">
                 <div class="search-box">
@@ -69,118 +80,71 @@
             </div>
 
             <div id="formBox" class="form-box hidden">
-                <select>
-                    <option>Type</option>
-                    <option>TD</option>
-                    <option>TP</option>
-                    <option>Examen</option>
-                    <option>Fiche</option>
-                </select>
+                <form method="POST" action="{{ url_for('resources.add_resource') }}" enctype="multipart/form-data">
+                    <select name="resource_type" required>
+                        <option value="">Type</option>
+                        <option value="TD">TD</option>
+                        <option value="TP">TP</option>
+                        <option value="Examen">Examen</option>
+                        <option value="Fiche">Fiche</option>
+                    </select>
 
-                <input type="text" placeholder="Titre">
-                <input type="text" placeholder="Matière">
-                <input type="file">
+                    <input type="text" name="title" placeholder="Titre" required>
+                    <input type="text" name="subject" placeholder="Matière" required>
 
-                <button class="btn btn-primary" type="button">Ajouter</button>
+                    <input type="hidden" name="target_scope" value="field">
+                    <input type="hidden" name="target_year" value="all">
+                    <textarea name="description" placeholder="Description de la ressource" required></textarea>
+
+                    <input type="file" name="file" required>
+
+                    <button class="btn btn-primary" type="submit">Ajouter</button>
+                </form>
             </div>
 
-            <div id="resourcesList"></div>
-
             <section class="cards">
+                {% if resources %}
+                    {% for resource in resources %}
+                        <article class="card">
+                            <div class="card-top">
+                                <div class="card-icon icon-blue">
+                                    <i class="fa-solid fa-file-lines"></i>
+                                </div>
 
-                <article class="card">
-                    <div class="card-top">
-                        <div class="card-icon icon-blue">
-                            <i class="fa-solid fa-file-lines"></i>
-                        </div>
+                                <div class="top-right">
+                                    <span class="mini-tag blue">{{ resource["resource_type"] }}</span>
+                                </div>
+                            </div>
 
-                        <div class="top-right">
-                            <span class="mini-tag blue">TD</span>
-                        </div>
-                    </div>
+                            <h2 class="card-title">{{ resource["title"] }}</h2>
 
-                    <h2 class="card-title">TD Algèbre Linéaire</h2>
+                            <p class="card-text">
+                                {{ resource["description"] }}
+                            </p>
 
-                    <p class="card-text">
-                        Tous les exercices avec corrections détaillées.
-                    </p>
+                            <p class="card-text">
+                                Ressource partagée par {{ resource["prenom"] }} {{ resource["nom"] }}
+                            </p>
 
-                    <div class="meta-line">
-                        <span class="tag tag-gray">L2</span>
-                        <span class="tag tag-blue">Mathématiques</span>
-                    </div>
+                            <div class="meta-line">
+                                <span class="tag tag-gray">{{ resource["target_year"] }}</span>
+                                <span class="tag tag-blue">{{ resource["subject"] }}</span>
+                            </div>
 
-                    <div class="card-bottom">
-                        <button class="download-btn" type="button">
-                            <i class="fa-solid fa-download"></i>
-                            Télécharger
-                        </button>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <div class="card-top">
-                        <div class="card-icon icon-green">
-                            <i class="fa-solid fa-code"></i>
-                        </div>
-
-                        <div class="top-right">
-                            <span class="mini-tag green">TP</span>
-                            
-                        </div>
-                    </div>
-
-                    <h2 class="card-title">TP Java POO</h2>
-
-                    <p class="card-text">
-                        TP avancé avec code source.
-                    </p>
-
-                    <div class="meta-line">
-                        <span class="tag tag-gray">L3</span>
-                        <span class="tag tag-blue">Informatique</span>
-                    </div>
-
-                    <div class="card-bottom">
-                        
-                        <button class="download-btn" type="button">
-                            <i class="fa-solid fa-download"></i>
-                            Télécharger
-                        </button>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <div class="card-top">
-                        <div class="card-icon icon-orange">
-                            <i class="fa-solid fa-file"></i>
-                        </div>
-
-                        <div class="top-right">
-                            <span class="mini-tag orange">Examen</span>
-                            
-                        </div>
-                    </div>
-
-                    <h2 class="card-title">Annales Mécanique Quantique</h2>
-
-                    <p class="card-text">
-                        Sujets + corrigés.
-                    </p>
-
-                    <div class="meta-line">
-                        <span class="tag tag-gray">M1</span>
-                        <span class="tag tag-blue">Physique</span>
-                    </div>
-
-                    <div class="card-bottom">
-                        <button class="download-btn" type="button">
-                            <i class="fa-solid fa-download"></i>
-                            Télécharger
-                        </button>
-                    </div>
-                </article>
-
+                            <div class="card-bottom">
+                                <a class="download-btn" href="{{ url_for('resources.uploaded_file', filename=resource['file_path']) }}" download>
+                                    <i class="fa-solid fa-download"></i>
+                                    Télécharger
+                                </a>
+                            </div>
+                        </article>
+                    {% endfor %}
+                {% else %}
+                    <article class="card">
+                        <h2 class="card-title">Aucune ressource pour le moment</h2>
+                        <p class="card-text">Soyez la première personne à partager une ressource.</p>
+                    </article>
+                {% endif %}
             </section>
         </div>
     </main>
