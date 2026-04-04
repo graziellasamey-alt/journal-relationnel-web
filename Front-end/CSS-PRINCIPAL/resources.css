@@ -464,7 +464,9 @@ select{
     cursor:pointer;
     box-shadow:0 10px 18px rgba(22,185,122,0.18);
 }
-
+.ressource-save{
+     margin-left: 0;
+}
 /* responsive */
 @media (max-width:1100px){
     .tools-row{

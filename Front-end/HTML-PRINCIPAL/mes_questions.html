@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mes questions favorites - AMU Connect</title>
+    <title>Mes questions - AMU Connect</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/mes_questions.css">
@@ -13,24 +13,31 @@
 
     <script src="/Front-end/JAVASCRIPT-PRINCIPAL/header.js" defer></script>
     <script src="/Front-end/JAVASCRIPT-PRINCIPAL/footer.js" defer></script>
-    <script src="/Front-end/JAVASCRIPT-PRINCIPAL/favoris.js"></script>
+    <script src="/Front-end/JAVASCRIPT-PRINCIPAL/favoris.js" defer></script>
 </head>
+
 <body>
 
-    <div id="header"></div>
+<div id="header"></div>
 
-    <main class="page">
-        <div class="container">
+<main class="page">
+    <div class="container">
 
-            <a href="forum.html" class="back-home">← Retour</a>
+        <a href="forum.html" class="back-home">← Retour</a>
 
-            <h1 class="title">Mes questions favorites</h1>
-            <p class="subtitle">Retrouvez ici vos questions enregistrées en favori</p>
+        <h1 class="title">Mes questions</h1>
+        <p class="subtitle">
+            Retrouvez ici vos favoris et vos questions posées
+        </p>
 
-            <section class="questions">
+        <!--  LAYOUT 2 COLONNES -->
+        <div class="questions-layout">
+
+            <!-- FAVORIS -->
+            <section class="questions-left">
+                <h2 class="section-title"> Mes questions favorites</h2>
 
                 <article class="question-card">
-
                     <div class="question-side">
                         <div class="side-icon">
                             <i class="fa-solid fa-comment"></i>
@@ -45,12 +52,11 @@
 
                     <div class="question-main">
                         <h2 class="question-title">
-                            <a href="page-quest-rep.html">Comment optimiser un algorithme de tri ?</a>
+                            <a href="#">Comment optimiser un algorithme de tri ?</a>
                         </h2>
 
                         <p class="question-text">
-                            Je travaille sur un projet avec beaucoup de données et je voudrais savoir
-                            quelle méthode de tri utiliser pour améliorer les performances.
+                            Je travaille sur un projet avec beaucoup de données...
                         </p>
 
                         <div class="meta-left">
@@ -60,15 +66,49 @@
                             <span class="time">Il y a 2h</span>
                         </div>
                     </div>
+                </article>
 
+            </section>
+
+            <!-- 📝 QUESTIONS POSÉES -->
+            <section class="questions-right">
+                <h2 class="section-title"> Mes questions posées</h2>
+
+                <article class="question-card">
+                    <div class="question-side">
+                        <div class="side-icon">
+                            <i class="fa-solid fa-comment"></i>
+                        </div>
+                        <div class="reply-number">2</div>
+                        <div class="side-label">réponses</div>
+                    </div>
+
+                    <div class="question-main">
+                        <h2 class="question-title">
+                            <a href="#">Comment connecter Flask à une base de données ?</a>
+                        </h2>
+
+                        <p class="question-text">
+                            Je débute avec Flask et je voudrais comprendre comment utiliser SQLite...
+                        </p>
+
+                        <div class="meta-left">
+                            <span>Par <span class="author">Moi</span></span>
+                            <span class="tag tag-gray">L2</span>
+                            <span class="tag tag-blue">Informatique</span>
+                            <span class="time">Il y a 1h</span>
+                        </div>
+                    </div>
                 </article>
 
             </section>
 
         </div>
-    </main>
 
-    <div id="footer"></div>
+    </div>
+</main>
+
+<div id="footer"></div>
 
 </body>
 </html>
