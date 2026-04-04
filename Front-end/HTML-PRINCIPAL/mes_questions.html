@@ -11,15 +11,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/footer.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<<<<<<< HEAD
-    <script src="/Front-end/JAVASCRIPT-PRINCIPAL/header.js" defer></script>
-    <script src="/Front-end/JAVASCRIPT-PRINCIPAL/footer.js" defer></script>
-    <script src="/Front-end/JAVASCRIPT-PRINCIPAL/favoris.js" defer></script>
-=======
     <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/header.js') }}" defer></script>
     <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/footer.js') }}" defer></script>
     <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/favoris.js') }}" defer></script>
->>>>>>> 71df4bf (Ajout du systeme de favoris questions)
 </head>
 
 <body>
@@ -29,100 +23,27 @@
 <main class="page">
     <div class="container">
 
-<<<<<<< HEAD
-        <a href="forum.html" class="back-home">← Retour</a>
-=======
-            <a href="{{ url_for('questions.list_questions') }}" class="back-home">← Retour</a>
->>>>>>> 71df4bf (Ajout du systeme de favoris questions)
+        <a href="{{ url_for('questions.list_questions') }}" class="back-home">← Retour</a>
 
         <h1 class="title">Mes questions</h1>
         <p class="subtitle">
             Retrouvez ici vos favoris et vos questions posées
         </p>
 
-<<<<<<< HEAD
-        <!--  LAYOUT 2 COLONNES -->
         <div class="questions-layout">
 
             <!-- FAVORIS -->
             <section class="questions-left">
-                <h2 class="section-title"> Mes questions favorites</h2>
+                <h2 class="section-title">Mes questions favorites</h2>
 
-                <article class="question-card">
-                    <div class="question-side">
-                        <div class="side-icon">
-                            <i class="fa-solid fa-comment"></i>
-                        </div>
-                        <div class="reply-number">5</div>
-                        <div class="side-label">réponses</div>
-
-                        <div class="question-save">
-                            <button class="add-fav active">En favori</button>
-                        </div>
-                    </div>
-
-                    <div class="question-main">
-                        <h2 class="question-title">
-                            <a href="#">Comment optimiser un algorithme de tri ?</a>
-                        </h2>
-
-                        <p class="question-text">
-                            Je travaille sur un projet avec beaucoup de données...
-                        </p>
-
-                        <div class="meta-left">
-                            <span>Par <span class="author">Thomas B.</span></span>
-                            <span class="tag tag-gray">L3</span>
-                            <span class="tag tag-blue">Informatique</span>
-                            <span class="time">Il y a 2h</span>
-                        </div>
-                    </div>
-                </article>
-
-            </section>
-
-            <!-- 📝 QUESTIONS POSÉES -->
-            <section class="questions-right">
-                <h2 class="section-title"> Mes questions posées</h2>
-
-                <article class="question-card">
-                    <div class="question-side">
-                        <div class="side-icon">
-                            <i class="fa-solid fa-comment"></i>
-                        </div>
-                        <div class="reply-number">2</div>
-                        <div class="side-label">réponses</div>
-                    </div>
-
-                    <div class="question-main">
-                        <h2 class="question-title">
-                            <a href="#">Comment connecter Flask à une base de données ?</a>
-                        </h2>
-
-                        <p class="question-text">
-                            Je débute avec Flask et je voudrais comprendre comment utiliser SQLite...
-                        </p>
-
-                        <div class="meta-left">
-                            <span>Par <span class="author">Moi</span></span>
-                            <span class="tag tag-gray">L2</span>
-                            <span class="tag tag-blue">Informatique</span>
-                            <span class="time">Il y a 1h</span>
-                        </div>
-                    </div>
-                </article>
-
-=======
-            <section class="questions">
-                {% if questions %}
-                    {% for question in questions %}
+                {% if favorite_questions %}
+                    {% for question in favorite_questions %}
                         <article class="question-card">
-
                             <div class="question-side">
                                 <div class="side-icon">
                                     <i class="fa-solid fa-comment"></i>
                                 </div>
-                                <div class="reply-number">0</div>
+                                <div class="reply-number">{{ question["answers_count"] }}</div>
                                 <div class="side-label">réponses</div>
 
                                 <div class="question-save">
@@ -152,7 +73,6 @@
                                     <span class="tag tag-blue">{{ question["subject"] }}</span>
                                 </div>
                             </div>
-
                         </article>
                     {% endfor %}
                 {% else %}
@@ -163,7 +83,50 @@
                         </div>
                     </article>
                 {% endif %}
->>>>>>> 71df4bf (Ajout du systeme de favoris questions)
+            </section>
+
+            <!-- QUESTIONS POSÉES -->
+            <section class="questions-right">
+                <h2 class="section-title">Mes questions posées</h2>
+
+                {% if posted_questions %}
+                    {% for question in posted_questions %}
+                        <article class="question-card">
+                            <div class="question-side">
+                                <div class="side-icon">
+                                    <i class="fa-solid fa-comment"></i>
+                                </div>
+                                <div class="reply-number">{{ question["answers_count"] }}</div>
+                                <div class="side-label">réponses</div>
+                            </div>
+
+                            <div class="question-main">
+                                <h2 class="question-title">
+                                    <a href="{{ url_for('questions.question_detail', question_id=question['id']) }}">
+                                        {{ question["title"] }}
+                                    </a>
+                                </h2>
+
+                                <p class="question-text">
+                                    {{ question["description"] }}
+                                </p>
+
+                                <div class="meta-left">
+                                    <span>Par <span class="author">Moi</span></span>
+                                    <span class="tag tag-gray">{{ question["target_year"] }}</span>
+                                    <span class="tag tag-blue">{{ question["subject"] }}</span>
+                                </div>
+                            </div>
+                        </article>
+                    {% endfor %}
+                {% else %}
+                    <article class="question-card">
+                        <div class="question-main">
+                            <h2 class="question-title">Aucune question posée</h2>
+                            <p class="question-text">Vous n’avez encore posé aucune question.</p>
+                        </div>
+                    </article>
+                {% endif %}
             </section>
 
         </div>
