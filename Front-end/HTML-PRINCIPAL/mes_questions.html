@@ -6,14 +6,20 @@
     <title>Mes questions - AMU Connect</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/mes_questions.css">
-    <link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/header.css">
-    <link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/footer.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/mes_questions.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/footer.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+<<<<<<< HEAD
     <script src="/Front-end/JAVASCRIPT-PRINCIPAL/header.js" defer></script>
     <script src="/Front-end/JAVASCRIPT-PRINCIPAL/footer.js" defer></script>
     <script src="/Front-end/JAVASCRIPT-PRINCIPAL/favoris.js" defer></script>
+=======
+    <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/header.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/footer.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/favoris.js') }}" defer></script>
+>>>>>>> 71df4bf (Ajout du systeme de favoris questions)
 </head>
 
 <body>
@@ -23,13 +29,18 @@
 <main class="page">
     <div class="container">
 
+<<<<<<< HEAD
         <a href="forum.html" class="back-home">← Retour</a>
+=======
+            <a href="{{ url_for('questions.list_questions') }}" class="back-home">← Retour</a>
+>>>>>>> 71df4bf (Ajout du systeme de favoris questions)
 
         <h1 class="title">Mes questions</h1>
         <p class="subtitle">
             Retrouvez ici vos favoris et vos questions posées
         </p>
 
+<<<<<<< HEAD
         <!--  LAYOUT 2 COLONNES -->
         <div class="questions-layout">
 
@@ -101,6 +112,58 @@
                     </div>
                 </article>
 
+=======
+            <section class="questions">
+                {% if questions %}
+                    {% for question in questions %}
+                        <article class="question-card">
+
+                            <div class="question-side">
+                                <div class="side-icon">
+                                    <i class="fa-solid fa-comment"></i>
+                                </div>
+                                <div class="reply-number">0</div>
+                                <div class="side-label">réponses</div>
+
+                                <div class="question-save">
+                                    <button
+                                        class="add-fav active"
+                                        type="button"
+                                        data-question-id="{{ question['id'] }}"
+                                    >
+                                        En favoris
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="question-main">
+                                <h2 class="question-title">
+                                    <a href="{{ url_for('questions.question_detail', question_id=question['id']) }}">
+                                        {{ question["title"] }}
+                                    </a>
+                                </h2>
+
+                                <p class="question-text">
+                                    {{ question["description"] }}
+                                </p>
+
+                                <div class="meta-left">
+                                    <span class="tag tag-gray">{{ question["target_year"] }}</span>
+                                    <span class="tag tag-blue">{{ question["subject"] }}</span>
+                                </div>
+                            </div>
+
+                        </article>
+                    {% endfor %}
+                {% else %}
+                    <article class="question-card">
+                        <div class="question-main">
+                            <h2 class="question-title">Aucune question favorite</h2>
+                            <p class="question-text">Vous n’avez encore ajouté aucune question en favori.</p>
+                        </div>
+                    </article>
+                {% endif %}
+>>>>>>> 71df4bf (Ajout du systeme de favoris questions)
             </section>
 
         </div>

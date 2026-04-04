@@ -14,6 +14,7 @@
     <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/header.js') }}" defer></script>
     <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/footer.js') }}" defer></script>
     <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/event.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/favoris.js') }}" defer></script>
 </head>
 <body>
 
@@ -51,7 +52,17 @@
                                 <div class="side-label">réponses</div>
 
                                 <div class="question-save">
-                                    <button class="add-fav active" type="button">En favori</button>
+                                    <button
+                                        class="add-fav {% if is_favorite %}active{% endif %}"
+                                        type="button"
+                                        data-question-id="{{ question['id'] }}"
+                                    >
+                                        {% if is_favorite %}
+                                            En favoris
+                                        {% else %}
+                                            Mettre en favoris
+                                        {% endif %}
+                                    </button>
                                 </div>
                             </div>
 
