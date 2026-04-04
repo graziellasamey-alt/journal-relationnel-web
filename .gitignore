@@ -1,8 +1,4 @@
-.venv/
-__pycache__/
-*.pyc
-instance/database.db
-.envBack-end/instance/database.db
+Back-end/instance/database.db
 __pycache__/
 *.pyc
 .venv/

@@ -98,7 +98,17 @@
                         </div>
 
                         <div class="question-save">
-                            <button class="add-fav" type="button">Mettre en favoris</button>
+                            <button
+                                class="add-fav {% if question['id'] in favorite_question_ids %}active{% endif %}"
+                                type="button"
+                                data-question-id="{{ question['id'] }}"
+                            >
+                                {% if question['id'] in favorite_question_ids %}
+                                    En favoris
+                                {% else %}
+                                    Mettre en favoris
+                                {% endif %}
+                            </button>
                         </div>
 
                     </article>
