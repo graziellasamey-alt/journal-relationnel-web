@@ -5,12 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
         btn.addEventListener("click", async () => {
             const questionId = btn.dataset.questionId;
 
-<<<<<<< HEAD
-            if (btn.classList.contains("active")) {
-                btn.textContent = "En favori";
-            } else {
-                btn.textContent = "Mettre en favoris";
-=======
             if (!questionId) return;
 
             try {
@@ -39,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
             } catch (error) {
                 console.error("Erreur :", error);
                 alert("Une erreur est survenue.");
->>>>>>> 71df4bf (Ajout du systeme de favoris questions)
             }
         });
     });
