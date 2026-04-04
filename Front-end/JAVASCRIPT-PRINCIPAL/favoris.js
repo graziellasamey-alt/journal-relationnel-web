@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.classList.toggle("active");
 
             if (btn.classList.contains("active")) {
-                btn.textContent = "En favoris";
+                btn.textContent = "En favori";
             } else {
                 btn.textContent = "Mettre en favoris";
             }
