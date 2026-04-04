@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ressources favorites  - AMU Connect</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/resources-fav.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/footer.css') }}">
+
+    <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/header.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/event.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/footer.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/favoris.js') }}" defer></script>
+</head>
+<body>
+
+    <div id="header"></div>
+
+    <main class="resources-page">
+    <div class="container">
+
+        <h1 class="favorites-title">⭐ Mes ressources favorites</h1>
+
+        <section class="cards">
+
+            <!-- CARD 1 -->
+            <article class="card">
+                <div class="card-top">
+                    <div class="card-icon icon-blue">
+                        <i class="fa-solid fa-file-lines"></i>
+                    </div>
+
+                    <span class="mini-tag blue">TD</span>
+                </div>
+
+                <h2 class="card-title">TD Algorithmes</h2>
+
+                <p class="card-text">
+                    Série complète d'exercices avec corrections.
+                </p>
+
+                <p class="card-text">
+                    Partagé par Sarah Dupont
+                </p>
+
+                <div class="meta-line">
+                    <span class="tag tag-gray">L2</span>
+                    <span class="tag tag-blue">Informatique</span>
+                </div>
+
+                <div class="card-bottom">
+                    <a href="#" class="download-btn">
+                        <i class="fa-solid fa-download"></i>
+                        Télécharger
+                    </a>
+                </div>
+            </article>
+
+            <!-- CARD 2 -->
+            <article class="card">
+                <div class="card-top">
+                    <div class="card-icon icon-green">
+                        <i class="fa-solid fa-file-lines"></i>
+                    </div>
+
+                    <span class="mini-tag green">TP</span>
+                </div>
+
+                <h2 class="card-title">TP Base de données</h2>
+
+                <p class="card-text">
+                    Exercices SQL + corrigés détaillés.
+                </p>
+
+                <p class="card-text">
+                    Partagé par Lucas Martin
+                </p>
+
+                <div class="meta-line">
+                    <span class="tag tag-gray">L3</span>
+                    <span class="tag tag-blue">BD</span>
+                </div>
+
+                <div class="card-bottom">
+                    <a href="#" class="download-btn">
+                        <i class="fa-solid fa-download"></i>
+                        Télécharger
+                    </a>
+                </div>
+            </article>
+
+            <!-- CARD 3 -->
+            <article class="card">
+                <div class="card-top">
+                    <div class="card-icon icon-orange">
+                        <i class="fa-solid fa-file-lines"></i>
+                    </div>
+
+                    <span class="mini-tag orange">Examen</span>
+                </div>
+
+                <h2 class="card-title">Annales Maths</h2>
+
+                <p class="card-text">
+                    Sujets d'examen avec corrigés.
+                </p>
+
+                <p class="card-text">
+                    Partagé par Emma Leroy
+                </p>
+
+                <div class="meta-line">
+                    <span class="tag tag-gray">L1</span>
+                    <span class="tag tag-blue">Maths</span>
+                </div>
+
+                <div class="card-bottom">
+                    <a href="#" class="download-btn">
+                        <i class="fa-solid fa-download"></i>
+                        Télécharger
+                    </a>
+                </div>
+            </article>
+
+        </section>
+
+    </div>
+</main>
+
+
+    <div id="footer"></div>
+
+</body>
+</html>

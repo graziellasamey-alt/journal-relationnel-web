@@ -1,0 +1,210 @@
+/* =========================================
+   RESET
+========================================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* =========================================
+   BASE
+========================================= */
+body{
+    font-family:"Inter",sans-serif;
+    background:#f4f8fc;
+    color:#16233b;
+}
+
+.container{
+    width:min(1200px, calc(100% - 40px));
+    margin:auto;
+}
+
+/* =========================================
+   PAGE FAVORIS
+========================================= */
+.resources-page{
+    padding:30px 0 60px;
+}
+
+/* titre */
+.favorites-title{
+    font-size:32px;
+    font-weight:800;
+    margin-bottom:30px;
+}
+
+/* =========================================
+   CARDS GRID
+========================================= */
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:28px;
+}
+
+/* =========================================
+   CARD
+========================================= */
+.card{
+    background:#ffffff;
+    border:1px solid #dbe5f0;
+    border-radius:24px;
+    padding:30px;
+    box-shadow:0 12px 28px rgba(20,52,95,0.05);
+    display:flex;
+    flex-direction:column;
+    transition:0.25s ease;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 40px rgba(20,52,95,0.12);
+}
+
+/* top */
+.card-top{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+/* icon */
+.card-icon{
+    width:72px;
+    height:72px;
+    border-radius:22px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:30px;
+}
+
+/* couleurs */
+.icon-blue{
+    background:linear-gradient(135deg,#2e7de0,#4e95ec);
+}
+
+.icon-green{
+    background:linear-gradient(135deg,#19bf87,#34d39c);
+}
+
+.icon-orange{
+    background:linear-gradient(135deg,#ff7c20,#ffb01f);
+}
+
+/* type tag */
+.mini-tag{
+    padding:6px 12px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:700;
+    color:white;
+}
+
+.mini-tag.blue{
+    background:#2f78d4;
+}
+
+.mini-tag.green{
+    background:#20c98d;
+}
+
+.mini-tag.orange{
+    background:#ff962a;
+}
+
+/* titre */
+.card-title{
+    font-size:22px;
+    font-weight:800;
+    margin-bottom:10px;
+}
+
+/* texte */
+.card-text{
+    font-size:16px;
+    color:#60738f;
+    margin-bottom:12px;
+    line-height:1.6;
+}
+
+/* meta */
+.meta-line{
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+/* tags */
+.tag{
+    padding:6px 12px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:600;
+}
+
+.tag-gray{
+    background:#f3f6fa;
+    color:#6d7f97;
+}
+
+.tag-blue{
+    background:#eaf3ff;
+    color:#1f6fd1;
+}
+
+/* bottom */
+.card-bottom{
+    margin-top:auto;
+    padding-top:15px;
+    border-top:1px solid #e8eef6;
+}
+
+/* bouton download */
+.download-btn{
+    padding:10px 16px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(90deg,#16b97a,#2fd39a);
+    color:white;
+    font-weight:700;
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+}
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+.card-empty{
+    text-align:center;
+    padding:40px;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+@media (max-width:1100px){
+    .cards{
+        grid-template-columns:repeat(2, 1fr);
+    }
+}
+
+@media (max-width:760px){
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .favorites-title{
+        font-size:26px;
+    }
+
+    .card{
+        padding:22px;
+    }
+}
