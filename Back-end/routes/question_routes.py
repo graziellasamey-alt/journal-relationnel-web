@@ -135,9 +135,14 @@ def my_questions():
         flash("Authentification requise.", "error")
         return redirect(url_for("auth.login"))
 
-    questions = get_user_questions(user_id)
-    return render_template("mes_questions.html", questions=questions)
+    posted_questions = get_user_questions(user_id)
+    favorite_questions = get_user_favorite_questions(user_id)
 
+    return render_template(
+        "mes_questions.html",
+        posted_questions=posted_questions,
+        favorite_questions=favorite_questions
+    )
 
 @question_bp.route("/<int:question_id>/delete", methods=["POST"])
 def remove_question(question_id):

@@ -132,10 +132,15 @@ def get_user_favorite_questions(user_id):
     cursor = conn.cursor()
 
     cursor.execute("""
-        SELECT q.*, fq.created_at AS favorited_at
+        SELECT 
+            q.*,
+            fq.created_at AS favorited_at,
+            COUNT(a.id) AS answers_count
         FROM favorite_questions fq
         JOIN questions q ON fq.question_id = q.id
+        LEFT JOIN answers a ON q.id = a.question_id
         WHERE fq.user_id = ?
+        GROUP BY q.id
         ORDER BY fq.created_at DESC
     """, (user_id,))
 

@@ -104,10 +104,14 @@ def get_user_questions(user_id):
     cursor = conn.cursor()
 
     cursor.execute("""
-        SELECT *
-        FROM questions
-        WHERE user_id = ?
-        ORDER BY created_at DESC
+        SELECT 
+            q.*,
+            COUNT(a.id) AS answers_count
+        FROM questions q
+        LEFT JOIN answers a ON q.id = a.question_id
+        WHERE q.user_id = ?
+        GROUP BY q.id
+        ORDER BY q.created_at DESC
     """, (user_id,))
 
     questions = cursor.fetchall()
