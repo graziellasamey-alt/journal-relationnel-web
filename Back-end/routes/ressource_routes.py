@@ -148,3 +148,21 @@ def remove_resource(resource_id):
 @resource_bp.route("/uploads/<filename>", methods=["GET"])
 def uploaded_file(filename):
     return send_from_directory(UPLOAD_DIR, filename)
+
+from flask import render_template
+from models.favorite_model import get_user_favorite_resources
+
+
+@resource_bp.route("/favorites", methods=["GET"])
+def favorite_resources():
+    user_id = session.get("user_id")
+
+    if not user_id:
+        return redirect(url_for("auth.login"))
+
+    resources = get_user_favorite_resources(user_id)
+
+    return render_template(
+        "ressources-fav.html",
+        resources=resources
+    )

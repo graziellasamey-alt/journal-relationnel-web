@@ -124,3 +124,4 @@ def delete_resource(resource_id, user_id):
     deleted = cursor.rowcount
     conn.close()
     return deleted > 0
+

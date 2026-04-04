@@ -28,106 +28,62 @@
 
         <section class="cards">
 
-            <!-- CARD 1 -->
+    {% if resources %}
+        {% for resource in resources %}
+
             <article class="card">
+
                 <div class="card-top">
                     <div class="card-icon icon-blue">
                         <i class="fa-solid fa-file-lines"></i>
                     </div>
 
-                    <span class="mini-tag blue">TD</span>
+                    <span class="mini-tag blue">
+                        {{ resource["resource_type"] }}
+                    </span>
                 </div>
 
-                <h2 class="card-title">TD Algorithmes</h2>
+                <h2 class="card-title">
+                    {{ resource["title"] }}
+                </h2>
 
                 <p class="card-text">
-                    Série complète d'exercices avec corrections.
+                    {{ resource["description"] if resource["description"] else "Pas de description" }}
                 </p>
 
                 <p class="card-text">
-                    Partagé par Sarah Dupont
+                    Partagé par {{ resource["prenom"] }} {{ resource["nom"] }}
                 </p>
 
                 <div class="meta-line">
-                    <span class="tag tag-gray">L2</span>
-                    <span class="tag tag-blue">Informatique</span>
+                    <span class="tag tag-gray">{{ resource["target_year"] }}</span>
+                    <span class="tag tag-blue">{{ resource["subject"] }}</span>
                 </div>
 
                 <div class="card-bottom">
-                    <a href="#" class="download-btn">
+                    <a 
+                        href="{{ url_for('resources.uploaded_file', filename=resource['file_path'].split('/')[-1]) }}" 
+                        class="download-btn"
+                    >
                         <i class="fa-solid fa-download"></i>
                         Télécharger
                     </a>
                 </div>
+
             </article>
 
-            <!-- CARD 2 -->
-            <article class="card">
-                <div class="card-top">
-                    <div class="card-icon icon-green">
-                        <i class="fa-solid fa-file-lines"></i>
-                    </div>
+        {% endfor %}
 
-                    <span class="mini-tag green">TP</span>
-                </div>
+    {% else %}
+        <article class="card">
+            <h2 class="card-title">Aucune ressource favorite</h2>
+            <p class="card-text">
+                Vous n’avez encore ajouté aucune ressource en favori.
+            </p>
+        </article>
+    {% endif %}
 
-                <h2 class="card-title">TP Base de données</h2>
-
-                <p class="card-text">
-                    Exercices SQL + corrigés détaillés.
-                </p>
-
-                <p class="card-text">
-                    Partagé par Lucas Martin
-                </p>
-
-                <div class="meta-line">
-                    <span class="tag tag-gray">L3</span>
-                    <span class="tag tag-blue">BD</span>
-                </div>
-
-                <div class="card-bottom">
-                    <a href="#" class="download-btn">
-                        <i class="fa-solid fa-download"></i>
-                        Télécharger
-                    </a>
-                </div>
-            </article>
-
-            <!-- CARD 3 -->
-            <article class="card">
-                <div class="card-top">
-                    <div class="card-icon icon-orange">
-                        <i class="fa-solid fa-file-lines"></i>
-                    </div>
-
-                    <span class="mini-tag orange">Examen</span>
-                </div>
-
-                <h2 class="card-title">Annales Maths</h2>
-
-                <p class="card-text">
-                    Sujets d'examen avec corrigés.
-                </p>
-
-                <p class="card-text">
-                    Partagé par Emma Leroy
-                </p>
-
-                <div class="meta-line">
-                    <span class="tag tag-gray">L1</span>
-                    <span class="tag tag-blue">Maths</span>
-                </div>
-
-                <div class="card-bottom">
-                    <a href="#" class="download-btn">
-                        <i class="fa-solid fa-download"></i>
-                        Télécharger
-                    </a>
-                </div>
-            </article>
-
-        </section>
+</section>
 
     </div>
 </main>
