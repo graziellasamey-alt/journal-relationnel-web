@@ -1,5 +1,7 @@
 from flask import Blueprint, request, render_template, redirect, url_for, session, flash
 from models.user_model import get_user_by_id
+from flask import jsonify
+from models.favorite_model import toggle_favorite_question, is_favorite_question, get_user_favorite_questions
 from models.question_model import (
     create_question,
     get_question_by_id,
@@ -15,11 +17,11 @@ question_bp = Blueprint("questions", __name__)
 def get_current_user_id():
     return session.get("user_id")
 
-
 @question_bp.route("/", methods=["GET"])
 def list_questions():
     search = request.args.get("search")
     user_field_of_study = None
+    favorite_question_ids = []
 
     user_id = get_current_user_id()
     if user_id:
@@ -27,12 +29,19 @@ def list_questions():
         if user:
             user_field_of_study = user["field_of_study"]
 
+        favorite_questions = get_user_favorite_questions(user_id)
+        favorite_question_ids = [q["id"] for q in favorite_questions]
+
     questions = get_recent_questions(
         user_field_of_study=user_field_of_study,
         search=search
     )
 
-    return render_template("forum.html", questions=questions)
+    return render_template(
+        "forum.html",
+        questions=questions,
+        favorite_question_ids=favorite_question_ids
+    )
 
 @question_bp.route("/new", methods=["GET"])
 def question_form():
@@ -87,11 +96,17 @@ def question_detail(question_id):
 
     answers = get_answers_by_question(question_id)
 
+    user_id = get_current_user_id()
+    is_favorite = False
+    if user_id:
+        is_favorite = is_favorite_question(user_id, question_id)
+
     return render_template(
         "page-quest-rep.html",
         question=question,
         answers=answers,
-        answers_count=len(answers)
+        answers_count=len(answers),
+        is_favorite=is_favorite
     )
 
 
@@ -139,3 +154,20 @@ def remove_question(question_id):
         flash("Question supprimée avec succès.", "success")
 
     return redirect(url_for("questions.my_questions"))
+
+@question_bp.route("/<int:question_id>/favorite", methods=["POST"])
+def favorite_question(question_id):
+    user_id = get_current_user_id()
+    if not user_id:
+        return jsonify({
+            "success": False,
+            "message": "Authentification requise."
+        }), 401
+
+    is_now_favorite = toggle_favorite_question(user_id, question_id)
+
+    return jsonify({
+        "success": True,
+        "is_favorite": is_now_favorite
+    }), 200
+
