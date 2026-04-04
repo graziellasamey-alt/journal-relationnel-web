@@ -1,6 +1,7 @@
 from flask import Blueprint, request, render_template, redirect, url_for, session, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from models.user_model import create_user, get_user_by_email
+from models.user_model import create_user, get_user_by_email, get_user_by_id
 
 auth_bp = Blueprint("auth", __name__)
 
@@ -85,3 +86,17 @@ def logout():
     session.pop("user_id", None)
     flash("Déconnexion réussie", "success")
     return redirect(url_for("acceuil"))
+
+@auth_bp.route("/profil", methods=["GET"])
+def profil():
+    user_id = session.get("user_id")
+    if not user_id:
+        flash("Authentification requise.", "error")
+        return redirect(url_for("auth.login"))
+
+    user = get_user_by_id(user_id)
+    if not user:
+        flash("Utilisateur introuvable.", "error")
+        return redirect(url_for("auth.login"))
+
+    return render_template("profil.html", user=user)

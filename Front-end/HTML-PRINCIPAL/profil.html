@@ -7,14 +7,14 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/profil.css">
-    <link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/header.css">
-    <link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/footer.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/profil.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/footer.css') }}">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <script src="/Front-end/JAVASCRIPT-PRINCIPAL/header.js" defer></script>
-    <script src="/Front-end/JAVASCRIPT-PRINCIPAL/footer.js" defer></script>
+    <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/header.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/footer.js') }}" defer></script>
 </head>
 
 <body>
@@ -35,25 +35,24 @@
                         <div class="profile-user">
 
                             <div class="avatar">
-                                JD
+                                {{ user["prenom"][0] }}{{ user["nom"][0] }}
                                 <div class="avatar-badge">
                                     <i class="fa-solid fa-trophy"></i>
                                 </div>
                             </div>
 
                             <div class="profile-text">
-                                <h1 class="profile-name">Jean Dupont</h1>
+                                <h1 class="profile-name">{{ user["prenom"] }} {{ user["nom"] }}</h1>
 
                                 <div class="profile-meta">
-                                    <span class="meta-tag blue">L3</span>
-                                    <span class="meta-tag gray">Informatique</span>
-                                    
+                                    <span class="meta-tag blue">{{ user["study_year"] }}</span>
+                                    <span class="meta-tag gray">{{ user["field_of_study"] }}</span>
                                 </div>
                             </div>
 
                         </div>
 
-                        <a href="edit-profil.html" class="edit-btn">
+                        <a href="#" class="edit-btn">
                             <i class="fa-solid fa-pen"></i>
                             Modifier le profil
                         </a>
@@ -61,36 +60,33 @@
                     </div>
 
                     <p class="profile-bio">
-                        Passionné par le développement web et l'algorithmique.
-                        Toujours prêt à aider mes camarades !
+                        Bienvenue sur votre espace profil AMU Connect.
                     </p>
 
                     <div class="profile-info">
 
                         <div class="info-item">
                             <i class="fa-regular fa-envelope"></i>
-                            jean.dupont@etu.univ-amu.fr
+                            {{ user["email"] }}
                         </div>
 
                         <div class="info-item">
                             <i class="fa-solid fa-book-open"></i>
-                            Informatique
+                            {{ user["field_of_study"] }}
                         </div>
 
                     </div>
-
-                    
 
                 </div>
             </section>
 
             <section class="tabs">
-                <a href="mes_questions.html" class="tab active">
+                <a href="{{ url_for('questions.my_questions') }}" class="tab active">
                     <i class="fa-solid fa-comments"></i>
-                    Mes questions favorites
+                    Mes questions
                 </a>
 
-                <a href="resources.html" class="tab">
+                <a href="{{ url_for('resources.my_resources') }}" class="tab">
                     <i class="fa-solid fa-book"></i>
                     Mes ressources
                 </a>

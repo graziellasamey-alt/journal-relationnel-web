@@ -20,6 +20,7 @@ def init_db():
     from models.user_model import create_users_table
     from models.question_model import create_questions_table
     from models.resource_model import create_resources_table
+    from models.answer_model import create_answers_table
     from models.favorite_model import (
         create_favorite_questions_table,
         create_favorite_resources_table
@@ -30,3 +31,4 @@ def init_db():
     create_resources_table()
     create_favorite_questions_table()
     create_favorite_resources_table()
+    create_answers_table()

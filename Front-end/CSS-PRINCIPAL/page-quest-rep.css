@@ -353,9 +353,89 @@ textarea{
     line-height:1.6;
 }
 
+/* =========================================
+   REPONSES
+========================================= */
+.answers-box{
+    margin-top:28px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.section-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    margin-bottom:6px;
+}
+
+.section-title h2{
+    font-size:32px;
+    font-weight:800;
+    color:#16233b;
+}
+
+.section-title span{
+    font-size:15px;
+    font-weight:600;
+    color:#6b7e98;
+}
+
+.answer{
+    display:flex;
+    gap:16px;
+    align-items:flex-start;
+    background:white;
+    border:1px solid #dbe5f0;
+    border-radius:20px;
+    padding:20px;
+    box-shadow:0 10px 24px rgba(18,55,100,0.05);
+}
+
+.avatar{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background:linear-gradient(90deg,#1b6fd3,#5b99e8);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+    font-size:18px;
+    flex-shrink:0;
+}
+
+.answer-content{
+    flex:1;
+    min-width:0;
+}
+
+.answer-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:8px;
+}
+
+.answer-name{
+    font-size:16px;
+    font-weight:800;
+    color:#16233b;
+}
+
+.answer-text{
+    font-size:15px;
+    line-height:1.8;
+    color:#5f718c;
+    white-space:pre-line;
+}
 
 #replySection{
-    display:none;
+    display:block;
 }
 
 /* =========================================

@@ -6,16 +6,15 @@
     <title>Tableau de bord - AMU Connect</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/dashboard.css">
-    <link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/header.css">
-    <link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/footer.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/footer.css') }}">
 
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <script src="/Front-end/JAVASCRIPT-PRINCIPAL/header.js" defer></script>
-    <script src="/Front-end/JAVASCRIPT-PRINCIPAL/event.js" defer></script>
-    <script src="/Front-end/JAVASCRIPT-PRINCIPAL/footer.js" defer></script>
+    <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/header.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/event.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/footer.js') }}" defer></script>
 </head>
 
 <body>
@@ -25,18 +24,20 @@
 <main class="dashboard">
     <div class="container">
 
-        <!-- TOP -->
         <div class="top-row">
 
             <div class="welcome">
-                <h1>Bienvenue, <span class="name">Jean</span></h1>
-                <p>Licence 3 - Informatique</p>
+                <h1>
+                    Bienvenue, 
+                    <span class="name">{{ user["prenom"] }}</span>
+                </h1>
+                <p>{{ user["study_year"] }} - {{ user["field_of_study"] }}</p>
             </div>
 
             <div class="top-actions">
-                <a href="ask.html" class="btn btn-primary">
-                    <i class="fa-solid fa-circle-plus"></i> Poser une question
-                </a>
+                    <a href="{{ url_for('questions.question_form') }}" class="btn btn-primary">
+                        <i class="fa-solid fa-circle-plus"></i> Poser une question
+                    </a>
 
                 <button id="openForm" class="btn btn-outline">
                     <i class="fa-solid fa-upload"></i> Ajouter une ressource
@@ -44,7 +45,6 @@
             </div>
         </div>
 
-        <!-- FORM -->
         <div id="formBox" class="form-box hidden">
                 <select>
                     <option>Type</option>
@@ -63,7 +63,6 @@
 
         <div id="resourcesList"></div>
 
-        <!-- SEARCH -->
         <div class="search-box">
             <div class="search-icon">
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -71,7 +70,6 @@
             <input type="text" placeholder="Rechercher...">
         </div>
 
-        <!-- STATS -->
         <section class="stats-grid">
 
             <div class="stat-card">
@@ -85,7 +83,7 @@
                 </div>
 
                 <div>
-                    <div class="stat-number">128</div>
+                    <div class="stat-number">{{ favorite_questions_count }}</div>
                     <div class="stat-text">Questions favorites</div>
                 </div>
             </div>
@@ -101,17 +99,15 @@
                 </div>
 
                 <div>
-                    <div class="stat-number">45</div>
-                    <div class="stat-text">Ressources téléchargées</div>
+                    <div class="stat-number">{{ recent_resources_count }}</div>
+                    <div class="stat-text">Ressources récentes</div>
                 </div>
             </div>
 
         </section>
 
-        <!-- CONTENT -->
         <section class="content-grid">
 
-            <!-- QUESTIONS -->
             <div class="panel">
                 <div class="panel-head">
                     <div>
@@ -122,19 +118,25 @@
                         <div class="panel-sub">Les dernières questions</div>
                     </div>
 
-                    <a href="/Front-end/HTML-PRINCIPAL/mes_questions.html" class="see-all">Voir tout →</a>
+                    <a href="#" class="see-all">Voir tout →</a>
                 </div>
 
-                <div class="mini-card">
-                    <div class="mini-title-row">
-                        <div class="mini-title">Aide intégrales doubles</div>
-                        
+                {% if favorite_questions %}
+                    {% for question in favorite_questions[:3] %}
+                        <div class="mini-card">
+                            <div class="mini-title-row">
+                                <div class="mini-title">{{ question["title"] }}</div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="mini-card">
+                        <div class="mini-title">Aucune question favorite pour le moment</div>
                     </div>
-                </div>
+                {% endif %}
 
             </div>
 
-            <!-- RESSOURCES -->
             <div class="panel">
                 <div class="panel-head">
                     <div>
@@ -145,12 +147,20 @@
                         <div class="panel-sub">Nouveaux documents</div>
                     </div>
 
-                    <a href="/Front-end/HTML-PRINCIPAL/resources.html" class="see-all green">Voir tout →</a>
+                    <a href="#" class="see-all green">Voir tout →</a>
                 </div>
 
-                <div class="mini-card">
-                    <div class="mini-title">TD Algèbre Linéaire</div>
-                </div>
+                {% if recent_resources %}
+                    {% for resource in recent_resources[:3] %}
+                        <div class="mini-card">
+                            <div class="mini-title">{{ resource["title"] }}</div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="mini-card">
+                        <div class="mini-title">Aucune ressource récente</div>
+                    </div>
+                {% endif %}
 
             </div>
 
