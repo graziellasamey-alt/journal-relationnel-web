@@ -6,6 +6,7 @@ from functools import wraps
 from models.db import init_db
 import secrets
 from models.user_model import get_user_by_id
+from datetime import timedelta
 from models.question_model import get_recent_questions
 from models.resource_model import get_recent_resources
 from models.favorite_model import get_user_favorite_questions, get_user_favorite_resources
@@ -16,7 +17,7 @@ app = Flask(
 )
 
 app.secret_key = secrets.token_hex(16)
-
+app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(hours=2)
 
 def login_required(f):
     @wraps(f)

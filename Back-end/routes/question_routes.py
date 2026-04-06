@@ -7,7 +7,7 @@ from models.question_model import (
     get_question_by_id,
     get_recent_questions,
     get_user_questions,
-    delete_question
+    delete_question as delete_question_model
 )
 from models.answer_model import get_answers_by_question, create_answer
 
@@ -145,18 +145,19 @@ def my_questions():
     )
 
 @question_bp.route("/<int:question_id>/delete", methods=["POST"])
-def remove_question(question_id):
-    user_id = get_current_user_id()
+def delete_question(question_id):
+    user_id = session.get("user_id")
+
     if not user_id:
         flash("Authentification requise.", "error")
         return redirect(url_for("auth.login"))
 
-    deleted = delete_question(question_id, user_id)
+    deleted = delete_question_model(question_id, user_id)
 
-    if not deleted:
-        flash("Suppression impossible ou question introuvable.", "error")
-    else:
+    if deleted:
         flash("Question supprimée avec succès.", "success")
+    else:
+        flash("Suppression impossible.", "error")
 
     return redirect(url_for("questions.my_questions"))
 
