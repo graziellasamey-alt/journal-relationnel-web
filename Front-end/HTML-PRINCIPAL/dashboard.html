@@ -23,7 +23,7 @@
 <main class="dashboard">
     <div class="container">
 
-        <!-- 🔹 TOP -->
+        <!--  TOP -->
         <div class="top-row">
             <div class="welcome">
                 <h1>
@@ -44,7 +44,7 @@
             </div>
         </div>
 
-        <!-- 🔹 FLASH -->
+        <!--  FLASH -->
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 <div class="flash-messages">
@@ -55,7 +55,7 @@
             {% endif %}
         {% endwith %}
 
-        <!-- 🔹 FORM AJOUT RESSOURCE -->
+        <!--  FORM AJOUT RESSOURCE -->
         <div id="formBox" class="form-box hidden">
     <form method="POST" action="{{ url_for('resources.add_resource') }}" enctype="multipart/form-data" class="resource-form">
 
@@ -93,7 +93,7 @@
     </form>
 </div>
 
-        <!-- 🔹 STATS -->
+        <!--  STATS -->
 <section class="stats-grid">
 
     <div class="stat-card">
@@ -124,7 +124,7 @@
 
 </section>
 
-        <!-- 🔹 CONTENT -->
+        <!--  CONTENT -->
         <section class="content-grid">
 
             <!-- QUESTIONS RECENTES -->
