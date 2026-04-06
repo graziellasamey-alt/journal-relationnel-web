@@ -1,125 +1,166 @@
-/* RESET */
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+/* =========================================
+   BASE
+========================================= */
+body {
+    font-family: "Inter", sans-serif;
+    background: #f6f8fc;
+    color: #1f2a44;
+    margin: 0;
 }
 
-/* BASE */
-body{
-    font-family:"Inter",sans-serif;
-    background:#f4f8fc;
-}
 
-/* PAGE CENTRÉE */
-.page{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-}
-.back-link{
-color:#2f78d4;
-font-weight:700;
-margin-bottom:20px;
-display:inline-block;
-}
 
-/* FORMULAIRE */
-.question-form{
-    width:100%;
-    max-width:650px;
-
-    background:white;
-    padding:35px;
-    border-radius:28px;
-
-    border:1px solid #dbe5f0;
-    box-shadow:0 20px 40px rgba(20,52,95,0.08);
-
-    display:flex;
-    flex-direction:column;
-    gap:22px;
-
-    border-top:5px solid #1b6fd3;
-}
-
-/* TITRE */
-.title{
-    text-align:center;
-    font-size:34px;
+/* =========================================
+   HEADER (PLUS AÉRÉ)
+========================================= */
+h1 {
+    font-size:58px;
     font-weight:800;
     color:#2f78d4;
-    margin-bottom:10px;
+    margin-bottom:12px;
 }
 
-/* CHAMPS */
-.field{
-    display:flex;
-    flex-direction:column;
-    gap:8px;
+p {
+    color: #6b7280;
+    margin-bottom: 56px; 
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 620px;
 }
 
-.field label{
-    font-weight:700;
-    font-size:14px;
-    color:#16233b;
+/* =========================================
+   CARD (EFFET FLOAT + PROPRE)
+========================================= */
+.ask-page form {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 44px;
+    border: 1px solid #e6ebf2;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
 }
 
-/* INPUTS */
-.field input,
-.field select,
-.field textarea{
-    border:1px solid #dbe5f0;
-    border-radius:16px;
-    padding:14px 16px;
-    font-size:15px;
-    background:#fbfdff;
-    outline:none;
-    transition:0.2s;
+/* =========================================
+   GRID 
+========================================= */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
 }
 
-/* FOCUS BLEU */
-.field input:focus,
-.field select:focus,
-.field textarea:focus{
-    border-color:#1b6fd3;
-    box-shadow:0 0 0 3px rgba(27,111,211,0.1);
-    background:white;
+/* =========================================
+   FORM GROUP
+========================================= */
+.form-group {
+    margin-bottom: 26px;
 }
 
-/* TEXTAREA */
-.field textarea{
-    min-height:150px;
-    resize:vertical;
+/* =========================================
+   LABEL
+========================================= */
+label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
 }
 
-/* BOUTON */
-.submit-btn{
-    margin-top:10px;
-    height:55px;
-
-    border:none;
-    border-radius:999px;
-
-    background:linear-gradient(90deg,#1b6fd3,#5b99e8);
-    color:white;
-
-    font-weight:800;
-    font-size:16px;
-
-    cursor:pointer;
-
-    box-shadow:0 12px 25px rgba(27,111,211,0.25);
-    transition:0.25s;
+/* =========================================
+   INPUT / SELECT / TEXTAREA
+========================================= */
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 5px 5px;
+    border-radius: 12px;
+    border: 1px solid #dbe2ea;
+    background: #ffffff;
+    font-size: 14px;
+    transition: all 0.2s ease;
 }
 
-.submit-btn:hover{
-    transform:translateY(-2px);
-    box-shadow:0 16px 30px rgba(27,111,211,0.3);
+/* Focus */
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #2f6fed;
+    box-shadow: 0 0 0 3px rgba(47, 111, 237, 0.12);
+    outline: none;
 }
 
-.submit-btn:active{
-    transform:scale(0.97);
+/* Placeholder */
+input::placeholder,
+textarea::placeholder {
+    color: #9aa4b2;
+}
+
+/* =========================================
+   TEXTAREA
+========================================= */
+textarea {
+    min-height: 160px;
+    resize: vertical;
+}
+
+/* =========================================
+   BUTTON 
+========================================= */
+button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 15px;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(135deg, #2f6fed, #4f8cff);
+    color: white;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Hover */
+button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(47, 111, 237, 0.25);
+}
+.retour{
+    display:inline-block;
+    margin-bottom:20px;
+    color:#1f6fd1;
+    font-weight:600;
+    margin-top: 40px;
+    margin-left: 10px;
+}
+/* =========================================
+   LINK RETOUR
+========================================= */
+.ask-page a {
+    display: inline-block;
+    margin-bottom: 30px;
+    color: #2f6fed;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.ask-page a:hover {
+    text-decoration: underline;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+@media (max-width: 700px) {
+    .ask-page {
+        margin: 80px auto;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .ask-page form {
+        padding: 28px;
+    }
 }
