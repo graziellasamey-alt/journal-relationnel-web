@@ -131,9 +131,19 @@
                                     Télécharger
                                 </a>
                             </div>
-                            <div class="ressource-save">
-                            <button class="add-fav active">En favori</button>
-                            </div>
+ <div class="ressource-save">
+    <button
+        class="add-fav {% if resource['id'] in favorite_resource_ids %}active{% endif %}"
+        type="button"
+        data-resource-id="{{ resource['id'] }}"
+    >
+        {% if resource['id'] in favorite_resource_ids %}
+            En favoris
+        {% else %}
+            Mettre en favoris
+        {% endif %}
+    </button>
+</div>
                         </article>
                     {% endfor %}
                 {% else %}

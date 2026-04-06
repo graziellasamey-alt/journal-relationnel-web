@@ -44,12 +44,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     boutons.forEach(btn => {
         btn.addEventListener("click", async () => {
-            const questionId = btn.dataset.questionId;
+            const resourceId = btn.dataset.resourceId;
 
-            if (!questionId) return;
+            if (!resourceId) return;
 
             try {
-                const response = await fetch(`/ressources/${ressouceId}/favorite`, {
+                const response = await fetch(`/resources/${resourceId}/favorite`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
