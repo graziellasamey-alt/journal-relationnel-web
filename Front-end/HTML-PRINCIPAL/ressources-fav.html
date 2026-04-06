@@ -56,19 +56,44 @@
                 </p>
 
                 <div class="meta-line">
-                    <span class="tag tag-gray">{{ resource["target_year"] }}</span>
+                    <span class="tag tag-gray">
+                        {% if resource["target_year"] == "all" %}
+                            Tous niveaux
+                        {% else %}
+                            {{ resource["target_year"] }}
+                        {% endif %}
+                    </span>
                     <span class="tag tag-blue">{{ resource["subject"] }}</span>
                 </div>
 
-                <div class="card-bottom">
-                    <a 
-                        href="{{ url_for('resources.uploaded_file', filename=resource['file_path'].split('/')[-1]) }}" 
-                        class="download-btn"
-                    >
-                        <i class="fa-solid fa-download"></i>
-                        Télécharger
-                    </a>
-                </div>
+                    <div class="card-bottom">
+                        <a 
+                            href="{{ url_for('resources.uploaded_file', filename=resource['file_path'].split('/')[-1]) }}" 
+                            class="download-btn"
+                        >
+                            <i class="fa-solid fa-download"></i>
+                            Télécharger
+                        </a>
+
+                        {% if current_user_id and resource["user_id"] == current_user_id %}
+                            <form method="POST" action="{{ url_for('resources.remove_resource', resource_id=resource['id']) }}" class="delete-form">
+                                <button type="submit" class="delete-btn">
+                                    <i class="fa-solid fa-trash"></i>
+                                    Supprimer
+                                </button>
+                            </form>
+                        {% endif %}
+                    </div>
+
+                    <div class="ressource-save">
+                        <button
+                            class="add-fav active"
+                            type="button"
+                            data-resource-id="{{ resource['id'] }}"
+                        >
+                            En favoris
+                        </button>
+                    </div>
 
             </article>
 

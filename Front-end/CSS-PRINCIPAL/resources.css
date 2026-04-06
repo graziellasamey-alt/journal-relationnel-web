@@ -588,3 +588,26 @@ select{
     background: linear-gradient(135deg, #4f8cff, #3a6fd8);
     color: white;
 }
+.delete-form {
+    margin: 0;
+}
+
+.delete-btn {
+    border: none;
+    background: #ffe7e7;
+    color: #c0392b;
+    padding: 10px 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.2s ease;
+}
+
+.delete-btn:hover {
+    background: #ffd5d5;
+    transform: translateY(-1px);
+}

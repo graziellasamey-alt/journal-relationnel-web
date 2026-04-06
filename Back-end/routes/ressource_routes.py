@@ -64,7 +64,8 @@ def list_resources():
     return render_template(
         "resources.html",
         resources=resources,
-        favorite_resource_ids=favorite_resource_ids
+        favorite_resource_ids=favorite_resource_ids,
+        current_user_id=user_id
     )
 
 @resource_bp.route("/", methods=["POST"])
@@ -177,9 +178,9 @@ def favorite_resources():
 
     return render_template(
         "ressources-fav.html",
-        resources=resources
+        resources=resources,
+        current_user_id=user_id
     )
-
 @resource_bp.route("/<int:resource_id>/favorite", methods=["POST"])
 def toggle_resource_favorite(resource_id):
     user_id = get_current_user_id()

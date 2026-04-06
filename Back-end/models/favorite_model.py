@@ -154,9 +154,16 @@ def get_user_favorite_resources(user_id):
     cursor = conn.cursor()
 
     cursor.execute("""
-        SELECT r.*, fr.created_at AS favorited_at
+        SELECT 
+            r.*,
+            fr.created_at AS favorited_at,
+            u.nom,
+            u.prenom,
+            u.field_of_study,
+            u.study_year
         FROM favorite_resources fr
         JOIN resources r ON fr.resource_id = r.id
+        JOIN users u ON r.user_id = u.id
         WHERE fr.user_id = ?
         ORDER BY fr.created_at DESC
     """, (user_id,))

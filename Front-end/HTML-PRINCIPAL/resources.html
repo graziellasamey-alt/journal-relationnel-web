@@ -148,7 +148,7 @@
                                 {{ resource["description"] }}
                             </p>
 
-                            <p class="card-texti">
+                            <p class="card-text">
                                 Ressource partagée par {{ resource["prenom"] }} {{ resource["nom"] }}
                             </p>
 
@@ -162,26 +162,35 @@
                                 </span>
                                 <span class="tag tag-blue">{{ resource["subject"] }}</span>
                             </div>
+                                <div class="card-bottom">
+                                    <a class="download-btn" href="{{ url_for('resources.uploaded_file', filename=resource['file_path']) }}" download>
+                                        <i class="fa-solid fa-download"></i>
+                                        Télécharger
+                                    </a>
 
-                            <div class="card-bottom">
-                                <a class="download-btn" href="{{ url_for('resources.uploaded_file', filename=resource['file_path']) }}" download>
-                                    <i class="fa-solid fa-download"></i>
-                                    Télécharger
-                                </a>
-                                                </div>
-                    <div class="ressource-save">
-                        <button
-                            class="add-fav {% if resource['id'] in favorite_resource_ids %}active{% endif %}"
-                            type="button"
-                            data-resource-id="{{ resource['id'] }}"
-                        >
-                            {% if resource['id'] in favorite_resource_ids %}
-                                En favoris
-                            {% else %}
-                                Mettre en favoris
-                            {% endif %}
-                        </button>
-                    </div>
+                                    {% if current_user_id and resource["user_id"] == current_user_id %}
+                                        <form method="POST" action="{{ url_for('resources.remove_resource', resource_id=resource['id']) }}" class="delete-form">
+                                            <button type="submit" class="delete-btn">
+                                                <i class="fa-solid fa-trash"></i>
+                                                Supprimer
+                                            </button>
+                                        </form>
+                                    {% endif %}
+                                </div>
+
+                                <div class="ressource-save">
+                                    <button
+                                        class="add-fav {% if resource['id'] in favorite_resource_ids %}active{% endif %}"
+                                        type="button"
+                                        data-resource-id="{{ resource['id'] }}"
+                                    >
+                                        {% if resource['id'] in favorite_resource_ids %}
+                                            En favoris
+                                        {% else %}
+                                            Mettre en favoris
+                                        {% endif %}
+                                    </button>
+                                </div>
                         </article>
                     {% endfor %}
                 {% else %}
