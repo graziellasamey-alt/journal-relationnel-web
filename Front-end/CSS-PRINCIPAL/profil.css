@@ -215,23 +215,59 @@ a{
 }
 
 /* onglets */
-.tabs{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-    margin-top:20px;
+/* =========================================
+   TABS CONTAINER
+========================================= */
+.tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 24px;
 }
 
-.tab{
-    background:white;
-    border-radius:16px;
-    padding:16px;
-    text-align:center;
-    font-weight:700;
+/* =========================================
+   TAB = BOUTON INTERACTIF
+========================================= */
+.tab {
+    background: linear-gradient(135deg, #2f6fed, #4f8cff);
+    border-radius: 14px;
+    padding: 16px;
+    text-align: center;
+    font-weight: 600;
+    cursor: pointer; 
+    color: white;
+    border: 1px solid #e3e8f0;
+
+    transition: all 0.2s ease;
 }
 
-.tab.active{
-    background:#f7faff;
+
+.tab:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    border-color: #d0d7e2;
+}
+
+/* =========================================
+   ACTIVE (clic en cours)
+========================================= */
+.tab:active {
+    transform: scale(0.97);
+   
+}
+
+
+.tab.active {
+    background: linear-gradient(135deg, #2f6fed, #4f8cff);
+    color: white;
+    border: none;
+    
+}
+
+
+.tab:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(47, 111, 237, 0.2);
 }
 
 .edit-btn{
