@@ -57,7 +57,7 @@ def get_resource_by_id(resource_id):
     return resource
 
 
-def get_recent_resources(user_field_of_study=None, search=None, resource_type=None):
+def get_recent_resources(user_field_of_study=None, search=None, resource_type=None, target_year=None):
     conn = get_db()
     cursor = conn.cursor()
 
@@ -86,6 +86,10 @@ def get_recent_resources(user_field_of_study=None, search=None, resource_type=No
         query += " AND (r.title LIKE ? OR r.subject LIKE ?)"
         search_term = f"%{search}%"
         params.extend([search_term, search_term])
+
+    if target_year:
+        query += " AND r.target_year = ?"
+        params.append(target_year)
 
     query += " ORDER BY r.created_at DESC"
 

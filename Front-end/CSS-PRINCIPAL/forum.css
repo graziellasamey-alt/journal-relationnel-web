@@ -385,3 +385,15 @@ a{
         grid-template-columns:1fr;
     }
 }
+
+.clear-btn {
+    text-decoration: none;
+    font-size: 14px;
+    color: #888;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.clear-btn:hover {
+    color: #000;
+}

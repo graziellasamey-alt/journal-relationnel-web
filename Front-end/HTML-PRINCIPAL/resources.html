@@ -34,37 +34,57 @@
                 {% endif %}
             {% endwith %}
 
-            <section class="tools-row">
-                <div class="search-box">
-                    <div class="search-icon">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
-                    <input type="text" placeholder="Rechercher des ressources...">
-                </div>
+<section class="tools-row">
 
-                <div class="filter">
-                    <select>
-                        <option>Type</option>
-                        <option>TD</option>
-                        <option>TP</option>
-                        <option>Examen</option>
-                        <option>Fiche</option>
-                    </select>
-                </div>
+    <form method="GET" action="{{ url_for('resources.list_resources') }}" class="search-box">
 
-                <div class="filter">
-                    <select>
-                        <option>Niveau</option>
-                        <option>L1</option>
-                        <option>L2</option>
-                        <option>L3</option>
-                        <option>M1</option>
-                        <option>M2</option>
-                    </select>
-                </div>
+        <span class="search-icon">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </span>
 
-                
-            </section>
+        <input 
+            type="text" 
+            name="search" 
+            placeholder="Rechercher des ressources..."
+            value="{{ request.args.get('search', '') }}"
+        >
+
+        {% if request.args.get('search') %}
+            <a href="{{ url_for('resources.list_resources') }}" class="clear-btn">✖</a>
+        {% endif %}
+
+    </form>
+
+    <form method="GET" action="{{ url_for('resources.list_resources') }}" class="filter">
+        <!-- garder la recherche -->
+        <input type="hidden" name="search" value="{{ request.args.get('search', '') }}">
+
+        <select name="resource_type" onchange="this.form.submit()">
+            <option value="">Type</option>
+            <option value="TD" {% if request.args.get('resource_type') == 'TD' %}selected{% endif %}>TD</option>
+            <option value="TP" {% if request.args.get('resource_type') == 'TP' %}selected{% endif %}>TP</option>
+            <option value="Examen" {% if request.args.get('resource_type') == 'Examen' %}selected{% endif %}>Examen</option>
+            <option value="Fiche" {% if request.args.get('resource_type') == 'Fiche' %}selected{% endif %}>Fiche</option>
+        </select>
+    </form>
+
+    <form method="GET" action="{{ url_for('resources.list_resources') }}" class="filter">
+        <!-- garder les autres filtres -->
+        <input type="hidden" name="search" value="{{ request.args.get('search', '') }}">
+        <input type="hidden" name="resource_type" value="{{ request.args.get('resource_type', '') }}">
+
+        <select name="target_year" onchange="this.form.submit()">
+            <option value="">Niveau</option>
+            <option value="L1" {% if request.args.get('target_year') == 'L1' %}selected{% endif %}>L1</option>
+            <option value="L2" {% if request.args.get('target_year') == 'L2' %}selected{% endif %}>L2</option>
+            <option value="L3" {% if request.args.get('target_year') == 'L3' %}selected{% endif %}>L3</option>
+            <option value="M1" {% if request.args.get('target_year') == 'M1' %}selected{% endif %}>M1</option>
+            <option value="M2" {% if request.args.get('target_year') == 'M2' %}selected{% endif %}>M2</option>
+            <option value="all" {% if request.args.get('target_year') == 'all' %}selected{% endif %}>Tous niveaux</option>
+        </select>
+    </form>
+
+</section>
 
             <div class="action-row">
                 <button id="openForm" class="btn btn-outline" type="button">
@@ -87,7 +107,15 @@
                     <input type="text" name="subject" placeholder="Matière" required>
 
                     <input type="hidden" name="target_scope" value="field">
-                    <input type="hidden" name="target_year" value="all">
+                    <select name="target_year" required>
+                            <option value="">Niveau </option>
+                            <option value="L1">L1</option>
+                            <option value="L2">L2</option>
+                            <option value="L3">L3</option>
+                            <option value="M1">M1</option>
+                            <option value="M2">M2</option>
+                            <option value="all">Tous les niveaux</option>
+                        </select>
                     <textarea name="description" placeholder="Description de la ressource" required></textarea>
 
                     <input type="file" name="file" required>
@@ -121,7 +149,13 @@
                             </p>
 
                             <div class="meta-line">
-                                <span class="tag tag-gray">{{ resource["target_year"] }}</span>
+                                <span class="tag tag-gray">
+                                    {% if resource["target_year"] == "all" %}
+                                        All
+                                    {% else %}
+                                        {{ resource["target_year"] }}
+                                    {% endif %}
+                                </span>
                                 <span class="tag tag-blue">{{ resource["subject"] }}</span>
                             </div>
 
@@ -130,20 +164,20 @@
                                     <i class="fa-solid fa-download"></i>
                                     Télécharger
                                 </a>
-                            </div>
- <div class="ressource-save">
-    <button
-        class="add-fav {% if resource['id'] in favorite_resource_ids %}active{% endif %}"
-        type="button"
-        data-resource-id="{{ resource['id'] }}"
-    >
-        {% if resource['id'] in favorite_resource_ids %}
-            En favoris
-        {% else %}
-            Mettre en favoris
-        {% endif %}
-    </button>
-</div>
+                                                </div>
+                    <div class="ressource-save">
+                        <button
+                            class="add-fav {% if resource['id'] in favorite_resource_ids %}active{% endif %}"
+                            type="button"
+                            data-resource-id="{{ resource['id'] }}"
+                        >
+                            {% if resource['id'] in favorite_resource_ids %}
+                                En favoris
+                            {% else %}
+                                Mettre en favoris
+                            {% endif %}
+                        </button>
+                    </div>
                         </article>
                     {% endfor %}
                 {% else %}

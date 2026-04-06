@@ -44,6 +44,7 @@ def list_resources():
     resource_type = request.args.get("resource_type")
     user_field_of_study = None
     favorite_resource_ids = []
+    target_year = request.args.get("target_year")
 
     user_id = get_current_user_id()
     if user_id:
@@ -56,7 +57,8 @@ def list_resources():
     resources = get_recent_resources(
         user_field_of_study=user_field_of_study,
         search=search,
-        resource_type=resource_type
+        resource_type=resource_type,
+        target_year=target_year
     )
 
     return render_template(

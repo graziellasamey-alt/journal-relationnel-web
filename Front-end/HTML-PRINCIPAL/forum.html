@@ -37,34 +37,44 @@
             {% endif %}
         {% endwith %}
 
-        <section class="forum-tools">
+            <section class="forum-tools">
 
-            <form method="GET" action="{{ url_for('questions.list_questions') }}" class="search-box">
-                <span class="search-icon">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </span>
-                <input type="text" name="search" placeholder="Rechercher des questions...">
-            </form>
+                <form method="GET" action="{{ url_for('questions.list_questions') }}" class="search-box">
+                    <span class="search-icon">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </span>
 
-            <div class="filter">
-                <select Niveau>
-                    <option>Niveau</option>
-                    <option>L1</option>
-                    <option>L2</option>
-                    <option>L3</option>
-                    <option>M1</option>
-                    <option>M2</option>
-                </select>
-            </div>
+                    <input
+                        type="text"
+                        name="search"
+                        placeholder="Rechercher des questions..."
+                        value="{{ request.args.get('search', '') }}"
+                    >
 
-            
+                    {% if request.args.get('search') %}
+                        <a href="{{ url_for('questions.list_questions') }}" class="clear-btn">✖</a>
+                    {% endif %}
+                </form>
 
-            <a href="{{ url_for('questions.question_form') }}" class="ask-btn">
-                <i class="fa-solid fa-circle-plus"></i>
-                Poser une question
-            </a>
+                <form method="GET" action="{{ url_for('questions.list_questions') }}" class="filter">
+                    <input type="hidden" name="search" value="{{ request.args.get('search', '') }}">
 
-        </section>
+                    <select name="target_year" onchange="this.form.submit()">
+                        <option value="">Niveau</option>
+                        <option value="L1" {% if request.args.get('target_year') == 'L1' %}selected{% endif %}>L1</option>
+                        <option value="L2" {% if request.args.get('target_year') == 'L2' %}selected{% endif %}>L2</option>
+                        <option value="L3" {% if request.args.get('target_year') == 'L3' %}selected{% endif %}>L3</option>
+                        <option value="M1" {% if request.args.get('target_year') == 'M1' %}selected{% endif %}>M1</option>
+                        <option value="M2" {% if request.args.get('target_year') == 'M2' %}selected{% endif %}>M2</option>
+                    </select>
+                </form>
+
+                <a href="{{ url_for('questions.question_form') }}" class="ask-btn">
+                    <i class="fa-solid fa-circle-plus"></i>
+                    Poser une question
+                </a>
+
+            </section>
 
         <section class="questions">
             {% if questions %}
