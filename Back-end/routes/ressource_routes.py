@@ -7,7 +7,8 @@ from flask import (
     url_for,
     session,
     flash,
-    send_from_directory
+    send_from_directory,
+    jsonify
 )
 from werkzeug.utils import secure_filename
 
@@ -19,7 +20,11 @@ from models.resource_model import (
     delete_resource
 )
 from models.user_model import get_user_by_id
-
+from models.favorite_model import (
+    get_user_favorite_resources,
+    get_user_favorite_resource_ids,
+    toggle_favorite_resource
+)
 resource_bp = Blueprint("resources", __name__)
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -38,6 +43,8 @@ def list_resources():
     search = request.args.get("search")
     resource_type = request.args.get("resource_type")
     user_field_of_study = None
+    favorite_resource_ids = []
+    target_year = request.args.get("target_year")
 
     user_id = get_current_user_id()
     if user_id:
@@ -45,14 +52,21 @@ def list_resources():
         if user:
             user_field_of_study = user["field_of_study"]
 
+        favorite_resource_ids = get_user_favorite_resource_ids(user_id)
+
     resources = get_recent_resources(
         user_field_of_study=user_field_of_study,
         search=search,
-        resource_type=resource_type
+        resource_type=resource_type,
+        target_year=target_year
     )
 
-    return render_template("resources.html", resources=resources)
-
+    return render_template(
+        "resources.html",
+        resources=resources,
+        favorite_resource_ids=favorite_resource_ids,
+        current_user_id=user_id
+    )
 
 @resource_bp.route("/", methods=["POST"])
 def add_resource():
@@ -164,5 +178,29 @@ def favorite_resources():
 
     return render_template(
         "ressources-fav.html",
-        resources=resources
+        resources=resources,
+        current_user_id=user_id
     )
+@resource_bp.route("/<int:resource_id>/favorite", methods=["POST"])
+def toggle_resource_favorite(resource_id):
+    user_id = get_current_user_id()
+
+    if not user_id:
+        return jsonify({
+            "success": False,
+            "message": "Vous devez être connecté pour ajouter une ressource aux favoris."
+        }), 401
+
+    resource = get_resource_by_id(resource_id)
+    if not resource:
+        return jsonify({
+            "success": False,
+            "message": "Ressource introuvable."
+        }), 404
+
+    is_now_favorite = toggle_favorite_resource(user_id, resource_id)
+
+    return jsonify({
+        "success": True,
+        "is_favorite": is_now_favorite
+    }), 200

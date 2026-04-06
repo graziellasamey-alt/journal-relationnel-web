@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/dashboard.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/header.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/footer.css') }}">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/header.js') }}" defer></script>
@@ -24,119 +23,144 @@
 <main class="dashboard">
     <div class="container">
 
+        <!--  TOP -->
         <div class="top-row">
-
             <div class="welcome">
                 <h1>
-                    Bienvenue, 
+                    Bienvenue,
                     <span class="name">{{ user["prenom"] }}</span>
                 </h1>
                 <p>{{ user["study_year"] }} - {{ user["field_of_study"] }}</p>
             </div>
 
             <div class="top-actions">
-                    <a href="{{ url_for('questions.question_form') }}" class="btn btn-primary">
-                        <i class="fa-solid fa-circle-plus"></i> Poser une question
-                    </a>
+                <a href="{{ url_for('questions.question_form') }}" class="btn btn-primary">
+                    <i class="fa-solid fa-circle-plus"></i> Poser une question
+                </a>
 
-                <button id="openForm" class="btn btn-outline">
+                <button id="openForm" class="btn btn-outline" type="button">
                     <i class="fa-solid fa-upload"></i> Ajouter une ressource
                 </button>
             </div>
         </div>
 
+        <!--  FLASH -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <p class="flash-message {{ category }}">{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <!--  FORM AJOUT RESSOURCE -->
         <div id="formBox" class="form-box hidden">
-                <select>
-                    <option>Type</option>
-                    <option>TD</option>
-                    <option>TP</option>
-                    <option>Examen</option>
-                    <option>Fiche</option>
-                </select>
+    <form method="POST" action="{{ url_for('resources.add_resource') }}" enctype="multipart/form-data" class="resource-form">
 
-                <input type="text" placeholder="Titre">
-                <input type="text" placeholder="Matière">
-                <input type="file">
+        <div class="form-row">
+            <select name="resource_type" required>
+                <option value="">Type</option>
+                <option value="TD">TD</option>
+                <option value="TP">TP</option>
+                <option value="Examen">Examen</option>
+                <option value="Fiche">Fiche</option>
+            </select>
 
-                <button class="btn btn-primary" type="button">Ajouter</button>
-            </div>
+            <input type="text" name="title" placeholder="Titre" required>
+            <input type="text" name="subject" placeholder="Matière" required>
 
-        <div id="resourcesList"></div>
-
-        <div class="search-box">
-            <div class="search-icon">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
-            <input type="text" placeholder="Rechercher...">
+            <select name="target_year" required>
+                <option value="">Niveau</option>
+                <option value="L1">L1</option>
+                <option value="L2">L2</option>
+                <option value="L3">L3</option>
+                <option value="M1">M1</option>
+                <option value="M2">M2</option>
+                <option value="all">Tous les niveaux</option>
+            </select>
         </div>
 
-        <section class="stats-grid">
+        <input type="hidden" name="target_scope" value="field">
 
-            <div class="stat-card">
-                <div class="stat-top">
-                    <div class="stat-icon icon-blue">
-                        <i class="fa-solid fa-comments"></i>
-                    </div>
-                    <div class="trend">
-                        <i class="fa-solid fa-arrow-trend-up"></i>
-                    </div>
-                </div>
+        <textarea name="description" placeholder="Description de la ressource" required></textarea>
 
-                <div>
-                    <div class="stat-number">{{ favorite_questions_count }}</div>
-                    <div class="sta    t-text">Questions favorites</div>
-                </div>
+        <div class="form-bottom">
+            <input type="file" name="file" required>
+            <button class="btn btn-primary" type="submit">Ajouter</button>
+        </div>
+    </form>
+</div>
+
+        <!--  STATS -->
+<section class="stats-grid">
+
+    <div class="stat-card">
+        <div class="stat-top">
+            <div class="stat-icon icon-blue">
+                <i class="fa-solid fa-heart"></i>
             </div>
+        </div>
 
-            <div class="stat-card">
-                <div class="stat-top">
-                    <div class="stat-icon icon-green">
-                        <i class="fa-solid fa-book"></i>
-                    </div>
-                    <div class="trend">
-                        <i class="fa-solid fa-arrow-trend-up"></i>
-                    </div>
-                </div>
+        <div>
+            <div class="stat-number">{{ favorite_questions_count }}</div>
+            <div class="stat-text">Questions favorites</div>
+        </div>
+    </div>
 
-                <div>
-                    <div class="stat-number">{{ recent_resources_count }}</div>
-                    <div class="stat-text">Ressources favorites</div>
-                </div>
+    <div class="stat-card">
+        <div class="stat-top">
+            <div class="stat-icon icon-green">
+                <i class="fa-solid fa-bookmark"></i>
             </div>
+        </div>
 
-        </section>
+        <div>
+            <div class="stat-number">{{ favorite_resources_count }}</div>
+            <div class="stat-text">Ressources favorites</div>
+        </div>
+    </div>
 
+</section>
+
+        <!--  CONTENT -->
         <section class="content-grid">
 
+            <!-- QUESTIONS RECENTES -->
             <div class="panel">
                 <div class="panel-head">
                     <div>
                         <div class="panel-title">
                             <i class="fa-solid fa-comments"></i>
-                            <span>Questions favorites</span>
+                            <span>Questions récentes</span>
                         </div>
-                        <div class="panel-sub">Les dernières questions</div>
+                        <div class="panel-sub">Les dernières questions posées</div>
                     </div>
 
-                    <a href="#" class="see-all">Voir tout →</a>
+                    <a href="{{ url_for('questions.list_questions') }}" class="see-all">Voir tout →</a>
                 </div>
 
-                {% if favorite_questions %}
-                    {% for question in favorite_questions[:3] %}
-                        <div class="mini-card">
-                            <div class="mini-title-row">
+                {% if recent_questions %}
+                    {% for question in recent_questions[:3] %}
+                        <a class="mini-card-link" href="{{ url_for('questions.question_detail', question_id=question['id']) }}">
+                            <div class="mini-card">
                                 <div class="mini-title">{{ question["title"] }}</div>
+                                <div class="mini-meta">
+                                    <span>{{ question["subject"] }}</span>
+                                    <span>{{ question["target_year"] }}</span>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     {% endfor %}
                 {% else %}
                     <div class="mini-card">
-                        <div class="mini-title">Aucune question favorite pour le moment</div>
+                        <div class="mini-title">Aucune question récente</div>
                     </div>
                 {% endif %}
-
             </div>
 
+            <!-- RESSOURCES RECENTES -->
             <div class="panel">
                 <div class="panel-head">
                     <div>
@@ -144,24 +168,35 @@
                             <i class="fa-solid fa-book-open"></i>
                             <span>Ressources récentes</span>
                         </div>
-                        <div class="panel-sub">Nouveaux documents</div>
+                        <div class="panel-sub">Nouveaux documents partagés</div>
                     </div>
 
-                    <a href="#" class="see-all green">Voir tout →</a>
+                    <a href="{{ url_for('resources.list_resources') }}" class="see-all green">Voir tout →</a>
                 </div>
 
                 {% if recent_resources %}
                     {% for resource in recent_resources[:3] %}
-                        <div class="mini-card">
-                            <div class="mini-title">{{ resource["title"] }}</div>
-                        </div>
+                        <a class="mini-card-link" href="{{ url_for('resources.resource_detail', resource_id=resource['id']) }}">
+                            <div class="mini-card">
+                                <div class="mini-title">{{ resource["title"] }}</div>
+                                <div class="mini-meta">
+                                    <span>{{ resource["subject"] }}</span>
+                                    <span>
+                                        {% if resource["target_year"] == "all" %}
+                                            Tous niveaux
+                                        {% else %}
+                                            {{ resource["target_year"] }}
+                                        {% endif %}
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
                     {% endfor %}
                 {% else %}
                     <div class="mini-card">
                         <div class="mini-title">Aucune ressource récente</div>
                     </div>
                 {% endif %}
-
             </div>
 
         </section>

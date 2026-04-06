@@ -1,8 +1,6 @@
 from flask import Blueprint, request, render_template, redirect, url_for, session, flash
 from werkzeug.security import generate_password_hash, check_password_hash
-from models.user_model import create_user, get_user_by_email
-from models.user_model import create_user, get_user_by_email, get_user_by_id
-
+from models.user_model import create_user, get_user_by_email, get_user_by_id, update_user_profile
 auth_bp = Blueprint("auth", __name__)
 
 
@@ -11,35 +9,38 @@ def register():
     if request.method == "GET":
         return render_template("sign-up.html")
 
-    nom = request.form.get("nom")
-    prenom = request.form.get("prenom")
-    email = request.form.get("email")
-    password = request.form.get("password")
-    confirm_password = request.form.get("confirm_password")
-    field_of_study = request.form.get("field_of_study")
-    study_year = request.form.get("study_year")
+    nom = request.form.get("nom", "").strip()
+    prenom = request.form.get("prenom", "").strip()
+    email = request.form.get("email", "").strip()
+    password = request.form.get("password", "")
+    confirm_password = request.form.get("confirm_password", "")
+    field_of_study = request.form.get("field_of_study", "").strip()
+    study_year = request.form.get("study_year", "").strip()
     terms = request.form.get("terms")
+
+    form_data = request.form
 
     if not all([nom, prenom, email, password, confirm_password, field_of_study, study_year]):
         flash("Tous les champs sont obligatoires.", "error")
-        return redirect(url_for("auth.register"))
+        return render_template("sign-up.html", form_data=form_data)
 
     if password != confirm_password:
         flash("Les mots de passe ne correspondent pas.", "error")
-        return redirect(url_for("auth.register"))
+        return render_template("sign-up.html", form_data=form_data)
 
     if not terms:
         flash("Vous devez accepter les conditions d'utilisation.", "error")
-        return redirect(url_for("auth.register"))
+        return render_template("sign-up.html", form_data=form_data)
 
-    if not email.endswith("@etu.univ-amu.fr"):
+    if not (email.endswith("@etu.univ-amu.fr") or email.endswith("@univ-amu.fr")):
         flash("Veuillez utiliser une adresse email universitaire AMU.", "error")
-        return redirect(url_for("auth.register"))
+        return render_template("sign-up.html", form_data=form_data)
 
     existing_user = get_user_by_email(email)
     if existing_user:
         flash("Email déjà utilisé.", "error")
-        return redirect(url_for("auth.register"))
+        print("FLASH ERROR EMAIL")
+        return render_template("sign-up.html", form_data=form_data)
 
     password_hash = generate_password_hash(password)
 
@@ -77,6 +78,7 @@ def login():
         return redirect(url_for("auth.login"))
 
     session["user_id"] = user["id"]
+    session.permanent = True
     flash("Connexion réussie", "success")
     return redirect(url_for("dashboard"))
 
@@ -100,3 +102,43 @@ def profil():
         return redirect(url_for("auth.login"))
 
     return render_template("profil.html", user=user)
+
+
+
+@auth_bp.route("/profile/edit", methods=["GET", "POST"])
+def edit_profile():
+    user_id = session.get("user_id")
+
+    if not user_id:
+        flash("Authentification requise.", "error")
+        return redirect(url_for("auth.login"))
+
+    user = get_user_by_id(user_id)
+
+    if request.method == "POST":
+        prenom = request.form.get("prenom", "").strip()
+        nom = request.form.get("nom", "").strip()
+        email = request.form.get("email", "").strip()
+        study_year = request.form.get("study_year", "").strip()
+        field_of_study = request.form.get("field_of_study", "").strip()
+
+        if not all([prenom, nom, email, study_year, field_of_study]):
+            flash("Tous les champs sont obligatoires.", "error")
+            return render_template("edit-profil.html", user=user)
+
+        updated = update_user_profile(
+            user_id,
+            prenom,
+            nom,
+            email,
+            study_year,
+            field_of_study
+        )
+
+        if updated:
+            flash("Profil mis à jour avec succès.", "success")
+            return redirect(url_for("auth.profil"))
+        else:
+            flash("Erreur lors de la mise à jour.", "error")
+
+    return render_template("edit-profil.html", user=user)

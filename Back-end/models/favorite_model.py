@@ -154,9 +154,16 @@ def get_user_favorite_resources(user_id):
     cursor = conn.cursor()
 
     cursor.execute("""
-        SELECT r.*, fr.created_at AS favorited_at
+        SELECT 
+            r.*,
+            fr.created_at AS favorited_at,
+            u.nom,
+            u.prenom,
+            u.field_of_study,
+            u.study_year
         FROM favorite_resources fr
         JOIN resources r ON fr.resource_id = r.id
+        JOIN users u ON r.user_id = u.id
         WHERE fr.user_id = ?
         ORDER BY fr.created_at DESC
     """, (user_id,))
@@ -164,3 +171,18 @@ def get_user_favorite_resources(user_id):
     resources = cursor.fetchall()
     conn.close()
     return resources
+
+def get_user_favorite_resource_ids(user_id):
+    conn = get_db()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT resource_id
+        FROM favorite_resources
+        WHERE user_id = ?
+    """, (user_id,))
+
+    rows = cursor.fetchall()
+    conn.close()
+
+    return [row["resource_id"] for row in rows]

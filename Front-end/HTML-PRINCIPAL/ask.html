@@ -8,13 +8,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/header.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/ask.css') }}">
+    <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/header.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/footer.js') }}" defer></script>
 </head>
 <body>
 
     <div id="header"></div>
 
     <main class="container" style="max-width: 800px; margin: 40px auto;">
-        <a href="{{ url_for('questions.list_questions') }}">← Retour au forum</a>
+        <a href="{{ url_for('questions.list_questions') }}"  class="retour">← Retour au forum</a>
 
         <h1>Poser une question</h1>
         <p>Décrivez clairement votre problème pour obtenir de meilleures réponses.</p>

@@ -116,6 +116,14 @@
                                     <span class="tag tag-gray">{{ question["target_year"] }}</span>
                                     <span class="tag tag-blue">{{ question["subject"] }}</span>
                                 </div>
+                                <div class="question-actions">
+                    <form method="POST" action="{{ url_for('questions.delete_question', question_id=question['id']) }}" class="delete-form">
+                        <button type="submit" class="delete-btn">
+                            <i class="fa-solid fa-trash"></i>
+                            Supprimer
+                        </button>
+                    </form>
+                </div>
                             </div>
                         </article>
                     {% endfor %}

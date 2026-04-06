@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/resources-fav.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/ressources-fav.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/header.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/footer.css') }}">
 
@@ -24,7 +24,7 @@
     <main class="resources-page">
     <div class="container">
 
-        <h1 class="favorites-title">⭐ Mes ressources favorites</h1>
+        <h1 class="favorites-title"> Mes ressources favorites</h1>
 
         <section class="cards">
 
@@ -56,34 +56,59 @@
                 </p>
 
                 <div class="meta-line">
-                    <span class="tag tag-gray">{{ resource["target_year"] }}</span>
+                    <span class="tag tag-gray">
+                        {% if resource["target_year"] == "all" %}
+                            Tous niveaux
+                        {% else %}
+                            {{ resource["target_year"] }}
+                        {% endif %}
+                    </span>
                     <span class="tag tag-blue">{{ resource["subject"] }}</span>
                 </div>
 
-                <div class="card-bottom">
-                    <a 
-                        href="{{ url_for('resources.uploaded_file', filename=resource['file_path'].split('/')[-1]) }}" 
-                        class="download-btn"
-                    >
-                        <i class="fa-solid fa-download"></i>
-                        Télécharger
-                    </a>
-                </div>
+                    <div class="card-bottom">
+                        <a 
+                            href="{{ url_for('resources.uploaded_file', filename=resource['file_path'].split('/')[-1]) }}" 
+                            class="download-btn"
+                        >
+                            <i class="fa-solid fa-download"></i>
+                            Télécharger
+                        </a>
+
+                        {% if current_user_id and resource["user_id"] == current_user_id %}
+                            <form method="POST" action="{{ url_for('resources.remove_resource', resource_id=resource['id']) }}" class="delete-form">
+                                <button type="submit" class="delete-btn">
+                                    <i class="fa-solid fa-trash"></i>
+                                    Supprimer
+                                </button>
+                            </form>
+                        {% endif %}
+                    </div>
+
+                    <div class="ressource-save">
+                        <button
+                            class="add-fav active"
+                            type="button"
+                            data-resource-id="{{ resource['id'] }}"
+                        >
+                            En favoris
+                        </button>
+                    </div>
 
             </article>
 
         {% endfor %}
 
     {% else %}
-        <article class="card">
+            <article class="card">
             <h2 class="card-title">Aucune ressource favorite</h2>
-            <p class="card-text">
-                Vous n’avez encore ajouté aucune ressource en favori.
+                <p class="card-text">
+                Vous n'avez encore ajouté aucune ressource en favori.
             </p>
-        </article>
+            </article>
     {% endif %}
 
-</section>
+        </section>
 
     </div>
 </main>

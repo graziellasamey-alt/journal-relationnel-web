@@ -1,194 +1,128 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier le profil - AMU Connect</title>
 
-<title>Modifier le profil - AMU Connect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<!-- police -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/edit-profil.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS-PRINCIPAL/footer.css') }}">
 
-<!-- fichier CSS -->
-<link rel="stylesheet" href="/Front-end/CSS-PRINCIPAL/edit-profil.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+    <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/header.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='JAVASCRIPT-PRINCIPAL/footer.js') }}" defer></script>
 </head>
 
 <body>
 
-<!-- =========================================
-HEADER
-barre du haut
-========================================= -->
-
-<header class="header">
-
-<div class="container header-box">
-
-<a class="logo">
-
-<div class="logo-icon">🎓</div>
-
-<div>
-<div class="logo-title">AMU Connect</div>
-<div class="logo-sub">Aix-Marseille Université</div>
-</div>
-
-</a>
-
-<nav class="nav">
-                <a href="/Front-end/HTML-PRINCIPAL/dashboard.html" class="nav-link active">🏠 <span>Tableau de bord</span></a>
-                <a href="/Front-end/HTML-PRINCIPAL/forum.html" class="nav-link">💬 <span>Forum</span></a>
-                <a href="/Front-end/HTML-PRINCIPAL/resources.html" class="nav-link">📚 <span>Ressources</span></a>
-                
-</nav>
-
-</div>
-
-</header>
-
-
-
-<!-- 
-PAGE MODIFICATION PROFIL
-========================================= -->
+<div id="header"></div>
 
 <main class="edit-page">
+    <div class="container">
 
-<div class="container">
+        <!-- retour -->
+        <a href="{{ url_for('auth.profil') }}" class="back-link">← Retour au profil</a>
 
+        <section class="edit-card">
 
-<!-- lien retour -->
-<a href="profil.html" class="back-link">← Retour au profil</a>
+            <div class="edit-cover"></div>
 
+            <div class="edit-content">
 
-<!-- 
-CARTE PRINCIPALE
- -->
+                <!-- HEADER -->
+                <div class="edit-top">
 
-<section class="edit-card">
+                    <div class="edit-user">
 
+                        <div class="avatar-box">
+                            <div class="avatar">
+                                {{ user["prenom"][0] }}{{ user["nom"][0] }}
+                            </div>
+                        </div>
 
-<!-- bandeau -->
-<div class="edit-cover"></div>
+                        <div class="edit-title">
+                            <h1>Modifier mon profil</h1>
+                            <p>Mettez à jour vos informations</p>
+                        </div>
 
+                    </div>
 
-<div class="edit-content">
+                </div>
 
+                <!-- MESSAGES -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        <div class="flash-messages">
+                            {% for category, message in messages %}
+                                <p class="flash-message {{ category }}">{{ message }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
 
-<!-- =========================================
-HAUT DU PROFIL
-avatar + titre
-========================================= -->
+                <!-- FORM -->
+                <form method="POST" action="{{ url_for('auth.edit_profile') }}" class="form-grid">
 
-<div class="edit-top">
+                    <div class="field">
+                        <label>Prénom</label>
+                        <input type="text" name="prenom" value="{{ user['prenom'] }}" required>
+                    </div>
 
-<div class="edit-user">
+                    <div class="field">
+                        <label>Nom</label>
+                        <input type="text" name="nom" value="{{ user['nom'] }}" required>
+                    </div>
 
-<div class="avatar-box">
+                    <div class="field full">
+                        <label>Email universitaire</label>
+                        <input type="email" name="email" value="{{ user['email'] }}" required>
+                    </div>
 
-<div class="avatar">JD</div>
+                    <div class="field">
+                        <label>Niveau</label>
+                        <select name="study_year" required>
+                            <option value="L1" {% if user["study_year"] == "L1" %}selected{% endif %}>L1</option>
+                            <option value="L2" {% if user["study_year"] == "L2" %}selected{% endif %}>L2</option>
+                            <option value="L3" {% if user["study_year"] == "L3" %}selected{% endif %}>L3</option>
+                            <option value="M1" {% if user["study_year"] == "M1" %}selected{% endif %}>M1</option>
+                            <option value="M2" {% if user["study_year"] == "M2" %}selected{% endif %}>M2</option>
+                        </select>
+                    </div>
 
+                    <div class="field">
+                        <label>Filière</label>
+                        <input type="text" name="field_of_study" value="{{ user['field_of_study'] }}" required>
+                    </div>
 
+                    <!-- ACTIONS -->
+                    <div class="field full">
+                        <div class="form-actions">
 
-</div>
+                            <a href="{{ url_for('auth.profil') }}" class="btn btn-outline">
+                                Annuler
+                            </a>
 
+                            <button type="submit" class="btn btn-blue">
+                                Enregistrer
+                            </button>
 
-<div class="edit-title">
+                        </div>
+                    </div>
 
-<h1>Modifier mon profil</h1>
+                </form>
 
-<p>Tu dois mettre tes informations personnelles  </p>
+            </div>
 
-</div>
+        </section>
 
-</div>
-
-
-
-</div>
-
-
-
-<!-- =========================================
-FORMULAIRE
-========================================= -->
-
-<form class="form-grid">
-
-
-<div class="field">
-<label>Prénom</label>
-<input type="text" value="Jean">
-</div>
-
-
-<div class="field">
-<label>Nom</label>
-<input type="text" value="Dupont">
-</div>
-
-
-<div class="field full">
-<label>Email universitaire</label>
-<input type="email" value="jean.dupont@etu.univ-amu.fr">
-</div>
-
-
-<div class="field">
-<label>Niveau</label>
-<select>
-<option>L1</option>
-<option>L2</option>
-<option selected>L3</option>
-<option>M1</option>
-<option>M2</option>
-</select>
-</div>
-
-
-<div class="field">
-<label>Filière</label>
-<select>
-<option>Mathématiques</option>
-<option selected>Informatique</option>
-<option>Physique</option>
-</select>
-</div>
-
-
-<div class="field full">
-<label>Bio</label>
-<textarea>
-Passionné par le développement web et l'algorithmique.
-</textarea>
-</div>
-
-
-<!-- boutons -->
-<div class="field full">
-
-<div class="form-actions">
-
-<button class="btn btn-outline">Annuler</button>
-
-<button class="btn btn-blue">Enregistrer</button>
-
-</div>
-
-</div>
-
-
-</form>
-
-</div>
-
-</section>
-
-</div>
-
+    </div>
 </main>
+
+<div id="footer"></div>
 
 </body>
 </html>

@@ -65,18 +65,21 @@ def get_user_by_id(user_id):
     return user
 
 
-def update_user(user_id, nom, prenom, field_of_study, study_year):
+def update_user_profile(user_id, prenom, nom, email, study_year, field_of_study):
     conn = get_db()
     cursor = conn.cursor()
 
     cursor.execute("""
         UPDATE users
-        SET nom = ?, prenom = ?, field_of_study = ?, study_year = ?
+        SET prenom = ?, nom = ?, email = ?, study_year = ?, field_of_study = ?
         WHERE id = ?
-    """, (nom, prenom, field_of_study, study_year, user_id))
+    """, (prenom, nom, email, study_year, field_of_study, user_id))
 
     conn.commit()
+    updated = cursor.rowcount > 0
     conn.close()
+
+    return updated
 
 
 def get_all_users():
