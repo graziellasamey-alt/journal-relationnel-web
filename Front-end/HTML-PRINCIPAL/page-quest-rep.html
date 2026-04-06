@@ -82,14 +82,12 @@
                                 </div>
 
                                 <div class="question-extra-actions">
-                                   <!--<button type="button" class="post-btn primary" onclick="document.getElementById('replySection').scrollIntoView({ behavior: 'smooth' });">
+                                   <button type="button" class="post-btn primary" onclick="goToReply()">
                                         <i class="fa-solid fa-pen"></i>
                                         Écrire une réponse
-                                    </button>-->
-                                    <a href="#replySection" class="post-btn primary">
-                                         <i class="fa-solid fa-pen"></i>
-                                        Écrire une réponse
-                                    </a>
+                                    </button>
+                                    
+                                    
                                 </div>
                             </div>
 
@@ -131,7 +129,7 @@
 
                 <aside class="side-column">
 
-                    <div class="reply-card" id="replySection">
+                    <div class="reply-card hidden" id="replySection">
                         <h3>Écrire une réponse</h3>
                         <p>Partage une explication claire et utile pour aider l’auteur de la question.</p>
 

@@ -434,8 +434,9 @@ textarea{
     white-space:pre-line;
 }
 
-#replySection{
-    display:block;
+
+.hidden {
+    display: none;
 }
 
 /* =========================================
